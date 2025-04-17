@@ -13,7 +13,7 @@ const siteMetadata = {
     github: 'https://github.com/evgyaan',
     twitter: 'https://twitter.com/evgyaan',
     facebook: 'https://facebook.com/evgyaan',
-    youtube: 'https://youtube.com/codebucks',
+    youtube: 'https://youtube.com/evgyaan',
     linkedin: 'https://www.linkedin.com/in/evgyaan/',
     dribbble: 'https://www.dribbble.com',
     youtube: 'https://www.youtube.com/@EVGYANN',
