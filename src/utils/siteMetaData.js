@@ -1,21 +1,23 @@
 // please update required information
 const siteMetadata = {
-    title: 'Next.js Blog With Tailwind CSS and Contentlayer',
-    author: 'CodeBucks',
-    headerTitle: 'Next.js Blog',
-    description: 'A blog created with Next.js, Tailwind.css and contentlayer.',
+    title: 'Evgyaan',
+    author: 'Evgyaan',
+    headerTitle: 'Evgyaan',
+    description: 'Evgyaan Latest news and updates website',
     language: 'en-us',
     theme: 'system', // system, dark or light
-    siteUrl: 'https://create-blog-with-nextjs.vercel.app', // your website URL
+    siteUrl: 'https://evgyaan.vercel.app', // your website URL
     siteLogo: '/logo.png',
     socialBanner: '/social-banner.png', // add social banner in the public folder
-    email: 'codebucks27@gmail.com', 
-    github: 'https://github.com/codebucks27',
-    twitter: 'https://twitter.com/code_bucks',
-    facebook: 'https://facebook.com',
+    email: 'evgyaan@gmail.com', 
+    github: 'https://github.com/evgyaan',
+    twitter: 'https://twitter.com/evgyaan',
+    facebook: 'https://facebook.com/evgyaan',
     youtube: 'https://youtube.com/codebucks',
-    linkedin: 'https://www.linkedin.com/in/codebucks/',
+    linkedin: 'https://www.linkedin.com/in/evgyaan/',
     dribbble: 'https://www.dribbble.com',
+    youtube: 'https://www.youtube.com/@EVGYANN',
+    instagram: 'https://www.instagram.com/evgyan2.0',
     locale: 'en-US',
   }
   

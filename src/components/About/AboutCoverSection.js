@@ -18,7 +18,11 @@ const AboutCoverSection = () => {
             Dream Big, Work Hard, Achieve More!
             </h2>
             <p className='font-medium capitalize mt-4 text-base'>
-            This Mantra Drives My Work As A Passionate Freelancer. I Blend Innovative Technology With Timeless Design For Captivating Digital Experiences. Inspired By Nature And Literature, I'm A Perpetual Learner Embracing Challenges. With Each Project, I Aim To Leave A Lasting Impact—One Pixel At A Time.
+            At Evgyaan, we’re passionate about driving the future of mobility—literally. Started as a YouTube channel to demystify the electric vehicle revolution in India, Evgyaan has grown into one of the most trusted voices in the EV space. With over 270K+ subscribers and 66 million+ views, we are on a mission to educate, inform, and empower individuals to make smarter, greener choices.
+
+From detailed EV reviews and comparisons to breaking news, in-depth tech explainers, and policy updates—Evgyaan is your one-stop destination for everything electric. Whether you're a curious first-time EV buyer or a hardcore tech enthusiast, we’ve got content tailored for you.
+
+We believe that the transition to electric mobility isn’t just about vehicles—it’s about building a cleaner, smarter future for everyone. Join us on this journey as we simplify EV knowledge, one video (and now one webpage) at a time.
             </p>
         </div>
     </section>

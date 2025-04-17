@@ -1,17 +1,7 @@
-const SkillList = [
-  "next.js",
-  "tailwind css",
-  "figma",
-  "javaScript",
-  "web design",
-  "Gatsby.js",
-  "strapi",
-  "firebase",
-  "generative AI",
-  "wireframing",
-  "SEO",
-  "framer motion",
-  "sanity",
+const categories = [
+  "two wheeler",
+  "four wheeler",
+  "commercial vehicle"
 ];
 
 const Skills = () => {
@@ -19,10 +9,10 @@ const Skills = () => {
     <section className="w-full flex flex-col p-5 xs:p-10 sm:p-12 md:p-16 lg:p-20 border-b-2 border-solid border-dark dark:border-light
      text-dark dark:text-light">
       <span className="font-semibold text-lg sm:text-3xl md:text-4xl text-accent dark:text-accentDark">
-        I'm comfortable in...
+        I'm Want to see more content on...
       </span>
       <ul className="flex flex-wrap mt-8 justify-center  xs:justify-start">
-        {SkillList.map((item, index) => {
+        {categories.map((item, index) => {
           return (
             <li
               key={index}
