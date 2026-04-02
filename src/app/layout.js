@@ -70,9 +70,8 @@ export default function RootLayout({ children }) {
     document.documentElement.classList.remove('dark')
   }`}
         </Script>
-        <Header />
+        {/* Header and Footer hidden during Coming Soon mode */}
         {children}
-        <Footer />
       </body>
     </html>
   );
