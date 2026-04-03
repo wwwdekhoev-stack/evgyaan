@@ -44,32 +44,19 @@ export default function Home() {
         padding: "20px",
       }}>
 
-        {/* EVGYAN Logo */}
-        <img
-          src="/evgyan-logo.jpg"
-          alt="EVGYAN"
-          style={{
-            width: "150px",
-            height: "150px",
-            objectFit: "contain",
-            borderRadius: "50%",
-            filter: "drop-shadow(0 0 30px rgba(46,125,82,0.6))",
-            animation: "float 3s ease-in-out infinite",
-          }}
-        />
-
         {/* Tarun Photo */}
         <img
           src="/tarun.jpg"
           alt="Tarun - EVGYAN"
           style={{
-            width: "90px",
-            height: "90px",
+            width: "150px",
+            height: "150px",
             objectFit: "cover",
             objectPosition: "top",
             borderRadius: "50%",
-            border: "2px solid rgba(46,125,82,0.6)",
-            filter: "drop-shadow(0 0 12px rgba(46,125,82,0.4))",
+            border: "2px solid rgba(46,125,82,0.7)",
+            filter: "drop-shadow(0 0 30px rgba(46,125,82,0.5))",
+            animation: "float 3s ease-in-out infinite",
           }}
         />
 
