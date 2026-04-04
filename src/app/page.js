@@ -167,8 +167,6 @@ export default function Home() {
             textDecoration: "none",
             transition: "border-color 0.2s",
           }}
-          onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(46,125,82,0.6)"}
-          onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(46,125,82,0.2)"}
           >
             <img src={item.img} alt={item.title} style={{
               width: "120px",
