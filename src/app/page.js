@@ -1,4 +1,15 @@
 export default function Home() {
+  const news = [
+    {
+      title: "Tata Safari EV: India's First Electric 7-Seater SUV Launching This Festive Season",
+      desc: "Tata Motors gears up for the Safari EV launch — 75kWh battery, AWD option, 6 terrain modes, and a price range of ₹22.5–30 lakh. Festive season 2026 just got exciting.",
+      date: "April 4, 2026",
+      tag: "New Launch",
+      link: "/blogs/article_5",
+      img: "/blogs/safari-ev.jpg",
+    },
+  ];
+
   return (
     <div style={{
       minHeight: "100vh",
@@ -107,6 +118,98 @@ export default function Home() {
           EVGYAN.COM
         </p>
 
+      </div>
+
+      {/* EV News Section */}
+      <div style={{
+        width: "100%",
+        maxWidth: "900px",
+        padding: "0 20px 60px",
+        zIndex: 1,
+      }}>
+        {/* Section Header */}
+        <div style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "12px",
+          marginBottom: "20px",
+          borderBottom: "1px solid rgba(46,125,82,0.25)",
+          paddingBottom: "12px",
+        }}>
+          <span style={{ fontSize: "18px" }}>⚡</span>
+          <h2 style={{
+            color: "#ffffff",
+            fontSize: "18px",
+            fontWeight: "700",
+            margin: 0,
+            letterSpacing: "0.05em",
+            textTransform: "uppercase",
+          }}>EV News</h2>
+          <span style={{
+            marginLeft: "auto",
+            color: "rgba(46,125,82,0.6)",
+            fontSize: "11px",
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+          }}>By EVGYAN Team</span>
+        </div>
+
+        {/* News Cards */}
+        {news.map((item, i) => (
+          <a key={i} href={item.link} style={{
+            display: "flex",
+            gap: "16px",
+            background: "rgba(255,255,255,0.03)",
+            border: "1px solid rgba(46,125,82,0.2)",
+            borderRadius: "10px",
+            padding: "16px",
+            marginBottom: "12px",
+            textDecoration: "none",
+            transition: "border-color 0.2s",
+          }}
+          onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(46,125,82,0.6)"}
+          onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(46,125,82,0.2)"}
+          >
+            <img src={item.img} alt={item.title} style={{
+              width: "120px",
+              height: "80px",
+              objectFit: "cover",
+              borderRadius: "6px",
+              flexShrink: 0,
+            }} />
+            <div style={{ flex: 1 }}>
+              <span style={{
+                background: "rgba(46,125,82,0.2)",
+                color: "#2E7D52",
+                fontSize: "10px",
+                fontWeight: "700",
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                padding: "2px 8px",
+                borderRadius: "20px",
+                display: "inline-block",
+                marginBottom: "8px",
+              }}>{item.tag}</span>
+              <h3 style={{
+                color: "#ffffff",
+                fontSize: "14px",
+                fontWeight: "600",
+                margin: "0 0 6px",
+                lineHeight: "1.4",
+              }}>{item.title}</h3>
+              <p style={{
+                color: "rgba(255,255,255,0.45)",
+                fontSize: "12px",
+                margin: "0 0 8px",
+                lineHeight: "1.5",
+              }}>{item.desc}</p>
+              <span style={{
+                color: "rgba(46,125,82,0.6)",
+                fontSize: "11px",
+              }}>{item.date}</span>
+            </div>
+          </a>
+        ))}
       </div>
 
       {/* Bottom electric line */}
