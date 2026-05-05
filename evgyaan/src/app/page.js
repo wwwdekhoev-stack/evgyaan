@@ -1,4 +1,9 @@
-import Script from "next/script";
+import Script from 'next/script';
+
+export const metadata = {
+  title: 'EVGyan – Electric Scooter Decision Guide',
+  description: 'India ka sabse bada dedicated EV YouTube channel. Honest EV decision-making framework — koi sponsorship nahi, koi bias nahi.',
+};
 
 export default function Home() {
   return (
@@ -18,7 +23,7 @@ export default function Home() {
           --radius: 16px;
         }
 
-        .ev-page {
+        body {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
           background: var(--bg);
           color: var(--text);
@@ -27,7 +32,7 @@ export default function Home() {
         }
 
         /* HEADER */
-        .ev-header {
+        .eg-header {
           background: var(--white);
           border-bottom: 1px solid var(--border);
           padding: 14px 20px;
@@ -40,32 +45,31 @@ export default function Home() {
           z-index: 10;
         }
 
-        .ev-logo-img {
+        .eg-logo-img {
           width: 42px;
           height: 42px;
           border-radius: 50%;
           object-fit: cover;
           flex-shrink: 0;
-          background: #111;
         }
 
-        .ev-logo-text {
+        .eg-logo-text {
           font-size: 22px;
           font-weight: 800;
           letter-spacing: -0.5px;
           color: var(--text);
         }
-        .ev-logo-text span { color: var(--green); }
+        .eg-logo-text span { color: var(--green); }
 
         /* HERO */
-        .ev-hero {
+        .eg-hero {
           text-align: center;
           padding: 36px 20px 32px;
           max-width: 640px;
           margin: 0 auto;
         }
 
-        .ev-badge {
+        .eg-badge {
           display: inline-flex;
           align-items: center;
           gap: 6px;
@@ -79,7 +83,7 @@ export default function Home() {
           letter-spacing: 0.2px;
         }
 
-        .ev-hero-inner {
+        .eg-hero-inner {
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -87,7 +91,7 @@ export default function Home() {
           margin-bottom: 18px;
         }
 
-        .ev-profile-pic {
+        .eg-profile-pic {
           width: 90px;
           height: 90px;
           border-radius: 50%;
@@ -98,18 +102,18 @@ export default function Home() {
           background: #ddd;
         }
 
-        .ev-hero h1 {
+        .eg-hero h1 {
           font-size: clamp(22px, 5.5vw, 38px);
           font-weight: 800;
           line-height: 1.2;
           letter-spacing: -0.5px;
         }
-        .ev-hero h1 em {
+        .eg-hero h1 em {
           color: var(--green);
           font-style: normal;
         }
 
-        .ev-hero-sub {
+        .eg-hero-sub {
           font-size: 15px;
           color: var(--muted);
           line-height: 1.65;
@@ -118,7 +122,7 @@ export default function Home() {
         }
 
         /* trust strip */
-        .ev-trust-strip {
+        .eg-trust-strip {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -131,7 +135,7 @@ export default function Home() {
           overflow: hidden;
         }
 
-        .ev-trust-item {
+        .eg-trust-item {
           flex: 1;
           display: flex;
           flex-direction: column;
@@ -140,15 +144,15 @@ export default function Home() {
           gap: 3px;
           border-right: 1.5px solid var(--border);
         }
-        .ev-trust-item:last-child { border-right: none; }
+        .eg-trust-item:last-child { border-right: none; }
 
-        .ev-trust-item .num {
+        .eg-trust-item .num {
           font-size: 18px;
           font-weight: 800;
           color: var(--green-dark);
           line-height: 1;
         }
-        .ev-trust-item .lbl {
+        .eg-trust-item .lbl {
           font-size: 11px;
           color: var(--muted);
           font-weight: 500;
@@ -157,7 +161,7 @@ export default function Home() {
         }
 
         /* divider */
-        .ev-divider {
+        .eg-divider {
           max-width: 680px;
           margin: 28px auto 0;
           border: none;
@@ -165,22 +169,22 @@ export default function Home() {
         }
 
         /* SECTION LABEL */
-        .ev-section-label {
+        .eg-section-label {
           text-align: center;
           padding: 28px 20px 4px;
         }
-        .ev-section-label h2 {
+        .eg-section-label h2 {
           font-size: 20px;
           font-weight: 700;
         }
-        .ev-section-label p {
+        .eg-section-label p {
           font-size: 14px;
           color: var(--muted);
           margin-top: 5px;
         }
 
         /* CARDS GRID */
-        .ev-cards {
+        .eg-cards {
           display: grid;
           grid-template-columns: 1fr;
           gap: 16px;
@@ -190,26 +194,26 @@ export default function Home() {
         }
 
         @media (min-width: 640px) {
-          .ev-cards {
+          .eg-cards {
             grid-template-columns: repeat(2, 1fr);
             max-width: 760px;
             gap: 20px;
             padding: 0 20px 64px;
           }
-          .ev-card.featured {
+          .eg-card.featured {
             grid-column: 1 / -1;
           }
-          .ev-hero-inner {
+          .eg-hero-inner {
             flex-direction: row;
             text-align: left;
             gap: 22px;
           }
-          .ev-hero { text-align: left; }
-          .ev-badge, .ev-trust-strip { margin-left: 0; }
-          .ev-hero-sub { margin: 10px 0 0; }
+          .eg-hero { text-align: left; }
+          .eg-badge, .eg-trust-strip { margin-left: 0; }
+          .eg-hero-sub { margin: 10px 0 0; }
         }
 
-        .ev-card {
+        .eg-card {
           background: var(--white);
           border: 1.5px solid var(--border);
           border-radius: var(--radius);
@@ -221,11 +225,11 @@ export default function Home() {
           overflow: hidden;
         }
 
-        .ev-card.featured {
+        .eg-card.featured {
           border-color: var(--green);
           box-shadow: 0 4px 20px rgba(34,197,94,0.13);
         }
-        .ev-card.featured::before {
+        .eg-card.featured::before {
           content: '';
           position: absolute;
           top: 0; left: 0; right: 0;
@@ -234,18 +238,18 @@ export default function Home() {
           border-radius: var(--radius) var(--radius) 0 0;
         }
 
-        .ev-card.soon {
+        .eg-card.soon {
           background: #fafafa;
         }
 
-        .ev-card-top {
+        .eg-card-top {
           display: flex;
           align-items: center;
           justify-content: space-between;
           gap: 8px;
         }
 
-        .ev-card-tag {
+        .eg-card-tag {
           display: inline-flex;
           align-items: center;
           gap: 5px;
@@ -254,10 +258,10 @@ export default function Home() {
           letter-spacing: 0.5px;
           text-transform: uppercase;
         }
-        .ev-card-tag.free { color: var(--green-dark); }
-        .ev-card-tag.pro  { color: #6366f1; }
+        .eg-card-tag.free { color: var(--green-dark); }
+        .eg-card-tag.pro  { color: #6366f1; }
 
-        .ev-soon-badge {
+        .eg-soon-badge {
           font-size: 11px;
           font-weight: 700;
           text-transform: uppercase;
@@ -268,34 +272,34 @@ export default function Home() {
           border-radius: 100px;
         }
 
-        .ev-card h3 {
+        .eg-card h3 {
           font-size: 18px;
           font-weight: 800;
           line-height: 1.25;
           color: var(--text);
         }
-        .ev-card.soon h3 { color: var(--muted); }
+        .eg-card.soon h3 { color: var(--muted); }
 
-        .ev-card .desc {
+        .eg-card .desc {
           font-size: 14px;
           color: var(--muted);
           line-height: 1.6;
         }
 
-        .ev-card .includes {
+        .eg-card .includes {
           list-style: none;
           display: flex;
           flex-direction: column;
           gap: 7px;
         }
-        .ev-card .includes li {
+        .eg-card .includes li {
           font-size: 14px;
           color: var(--text);
           display: flex;
           align-items: flex-start;
           gap: 8px;
         }
-        .ev-card .includes li::before {
+        .eg-card .includes li::before {
           content: '✓';
           color: var(--green);
           font-weight: 700;
@@ -303,7 +307,8 @@ export default function Home() {
           margin-top: 1px;
         }
 
-        .ev-soon-placeholder {
+        /* coming soon placeholder */
+        .eg-soon-placeholder {
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -314,19 +319,19 @@ export default function Home() {
           font-size: 13px;
           font-weight: 500;
         }
-        .ev-soon-placeholder .lock-icon {
+        .eg-soon-placeholder .lock-icon {
           font-size: 28px;
         }
 
         /* FOOTER */
-        .ev-footer {
+        .eg-footer {
           background: var(--white);
           border-top: 1px solid var(--border);
           padding: 24px 20px;
           text-align: center;
         }
 
-        .ev-footer-links {
+        .eg-footer-links {
           display: flex;
           justify-content: center;
           gap: 12px;
@@ -334,7 +339,7 @@ export default function Home() {
           margin-bottom: 14px;
         }
 
-        .ev-footer-links a {
+        .eg-footer-links a {
           display: inline-flex;
           align-items: center;
           gap: 7px;
@@ -347,156 +352,153 @@ export default function Home() {
           border-radius: 100px;
           transition: border-color 0.2s, color 0.2s;
         }
-        .ev-footer-links a:hover { border-color: var(--green); color: var(--green-dark); }
+        .eg-footer-links a:hover { border-color: var(--green); color: var(--green-dark); }
 
-        .ev-footer-note {
+        .eg-footer-note {
           font-size: 12px;
           color: var(--muted);
         }
-        .ev-footer-note a { color: var(--green-dark); text-decoration: none; font-weight: 600; }
+        .eg-footer-note a { color: var(--green-dark); text-decoration: none; font-weight: 600; }
       `}</style>
 
-      <div className="ev-page">
+      {/* HEADER */}
+      <header className="eg-header">
+        <img className="eg-logo-img" src="/evgyan-logo.jpg" alt="EVGyan Logo" />
+        <div className="eg-logo-text">EV<span>Gyan</span></div>
+      </header>
 
-        {/* HEADER */}
-        <header className="ev-header">
-          <img className="ev-logo-img" src="/evgyan-logo.jpg" alt="EVGyan Logo" />
-          <div className="ev-logo-text">EV<span>Gyan</span></div>
-        </header>
+      {/* HERO */}
+      <section className="eg-hero">
+        <div className="eg-badge">🇮🇳 India ka sabse bada dedicated EV YouTube channel</div>
 
-        {/* HERO */}
-        <section className="ev-hero">
-          <div className="ev-badge">🇮🇳 India ka sabse bada dedicated EV YouTube channel</div>
-
-          <div className="ev-hero-inner">
-            <img className="ev-profile-pic" src="/tarun.jpg" alt="Tarun - EVGyan" />
-            <div>
-              <h1>Electric Vehicle leni chahiye<br />ya nahi? <em>Jaano sahi jawab.</em></h1>
-              <p className="ev-hero-sub">
-                Koi sponsorship, koi bias nahi — sirf honest decision-making framework
-                jo tumhare liye kaam kare. 5+ saal ki EV coverage ka nichod.
-              </p>
-            </div>
-          </div>
-
-          {/* trust strip */}
-          <div className="ev-trust-strip">
-            <div className="ev-trust-item">
-              <div className="num">368K+</div>
-              <div className="lbl">YouTube<br />Subscribers</div>
-            </div>
-            <div className="ev-trust-item">
-              <div className="num">5+</div>
-              <div className="lbl">Saal EV<br />Coverage</div>
-            </div>
-            <div className="ev-trust-item">
-              <div className="num">100%</div>
-              <div className="lbl">Unbiased<br />Reviews</div>
-            </div>
-          </div>
-        </section>
-
-        <hr className="ev-divider" />
-
-        {/* SECTION LABEL */}
-        <div className="ev-section-label">
-          <h2>📋 Apna Guide Chuniye</h2>
-          <p>Free se shuru karo — koi payment nahi chahiye</p>
-        </div>
-
-        {/* CARDS */}
-        <div className="ev-cards">
-
-          {/* CARD 1: 2-Wheeler Decision Guide — LIVE */}
-          <div className="ev-card featured">
-            <div className="ev-card-top">
-              <div className="ev-card-tag free">⚡ Free · Abhi Available</div>
-            </div>
-            <h3>Electric Scooter / Motorcycle<br />Decision Guide</h3>
-            <p className="desc">
-              Yeh guide tumhare liye hai agar tum decide nahi kar pa rahe ki <strong>EV leni chahiye ya nahi.</strong>
-              Apni riding pattern, budget, aur city ke hisaab se sahi decision lo — bina kisi sales pitch ke.
+        <div className="eg-hero-inner">
+          <img className="eg-profile-pic" src="/tarun.jpg" alt="Tarun Pal – EVGyan Host" />
+          <div>
+            <h1>Electric Vehicle leni chahiye<br />ya nahi? <em>Jaano sahi jawab.</em></h1>
+            <p className="eg-hero-sub">
+              Koi sponsorship, koi bias nahi — sirf honest decision-making framework
+              jo tumhare liye kaam kare. 5+ saal ki EV coverage ka nichod.
             </p>
-            <ul className="includes">
-              <li>Kise <em>leni chahiye</em> aur kise <em>nahi</em> — clear criteria</li>
-              <li>Daily commute vs weekend use — kya fark padta hai</li>
-              <li>Range anxiety myth vs reality check</li>
-              <li>Charging setup: ghar mein possible hai kya?</li>
-              <li>Total cost comparison: EV vs Petrol (realistic numbers)</li>
-              <li>Red flags: in cases mein EV mat lo abhi</li>
-            </ul>
-            {/* ConvertKit Form */}
-            <Script
-              data-uid="cd38925e99"
-              src="https://ev-gyan.kit.com/cd38925e99/index.js"
-              strategy="afterInteractive"
-            />
           </div>
-
-          {/* CARD 2: Coming Soon */}
-          <div className="ev-card soon">
-            <div className="ev-card-top">
-              <div className="ev-card-tag pro">💎 2-Wheeler Pro</div>
-              <span className="ev-soon-badge">Coming Soon</span>
-            </div>
-            <h3>2-Wheeler Buying Guide</h3>
-            <div className="ev-soon-placeholder">
-              <div className="lock-icon">🔒</div>
-              <div>Jald aa raha hai</div>
-            </div>
-          </div>
-
-          {/* CARD 3: Coming Soon */}
-          <div className="ev-card soon">
-            <div className="ev-card-top">
-              <div className="ev-card-tag free">⚡ 4-Wheeler Basic</div>
-              <span className="ev-soon-badge">Coming Soon</span>
-            </div>
-            <h3>4-Wheeler Decision Guide</h3>
-            <div className="ev-soon-placeholder">
-              <div className="lock-icon">🔒</div>
-              <div>Jald aa raha hai</div>
-            </div>
-          </div>
-
-          {/* CARD 4: Coming Soon */}
-          <div className="ev-card soon">
-            <div className="ev-card-top">
-              <div className="ev-card-tag pro">💎 4-Wheeler Pro</div>
-              <span className="ev-soon-badge">Coming Soon</span>
-            </div>
-            <h3>4-Wheeler Buying Guide</h3>
-            <div className="ev-soon-placeholder">
-              <div className="lock-icon">🔒</div>
-              <div>Jald aa raha hai</div>
-            </div>
-          </div>
-
         </div>
 
-        {/* FOOTER */}
-        <footer className="ev-footer">
-          <div className="ev-footer-links">
-            <a href="https://www.youtube.com/@EVGyan" target="_blank" rel="noopener noreferrer">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z" />
-              </svg>
-              YouTube
-            </a>
-            <a href="https://www.instagram.com/evgyan.in" target="_blank" rel="noopener noreferrer">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8 0 3.2 0 3.6-.1 4.8-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.9.1-3.2 0-3.6 0-4.8-.1-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12c0-3.2 0-3.6.1-4.8C2.4 3.9 4 2.3 7.2 2.3c1.2-.1 1.6-.1 4.8-.1zm0-2.2C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1.1 8.3 0 8.7 0 12c0 3.3 0 3.7.1 4.9.2 4.4 2.6 6.8 7 7C8.3 24 8.7 24 12 24c3.3 0 3.7 0 4.9-.1 4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9 0-3.3 0-3.7-.1-4.9C23.7 2.7 21.3.3 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4A6.2 6.2 0 0 0 12 5.8zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8z" />
-              </svg>
-              Instagram
-            </a>
+        {/* trust strip */}
+        <div className="eg-trust-strip">
+          <div className="eg-trust-item">
+            <div className="num">368K+</div>
+            <div className="lbl">YouTube<br />Subscribers</div>
           </div>
-          <p className="ev-footer-note">
-            © 2026 EVGyan · India&apos;s #1 Dedicated EV Channel ·{" "}
-            <a href="https://www.youtube.com/@EVGyan" target="_blank" rel="noopener noreferrer">@EVGyan</a>
+          <div className="eg-trust-item">
+            <div className="num">5+</div>
+            <div className="lbl">Saal EV<br />Coverage</div>
+          </div>
+          <div className="eg-trust-item">
+            <div className="num">100%</div>
+            <div className="lbl">Unbiased<br />Reviews</div>
+          </div>
+        </div>
+      </section>
+
+      <hr className="eg-divider" />
+
+      {/* SECTION LABEL */}
+      <div className="eg-section-label">
+        <h2>📋 Apna Guide Chuniye</h2>
+        <p>Free se shuru karo — koi payment nahi chahiye</p>
+      </div>
+
+      {/* CARDS */}
+      <div className="eg-cards">
+
+        {/* CARD 1: Featured — LIVE */}
+        <div className="eg-card featured">
+          <div className="eg-card-top">
+            <div className="eg-card-tag free">⚡ Free · Abhi Available</div>
+          </div>
+          <h3>Electric Scooter / Motorcycle<br />Decision Guide</h3>
+          <p className="desc">
+            Yeh guide tumhare liye hai agar tum decide nahi kar pa rahe ki <strong>EV leni chahiye ya nahi.</strong>{' '}
+            Apni riding pattern, budget, aur city ke hisaab se sahi decision lo — bina kisi sales pitch ke.
           </p>
-        </footer>
+          <ul className="includes">
+            <li>Kise <em>leni chahiye</em> aur kise <em>nahi</em> — clear criteria</li>
+            <li>Daily commute vs weekend use — kya fark padta hai</li>
+            <li>Range anxiety myth vs reality check</li>
+            <li>Charging setup: ghar mein possible hai kya?</li>
+            <li>Total cost comparison: EV vs Petrol (realistic numbers)</li>
+            <li>Red flags: in cases mein EV mat lo abhi</li>
+          </ul>
+          {/* ConvertKit Form */}
+          <Script
+            async
+            data-uid="cd38925e99"
+            src="https://ev-gyan.kit.com/cd38925e99/index.js"
+            strategy="afterInteractive"
+          />
+        </div>
+
+        {/* CARD 2: Coming Soon */}
+        <div className="eg-card soon">
+          <div className="eg-card-top">
+            <div className="eg-card-tag pro">💎 2-Wheeler Pro</div>
+            <span className="eg-soon-badge">Coming Soon</span>
+          </div>
+          <h3>2-Wheeler Buying Guide</h3>
+          <div className="eg-soon-placeholder">
+            <div className="lock-icon">🔒</div>
+            <div>Jald aa raha hai</div>
+          </div>
+        </div>
+
+        {/* CARD 3: Coming Soon */}
+        <div className="eg-card soon">
+          <div className="eg-card-top">
+            <div className="eg-card-tag free">⚡ 4-Wheeler Basic</div>
+            <span className="eg-soon-badge">Coming Soon</span>
+          </div>
+          <h3>4-Wheeler Decision Guide</h3>
+          <div className="eg-soon-placeholder">
+            <div className="lock-icon">🔒</div>
+            <div>Jald aa raha hai</div>
+          </div>
+        </div>
+
+        {/* CARD 4: Coming Soon */}
+        <div className="eg-card soon">
+          <div className="eg-card-top">
+            <div className="eg-card-tag pro">💎 4-Wheeler Pro</div>
+            <span className="eg-soon-badge">Coming Soon</span>
+          </div>
+          <h3>4-Wheeler Buying Guide</h3>
+          <div className="eg-soon-placeholder">
+            <div className="lock-icon">🔒</div>
+            <div>Jald aa raha hai</div>
+          </div>
+        </div>
 
       </div>
+
+      {/* FOOTER */}
+      <footer className="eg-footer">
+        <div className="eg-footer-links">
+          <a href="https://www.youtube.com/@EVGyan" target="_blank" rel="noopener noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/>
+            </svg>
+            YouTube
+          </a>
+          <a href="https://www.instagram.com/evgyan.in" target="_blank" rel="noopener noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8 0 3.2 0 3.6-.1 4.8-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.9.1-3.2 0-3.6 0-4.8-.1-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12c0-3.2 0-3.6.1-4.8C2.4 3.9 4 2.3 7.2 2.3c1.2-.1 1.6-.1 4.8-.1zm0-2.2C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1.1 8.3 0 8.7 0 12c0 3.3 0 3.7.1 4.9.2 4.4 2.6 6.8 7 7C8.3 24 8.7 24 12 24c3.3 0 3.7 0 4.9-.1 4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9 0-3.3 0-3.7-.1-4.9C23.7 2.7 21.3.3 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4A6.2 6.2 0 0 0 12 5.8zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8z"/>
+            </svg>
+            Instagram
+          </a>
+        </div>
+        <p className="eg-footer-note">
+          © 2026 EVGyan · India&apos;s #1 Dedicated EV Channel ·{' '}
+          <a href="https://www.youtube.com/@EVGyan" target="_blank" rel="noopener noreferrer">@EVGyan</a>
+        </p>
+      </footer>
     </>
   );
 }
