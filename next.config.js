@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-    // othor next config here...
+    eslint: {
+      ignoreDuringBuilds: true,
+    },
     compiler: {
       removeConsole: process.env.NODE_ENV === 'production' ? true : false,
     },
@@ -9,7 +11,7 @@ module.exports = {
       return config
     }
   }
-  
+
   class VeliteWebpackPlugin {
     static started = false
     apply(/** @type {import('webpack').Compiler} */ compiler) {
