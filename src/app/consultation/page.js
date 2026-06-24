@@ -81,9 +81,7 @@ export default function ConsultationPage() {
           </ul>
 
           <a
-            href="https://razorpay.me/@evgyan3341"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/consultation/pay"
             className="block w-full text-center text-gray-900 font-bold py-3 rounded-xl text-base transition-opacity hover:opacity-90 active:opacity-80"
             style={{ backgroundColor: '#FFC400' }}
           >
@@ -137,6 +135,17 @@ export default function ConsultationPage() {
           >
             📥 Download Guide
           </a>
+        </div>
+
+        {/* REFUND POLICY */}
+        <div
+          className="rounded-xl p-4 text-center"
+          style={{ backgroundColor: '#F9FAFB', border: '1.5px solid #e5e7eb' }}
+        >
+          <p className="text-sm font-semibold text-gray-700">🔒 Refund Policy</p>
+          <p className="text-xs text-gray-500 mt-1">
+            Agar 24 ghante mein koi slot available na ho, toh <strong>100% refund</strong> milega — bina kisi sawaal ke.
+          </p>
         </div>
 
         {/* BOTTOM NOTE */}
