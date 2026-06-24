@@ -81,7 +81,7 @@ export default function ConsultationPage() {
           </ul>
 
           <a
-            href="https://rzp.io/l/evgyan-consultation"
+            href="https://razorpay.me/@evgyan3341"
             target="_blank"
             rel="noopener noreferrer"
             className="block w-full text-center text-gray-900 font-bold py-3 rounded-xl text-base transition-opacity hover:opacity-90 active:opacity-80"
@@ -105,7 +105,7 @@ export default function ConsultationPage() {
           </p>
 
           <a
-            href="https://wa.me/919999999999"
+            href="https://wa.me/918700696438"
             target="_blank"
             rel="noopener noreferrer"
             className="block w-full text-center font-bold py-3 rounded-xl text-base border-2 text-gray-900 transition-colors hover:bg-gray-50"
