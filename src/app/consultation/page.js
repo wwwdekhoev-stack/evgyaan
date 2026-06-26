@@ -81,7 +81,9 @@ export default function ConsultationPage() {
           </ul>
 
           <a
-            href="/consultation/pay"
+            href="https://topmate.io/evgyan/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="block w-full text-center text-gray-900 font-bold py-3 rounded-xl text-base transition-opacity hover:opacity-90 active:opacity-80"
             style={{ backgroundColor: '#FFC400' }}
           >
@@ -127,13 +129,13 @@ export default function ConsultationPage() {
           </p>
 
           <a
-            href="https://ev-gyan.kit.com/cd38925e99"
+            href="https://drive.google.com/uc?export=download&id=1fxL2GgKUusBKIL6mkRdmccKEqTcrLL3g"
             target="_blank"
             rel="noopener noreferrer"
             className="block w-full text-center font-bold py-3 rounded-xl text-base border-2 text-gray-900 transition-colors hover:bg-gray-50"
             style={{ borderColor: '#e5e7eb' }}
           >
-            📥 Download Guide
+            📥 Download Guide (PDF)
           </a>
         </div>
 
@@ -144,7 +146,7 @@ export default function ConsultationPage() {
         >
           <p className="text-sm font-semibold text-gray-700">🔒 Refund Policy</p>
           <p className="text-xs text-gray-500 mt-1">
-            Agar 24 ghante mein koi slot available na ho, toh <strong>100% refund</strong> milega — bina kisi sawaal ke.
+            100% refund if you are not satisfied — bina kisi sawaal ke.
           </p>
         </div>
 
