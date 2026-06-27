@@ -57,8 +57,8 @@ export default function ConsultationPage() {
             15–20 Minute Personal Call
           </p>
 
-          <div className="text-2xl font-extrabold text-gray-900 mb-4">
-            ₹499
+          <div className="text-sm font-semibold text-gray-500 mb-4 uppercase tracking-wide">
+            Paid Consultation
           </div>
 
           <ul className="space-y-2 mb-5 text-sm text-gray-700">
