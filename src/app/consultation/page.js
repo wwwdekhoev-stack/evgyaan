@@ -58,7 +58,7 @@ export default function ConsultationPage() {
           </p>
 
           <div className="text-2xl font-extrabold text-gray-900 mb-4">
-            ₹999
+            ₹499
           </div>
 
           <ul className="space-y-2 mb-5 text-sm text-gray-700">
