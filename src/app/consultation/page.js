@@ -51,14 +51,14 @@ export default function ConsultationPage() {
           <div className="text-yellow-400 text-sm mb-1">⭐⭐⭐⭐⭐</div>
 
           <h2 className="text-lg font-bold text-gray-900 mb-0.5">
-            Talk Directly With Tarun
+            1-to-1 WhatsApp Chat with Tarun
           </h2>
           <p className="text-sm text-gray-500 mb-3">
-            15–20 Minute Personal Call
+            Direct personal guidance from Tarun
           </p>
 
           <div className="text-sm font-semibold text-gray-500 mb-4 uppercase tracking-wide">
-            Paid Consultation
+            Paid
           </div>
 
           <ul className="space-y-2 mb-5 text-sm text-gray-700">
@@ -76,7 +76,7 @@ export default function ConsultationPage() {
             </li>
             <li className="flex items-start gap-2">
               <span className="text-green-500 font-bold mt-0.5">✓</span>
-              7-day WhatsApp support
+              Personal WhatsApp support
             </li>
           </ul>
 
@@ -101,7 +101,7 @@ export default function ConsultationPage() {
             Free WhatsApp Chat
           </h2>
           <p className="text-sm text-gray-500 mb-4">
-            Ask your EV questions and get basic guidance on WhatsApp.
+            Basic EV guidance from EVGyan team on WhatsApp.
           </p>
 
           <a
