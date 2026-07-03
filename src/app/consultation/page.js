@@ -30,68 +30,7 @@ export default function ConsultationPage() {
       {/* CARDS */}
       <div className="px-4 pb-10 pt-4 flex flex-col gap-4 max-w-md mx-auto">
 
-        {/* CARD 1 — Featured */}
-        <div
-          className="rounded-2xl p-5 bg-white"
-          style={{
-            border: '2px solid #FFC400',
-            boxShadow: '0 4px 18px rgba(255,196,0,0.18)',
-          }}
-        >
-          {/* Badge */}
-          <div className="flex items-center justify-between mb-3">
-            <span
-              className="text-xs font-bold px-3 py-1 rounded-full text-gray-900"
-              style={{ backgroundColor: '#FFC400' }}
-            >
-              ⭐ Recommended
-            </span>
-          </div>
-
-          <div className="text-yellow-400 text-sm mb-1">⭐⭐⭐⭐⭐</div>
-
-          <h2 className="text-lg font-bold text-gray-900 mb-0.5">
-            1-to-1 WhatsApp Chat with Tarun
-          </h2>
-          <p className="text-sm text-gray-500 mb-3">
-            Direct personal guidance from Tarun
-          </p>
-
-          <div className="text-sm font-semibold text-gray-500 mb-4 uppercase tracking-wide">
-            Paid
-          </div>
-
-          <ul className="space-y-2 mb-5 text-sm text-gray-700">
-            <li className="flex items-start gap-2">
-              <span className="text-green-500 font-bold mt-0.5">✓</span>
-              EV recommendation based on your usage
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-green-500 font-bold mt-0.5">✓</span>
-              Charging advice
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-green-500 font-bold mt-0.5">✓</span>
-              Ownership cost discussion
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-green-500 font-bold mt-0.5">✓</span>
-              Personal WhatsApp support
-            </li>
-          </ul>
-
-          <a
-            href="https://topmate.io/evgyan/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block w-full text-center text-gray-900 font-bold py-3 rounded-xl text-base transition-opacity hover:opacity-90 active:opacity-80"
-            style={{ backgroundColor: '#FFC400' }}
-          >
-            Book Consultation →
-          </a>
-        </div>
-
-        {/* CARD 2 — Free WhatsApp */}
+        {/* CARD 1 — Free WhatsApp */}
         <div
           className="rounded-2xl p-5 bg-white"
           style={{ border: '1.5px solid #e5e7eb', boxShadow: '0 2px 10px rgba(0,0,0,0.06)' }}
