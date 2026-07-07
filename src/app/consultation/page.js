@@ -44,7 +44,7 @@ export default function ConsultationPage() {
           </p>
 
           <a
-            href="https://wa.me/918700696438"
+            href="https://wa.me/918178043697"
             target="_blank"
             rel="noopener noreferrer"
             className="block w-full text-center font-bold py-3 rounded-xl text-base border-2 text-gray-900 transition-colors hover:bg-gray-50"
