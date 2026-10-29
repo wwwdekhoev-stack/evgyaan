@@ -1,19 +1,21 @@
 import "./globals.css";
 import { cx } from "@/src/utils";
-import { Inter, Manrope } from "next/font/google";
+import { Roboto } from "next/font/google";
 import Header from "@/src/components/Header";
 import Footer from "../components/Footer";
 import siteMetadata from "../utils/siteMetaData";
 import Script from "next/script";
 
-const inter = Inter({
+const robotoBody = Roboto({
   subsets: ["latin"],
+  weight: ["400", "500"],
   display: "swap",
   variable: "--font-in",
 });
 
-const manrope = Manrope({
+const robotoDisplay = Roboto({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
   variable: "--font-mr",
 });
@@ -58,9 +60,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body
         className={cx(
-          inter.variable,
-          manrope.variable,
-          "font-mr bg-light dark:bg-dark"
+          robotoBody.variable,
+          robotoDisplay.variable,
+          "font-mr bg-light dark:bg-light"
         )}
       >
         <Script id="theme-switcher" strategy="beforeInteractive">
@@ -85,8 +87,9 @@ export default function RootLayout({ children }) {
           `}
         </Script>
 
-        {/* Header and Footer hidden during Coming Soon mode */}
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

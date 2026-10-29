@@ -20,7 +20,7 @@ const BlogLayoutThree = ({ blog }) => {
       </Link>
 
       <div className="flex flex-col w-full mt-4">
-        <span className="uppercase text-accent dark:text-accentDark font-semibold text-xs sm:text-sm">
+        <span className="uppercase text-dark font-semibold text-xs sm:text-sm">
           {blog.tags[0]}
         </span>
         <Link href={blog.url} className="inline-block my-1">

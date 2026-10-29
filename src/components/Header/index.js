@@ -1,92 +1,136 @@
 "use client"
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Logo from "./Logo";
-import { YoutubeIcon, InstagramIcon, LinkedinIcon, MoonIcon, SunIcon, TwitterIcon } from "../Icons";
-import siteMetadata from "@/src/utils/siteMetaData";
-import { useThemeSwitch } from "../Hooks/useThemeSwitch";
-import { useState } from "react";
+import { SearchIcon, CloseIcon } from "../Icons";
+import { useMemo, useState } from "react";
 import { cx } from "@/src/utils";
+import { blogs } from "@/.velite/generated";
+
+const NAV_LINKS = [
+  { label: "2-Wheeler EV", href: "/categories/two-wheeler" },
+  { label: "4-Wheeler EV", href: "/categories/four-wheeler" },
+];
 
 const Header = () => {
+  const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [query, setQuery] = useState("");
 
-  const [mode, setMode] = useThemeSwitch();
-  const [click, setClick] = useState(false);
+  const results = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return [];
+    return blogs
+      .filter((b) => b.isPublished && b.title.toLowerCase().includes(q))
+      .slice(0, 6);
+  }, [query]);
 
-const toggle = () =>{
-  setClick(!click)
-}
   return (
-    <header className="w-full p-4  px-5 sm:px-10 flex items-center justify-between">
+    <header className="w-full bg-dark sticky top-0 z-40">
+      <div className="max-w-[1280px] mx-auto px-5 sm:px-10 h-[64px] md:h-[84px] flex items-center justify-between gap-6">
         <Logo />
 
-        <button className="inline-block sm:hidden z-50" onClick={toggle} aria-label="Hamburger Menu">
-          <div className="w-6 cursor-pointer transition-all ease duration-300">
-            <div className="relative">
-            <span className="absolute top-0 inline-block w-full h-0.5 bg-dark dark:bg-light rounded transition-all ease duration-200" 
-            style={{
-             transform: click ? "rotate(-45deg) translateY(0)" : "rotate(0deg) translateY(6px)"
-            }}
-            
-            >&nbsp;</span>
-            <span className="absolute top-0 inline-block w-full h-0.5 bg-dark dark:bg-light rounded transition-all ease duration-200"
-            style={{
-              opacity: click ? 0 : 1
-             }}
-            >&nbsp;</span>
-            <span className="absolute top-0 inline-block w-full h-0.5 bg-dark dark:bg-light rounded transition-all ease duration-200"
-            style={{
-              transform: click ? "rotate(45deg) translateY(0)" : "rotate(0deg) translateY(-6px)"
-             }}
-            >&nbsp;</span>
-            </div>
-
-          </div>
-        </button>
-
-        <nav className=" w-max py-3 px-6 sm:px-8 border border-solid border-dark rounded-full font-medium capitalize  items-center flex  sm:hidden
-        fixed top-6 right-1/2 translate-x-1/2 bg-light/80 backdrop-blur-sm z-50
-        transition-all ease duration-300
-        "
-        style={{
-          top: click ? "1rem" : "-5rem"
-         }}
-                >
-            <Link href="/" className="mr-2">Home</Link>
-            <Link href="/about" className="mx-2">About</Link>
-            <Link href="/contact" className="mx-2">Contact</Link>
-            <button onClick={() => setMode(mode === "light" ? "dark" : "light")  }
-            className={cx("w-6 h-6 ease ml-2 flex items-center justify-center rounded-full p-1", mode === "light" ? "bg-dark text-light" :
-            "bg-light text-dark" )}
-            aria-label="theme-switcher"
-            >
-                {
-                  mode === "light" ? <MoonIcon className={"fill-dark"} />  : <SunIcon className={"fill-dark"} />
-                }
-            </button>
+        <nav className="hidden md:flex items-center gap-8 flex-1 justify-center">
+          {NAV_LINKS.map((link) => {
+            const active = pathname?.startsWith(link.href);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cx(
+                  "text-base font-bold text-light/90 hover:text-light transition-colors pb-1 border-b-2",
+                  active ? "border-accent text-light" : "border-transparent"
+                )}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
+        <div className="flex items-center gap-4">
+          <button
+            onClick={() => setSearchOpen((v) => !v)}
+            aria-label="Search"
+            className="w-9 h-9 flex items-center justify-center rounded-full border border-light/30 text-light hover:bg-light/10 transition-colors"
+          >
+            <SearchIcon className="w-4 h-4" />
+          </button>
 
-        <nav className=" w-max py-3 px-8 border border-solid border-dark rounded-full font-medium capitalize  items-center hidden sm:flex
-        fixed top-6 right-1/2 translate-x-1/2 bg-light/80 backdrop-blur-sm z-50">
-            <Link href="/" className="mr-2">Home</Link>
-            <Link href="/about" className="mx-2">About</Link>
-            <Link href="/contact" className="mx-2">Contact</Link>
-            <button onClick={() => setMode(mode === "light" ? "dark" : "light")  }
-            className={cx("w-6 h-6 ease ml-2 flex items-center justify-center rounded-full p-1", mode === "light" ? "bg-dark text-light" :
-            "bg-light text-dark" )}
-            aria-label="theme-switcher"
-            >
-                {
-                  mode === "light" ? <MoonIcon className={"fill-dark"} />  : <SunIcon className={"fill-dark"} />
-                }
-            </button>
-        </nav>
-        <div className=" hidden sm:flex items-center">
-        <a href={siteMetadata.youtube} rel="noopener noreferrer" className="inline-block w-6 h-6 mr-4" aria-label="Check my profile on youtube" target="_blank"><YoutubeIcon className="  hover:scale-125 transition-all ease duration-200 dark:fill-light" /></a>
-        <a href={siteMetadata.instagram} rel="noopener noreferrer" className="inline-block w-6 h-6 mr-4" aria-label="Check my profile on Instagram" target="_blank"><InstagramIcon className="hover:scale-125 transition-all ease duration-200 dark:fill-light" /></a>
-            <a href={siteMetadata.linkedin} rel="noopener noreferrer" className="inline-block w-6 h-6 mr-4" aria-label="Reach out to me via LinkedIn" target="_blank"><LinkedinIcon className="hover:scale-125 transition-all ease duration-200" /></a>
-            <a href={siteMetadata.twitter} rel="noopener noreferrer" className="inline-block w-6 h-6 mr-4" aria-label="Reach out to me via Twitter" target="_blank"><TwitterIcon className="hover:scale-125 transition-all ease duration-200" /></a>
+          <button
+            className="inline-block md:hidden w-9 h-9 flex items-center justify-center text-light"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label="Menu"
+          >
+            {menuOpen ? (
+              <CloseIcon className="w-5 h-5" />
+            ) : (
+              <div className="w-5">
+                <span className="block w-full h-0.5 bg-light mb-1.5"></span>
+                <span className="block w-full h-0.5 bg-light mb-1.5"></span>
+                <span className="block w-full h-0.5 bg-light"></span>
+              </div>
+            )}
+          </button>
         </div>
+      </div>
+
+      {searchOpen && (
+        <div className="border-t border-light/10 bg-dark">
+          <div className="max-w-[1280px] mx-auto px-5 sm:px-10 py-3">
+            <div className="flex items-center gap-3">
+              <SearchIcon className="w-4 h-4 text-light/60 shrink-0" />
+              <input
+                autoFocus
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search EVGyan…"
+                className="w-full bg-transparent text-light placeholder:text-light/50 border-0 focus:ring-0 text-base py-1"
+              />
+            </div>
+            {results.length > 0 && (
+              <ul className="mt-2 border-t border-light/10 pt-2 pb-1">
+                {results.map((b) => (
+                  <li key={b.slug}>
+                    <Link
+                      href={b.url}
+                      onClick={() => {
+                        setSearchOpen(false);
+                        setQuery("");
+                      }}
+                      className="block py-2 text-light/90 hover:text-accent text-sm"
+                    >
+                      {b.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {query.trim() && results.length === 0 && (
+              <p className="mt-2 pt-2 border-t border-light/10 text-light/50 text-sm">
+                No articles found for &ldquo;{query}&rdquo;
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+
+      {menuOpen && (
+        <nav className="md:hidden border-t border-light/10 bg-dark px-5 py-4 flex flex-col gap-4">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              className="text-base font-bold text-light"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+      )}
     </header>
   )
 }

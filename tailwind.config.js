@@ -9,11 +9,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        dark: "#1b1b1b",
-        light: "#fff",
-        accent: "#7B00D3",
-        accentDark: "#ffdb4d",
-        gray: "#747474",
+        dark: "#111318",
+        light: "#FFFFFF",
+        accent: "#FFC400",
+        accentDark: "#FFC400",
+        gray: "#555B66",
+        bgSoft: "#F3F4F6",
+        borderSoft: "#E1E3E6",
       },
       fontFamily:{
         mr: ["var(--font-mr)"],

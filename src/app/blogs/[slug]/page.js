@@ -4,7 +4,9 @@ import Tag from "@/src/components/Elements/Tag";
 import siteMetadata from "@/src/utils/siteMetaData";
 import { blogs } from '@/.velite/generated'
 import { slug as slugify } from "github-slugger";
+import { sortBlogs } from "@/src/utils";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
@@ -101,6 +103,8 @@ export default async function BlogPage({ params }) {
     notFound()
   }
 
+  const trending = sortBlogs(blogs.filter((b) => b.isPublished && b.slug !== blog.slug)).slice(0, 7);
+
   let imageList = [siteMetadata.socialBanner];
   if (blog.image) {
     imageList =
@@ -162,7 +166,7 @@ export default async function BlogPage({ params }) {
       <div className="grid grid-cols-12  gap-y-8 lg:gap-8 sxl:gap-16 mt-8 px-5 md:px-10">
         <div className="col-span-12  lg:col-span-4">
           <details
-            className="border-[1px] border-solid border-dark dark:border-light text-dark dark:text-light rounded-lg p-4 sticky top-6 max-h-[80vh] overflow-hidden overflow-y-auto"
+            className="border-[1px] border-solid border-dark dark:border-light text-dark dark:text-light rounded-lg p-4 lg:sticky lg:top-[100px] max-h-[70vh] overflow-hidden overflow-y-auto"
             open
           >
             <summary className="text-lg font-semibold capitalize cursor-pointer">
@@ -174,6 +178,28 @@ export default async function BlogPage({ params }) {
               ))}
             </ul>
           </details>
+
+          {trending.length > 0 && (
+            <div className="mt-6 bg-bgSoft rounded-lg p-5">
+              <h3 className="text-sm font-bold uppercase tracking-wide text-dark border-b-2 border-accent pb-2 mb-3">
+                Trending
+              </h3>
+              <ol className="flex flex-col divide-y divide-borderSoft">
+                {trending.map((t, i) => (
+                  <li key={t.slug} className="py-3 first:pt-0">
+                    <Link href={t.url} className="flex items-start gap-3 group">
+                      <span className="shrink-0 w-5 h-5 flex items-center justify-center rounded bg-dark text-light text-xs font-bold mt-0.5">
+                        {i + 1}
+                      </span>
+                      <span className="text-sm font-semibold leading-snug text-dark group-hover:underline decoration-accent decoration-2 underline-offset-2">
+                        {t.title}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          )}
         </div>
         <RenderMdx blog={blog} />
       </div>
