@@ -75,12 +75,20 @@ export default function RootLayout({ children }) {
           "font-mr bg-light dark:bg-light"
         )}
       >
+        {/*
+          EVGyan has no dark-mode toggle — it is a light-theme site only.
+          We used to auto-add a `dark` class here based on the visitor's
+          OS/browser color-scheme preference. Many phones default to system
+          dark mode, so most mobile visitors silently got that class, which
+          flipped the article body text to Tailwind Typography's
+          dark:prose-invert colors (light grey, meant for a dark background)
+          while the page background stayed forced white (bg-light). That
+          mismatch is what made article text look washed-out/grey and hard
+          to read on mobile. Since there is no real dark theme to switch to,
+          we now always force light mode instead of reading the OS preference.
+        */}
         <Script id="theme-switcher" strategy="beforeInteractive">
-          {`if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    document.documentElement.classList.add('dark')
-  } else {
-    document.documentElement.classList.remove('dark')
-  }`}
+          {`document.documentElement.classList.remove('dark')`}
         </Script>
 
         {/* Google Analytics (GA4) */}
