@@ -2,7 +2,7 @@ import FormEmbed from './FormEmbed';
 
 export const metadata = {
   title: 'EV Decision Guide – EVGYAN',
-  description: 'Get a clear answer before you spend money on an EV. Trusted by 370,000+ EV viewers on YouTube.',
+  description: 'Get a clear answer before you spend money on an EV. Trusted by 400,000+ EV viewers on YouTube.',
 };
 
 export default function EvGuidePage() {
@@ -258,7 +258,7 @@ export default function EvGuidePage() {
 
           {/* AUTHORITY */}
           <div className="evg-authority">
-            Trusted by 370,000+ EV viewers on YouTube
+            Trusted by 400,000+ EV viewers on YouTube
             <span className="evg-authority-dot">·</span>
             5+ years of EV insights
           </div>

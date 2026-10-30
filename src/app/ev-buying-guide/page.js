@@ -92,7 +92,7 @@ export default function EVBuyingDecisionGuide() {
         </div>
         <div className="flex items-center justify-center gap-2 bg-[#f0fdf4] border border-[#bbf7d0] rounded-lg px-5 py-3.5">
           <BoltIcon size={13} />
-          <span className="text-[13px] font-medium text-[#166534] font-in">Trusted by 320K+ EV viewers on YouTube</span>
+          <span className="text-[13px] font-medium text-[#166534] font-in">Trusted by 400K+ EV viewers on YouTube</span>
         </div>
         <footer className="mt-10 text-center text-[12px] text-[#bbb] font-in">
           <p>2026 EVGyan</p>

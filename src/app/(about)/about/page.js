@@ -4,8 +4,8 @@ import Link from "next/link";
 
 
 export const metadata = {
-  title: "About Me",
-  description: `Here are some details about my self.`,
+  title: "About Us",
+  description: "Learn more about EVGyan — India's trusted source for honest EV news and sales data.",
 };
 
 export default function About() {
@@ -13,9 +13,15 @@ export default function About() {
     <>
       <AboutCoverSection />
       <Skills />
-      <h2 className="mt-8 font-semibold text-lg md:text-2xl self-start mx-5 xs:mx-10 sm:mx-12 md:mx-16 lg:mx-20 text-dark dark:text-light dark:font-normal"> 
-      Have something to ask to evgyaan team? Reach out to me 📞 from <Link href="/contact"  className="!underline underline-offset-2"   >here</Link> and let's make it happen.
-      </h2>
+      <div className="max-w-[1280px] mx-auto px-5 sm:px-10 pb-16">
+        <p className="text-base text-gray">
+          Have something to ask the EVGyan team? Reach out{" "}
+          <Link href="/contact" className="text-dark font-semibold underline decoration-accent decoration-2 underline-offset-2">
+            here
+          </Link>{" "}
+          and let&rsquo;s make it happen.
+        </p>
+      </div>
     </>
   );
 }
