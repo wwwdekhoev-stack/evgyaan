@@ -1,5 +1,4 @@
 import React from "react";
-import { cx } from "../utils";
 
 export const SunIcon = ({ className, ...rest }) => (
   <svg
@@ -8,7 +7,7 @@ export const SunIcon = ({ className, ...rest }) => (
     height="24"
     viewBox="0 0 24 24"
     {...rest}
-    className={cx("w-full h-auto", className)}
+    className={className || "w-full h-auto"}
   >
     <rect x="0" y="0" width="24" height="24" fill="rgba(255, 255, 255, 0)" />
     <g
@@ -164,7 +163,7 @@ export const MoonIcon = ({ className, ...rest }) => (
     height="24"
     viewBox="0 0 24 24"
     {...rest}
-    className={cx("w-full h-auto", className)}
+    className={className || "w-full h-auto"}
   >
     <g
       fill="none"
@@ -342,7 +341,7 @@ export const LinkedinIcon = ({ className, ...rest }) => {
       width={42}
       height={43}
       viewBox="0 0 42 43"
-      className={cx("w-full h-auto", className)}
+      className={className || "w-full h-auto"}
       {...rest}
     >
       <g clipPath="url(#a)">
@@ -371,7 +370,7 @@ export const TwitterIcon = ({ className, ...rest }) => {
       width={42}
       height={43}
       viewBox="0 0 42 43"
-      className={cx("w-full h-auto", className)}
+      className={className || "w-full h-auto"}
       {...rest}
     >
       <g clipPath="url(#a)">
@@ -396,7 +395,7 @@ export const GithubIcon = ({ className, ...rest }) => {
       width={42}
       height={44}
       viewBox="0 0 42 44"
-      className={cx("w-full h-auto", className)}
+      className={className || "w-full h-auto"}
       {...rest}
     >
       <path
@@ -416,7 +415,7 @@ export const DribbbleIcon = ({ className, ...rest }) => {
       width={42}
       height={43}
       viewBox="0 0 42 43"
-      className={cx("w-full h-auto", className)}
+      className={className || "w-full h-auto"}
       {...rest}
     >
       <g clipPath="url(#a)">
@@ -445,7 +444,7 @@ export const YoutubeIcon = ({ className, ...rest }) => {
       width={42}
       height={42}
       viewBox="0 0 24 24"
-      className={cx("w-full h-auto", className)}
+      className={className || "w-full h-auto"}
       {...rest}
     >
       <path
@@ -460,7 +459,7 @@ export const SearchIcon = ({ className, ...rest }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 512 512"
-    className={cx("w-full h-auto", className)}
+    className={className || "w-full h-auto"}
     {...rest}
   >
     <path
@@ -474,7 +473,7 @@ export const CloseIcon = ({ className, ...rest }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    className={cx("w-full h-auto", className)}
+    className={className || "w-full h-auto"}
     {...rest}
   >
     <path
@@ -495,7 +494,7 @@ export const FacebookIcon = ({ className, ...rest }) => {
       width={42}
       height={42}
       viewBox="0 0 24 24"
-      className={cx("w-full h-auto", className)}
+      className={className || "w-full h-auto"}
       {...rest}
     >
       <path
@@ -513,7 +512,7 @@ export const XIcon = ({ className, ...rest }) => {
       width={42}
       height={42}
       viewBox="0 0 24 24"
-      className={cx("w-full h-auto", className)}
+      className={className || "w-full h-auto"}
       {...rest}
     >
       <path
@@ -531,7 +530,7 @@ export const InstagramIcon = ({ className, ...rest }) => {
       width={42}
       height={42}
       viewBox="0 0 24 24"
-      className={cx("w-full h-auto", className)}
+      className={className || "w-full h-auto"}
       {...rest}
     >
       <defs>
