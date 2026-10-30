@@ -32,12 +32,17 @@ const Footer = () => {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/categories/two-wheeler" className="hover:text-accent transition-colors">
-                  2-Wheeler EV
+                  EV Scooters/Bikes
                 </Link>
               </li>
               <li>
                 <Link href="/categories/four-wheeler" className="hover:text-accent transition-colors">
-                  4-Wheeler EV
+                  EV Cars/4W
+                </Link>
+              </li>
+              <li>
+                <Link href="/categories/battery-charging" className="hover:text-accent transition-colors">
+                  EV Battery & Charging
                 </Link>
               </li>
             </ul>

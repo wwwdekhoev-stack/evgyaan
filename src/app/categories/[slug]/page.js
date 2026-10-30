@@ -5,8 +5,9 @@ import { blogs as allBlogs } from "@/.velite/generated";
 import { sortBlogs, getCategory } from "@/src/utils";
 
 const CATEGORY_META = {
-  "two-wheeler": { label: "2-Wheeler EV" },
-  "four-wheeler": { label: "4-Wheeler EV" },
+  "two-wheeler": { label: "EV Scooters/Bikes" },
+  "four-wheeler": { label: "EV Cars/4W" },
+  "battery-charging": { label: "EV Battery & Charging" },
 };
 
 function formatDate(value) {

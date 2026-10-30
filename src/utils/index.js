@@ -10,13 +10,30 @@ export const sortBlogs = (blogs) => {
     );
 };
 
-// Groups an article under our two top-level nav categories based on its tags.
+// Groups an article under our three top-level nav categories based on its tags.
 // Existing content tags aren't a strict controlled taxonomy (e.g. "two wheeler"
 // vs "electric two-wheeler"), so this matches on keywords rather than an exact tag.
+// Battery/charging is checked first since it's the more specific topic — a
+// two-wheeler charging-infra story should land there, not in the generic
+// vehicle-type bucket. The keyword list is deliberately narrow (full phrases,
+// not a bare "battery" match) so a vehicle article that merely mentions a
+// battery-swap station in passing doesn't get swept in here.
 export const getCategory = (tags = []) => {
   const joined = tags.join(" ").toLowerCase();
-  if (joined.includes("two wheel") || joined.includes("two-wheel")) {
-    return { label: "2-Wheeler EV", slug: "two-wheeler" };
+  if (
+    joined.includes("charg") || // covers charging / charger / chargers
+    joined.includes("ev battery") ||
+    joined.includes("battery tech") ||
+    joined.includes("battery chemistry") ||
+    joined.includes("battery innovation") ||
+    joined.includes("solid-state battery") ||
+    joined.includes("battery swap station") ||
+    joined.includes("battery swapping network")
+  ) {
+    return { label: "EV Battery & Charging", slug: "battery-charging" };
   }
-  return { label: "4-Wheeler EV", slug: "four-wheeler" };
+  if (joined.includes("two wheel") || joined.includes("two-wheel")) {
+    return { label: "EV Scooters/Bikes", slug: "two-wheeler" };
+  }
+  return { label: "EV Cars/4W", slug: "four-wheeler" };
 };

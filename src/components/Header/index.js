@@ -8,8 +8,9 @@ import { cx } from "@/src/utils";
 import { blogs } from "@/.velite/generated";
 
 const NAV_LINKS = [
-  { label: "2-Wheeler EV", href: "/categories/two-wheeler" },
-  { label: "4-Wheeler EV", href: "/categories/four-wheeler" },
+  { label: "EV Scooters/Bikes", href: "/categories/two-wheeler" },
+  { label: "EV Cars/4W", href: "/categories/four-wheeler" },
+  { label: "EV Battery & Charging", href: "/categories/battery-charging" },
 ];
 
 const Header = () => {
