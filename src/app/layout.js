@@ -27,6 +27,16 @@ export const metadata = {
     default: siteMetadata.title, // a default is required when creating a template
   },
   description: siteMetadata.description,
+  // EVGyan logo icons. The ?v= query forces browsers to drop the old cached
+  // template avatar — bump it whenever the icon changes.
+  icons: {
+    icon: [
+      { url: "/favicon.ico?v=2", sizes: "any" },
+      { url: "/favicon-32x32.png?v=2", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-16x16.png?v=2", type: "image/png", sizes: "16x16" },
+    ],
+    shortcut: "/favicon.ico?v=2",
+  },
   openGraph: {
     title: siteMetadata.title,
     description: siteMetadata.description,
