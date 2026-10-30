@@ -3,7 +3,7 @@ import Calculator from './Calculator';
 export const metadata = {
   title: 'EV Charging Station ROI Calculator – EVGyan',
   description:
-    'Free Bolt.Earth EV charger ROI calculator. Enter your numbers and instantly see payback period, monthly profit, and investment needed. Trusted by 370,000+ EV viewers on YouTube.',
+    'Free Bolt.Earth EV charger ROI calculator. Enter your numbers and instantly see payback period, monthly profit, and investment needed. Trusted by 400,000+ EV viewers on YouTube.',
 };
 
 export default function EvRoiCalculatorPage() {
@@ -286,7 +286,7 @@ export default function EvRoiCalculatorPage() {
           <Calculator />
 
           <div className="evg-authority">
-            Trusted by 370,000+ EV viewers on YouTube
+            Trusted by 400,000+ EV viewers on YouTube
             <span className="evg-authority-dot">·</span>
             5+ years of EV insights
           </div>

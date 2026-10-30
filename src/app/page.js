@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { blogs } from "@/.velite/generated";
+import { sortBlogs, getCategory } from "@/src/utils";
 
 export const metadata = {
   title: { absolute: "EVGyan.com | EV Sales Data, News & Honest Analysis" },
@@ -8,150 +9,135 @@ export const metadata = {
     "EVGyan brings you simple, honest EV news and monthly sales data for electric cars and electric two-wheelers in India.",
 };
 
-const FEATURED_SLUGS = [
-  "electric-two-wheeler-sales-september-2026",
-  "electric-car-sales-september-2026",
-];
-
 function formatDate(value) {
   return new Date(value).toLocaleDateString("en-IN", {
     day: "numeric",
-    month: "long",
+    month: "short",
     year: "numeric",
   });
 }
 
 export default function Home() {
-  const articles = FEATURED_SLUGS.map((slug) =>
-    blogs.find((blog) => blog.slug === slug)
-  ).filter(Boolean);
+  const published = sortBlogs(blogs.filter((b) => b.isPublished));
+  const [hero, ...rest] = published;
+  const feed = rest;
+  const trending = published.slice(0, 7);
+
+  if (!hero) {
+    return (
+      <main className="min-h-[50vh] flex items-center justify-center text-dark">
+        <p>No articles published yet.</p>
+      </main>
+    );
+  }
+
+  const heroCategory = getCategory(hero.tags);
 
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        background: "#0f0f0f",
-        color: "#ffffff",
-        fontFamily: "'Inter', 'Manrope', sans-serif",
-      }}
-    >
-      <header
-        style={{
-          borderBottom: "1px solid rgba(255,255,255,0.12)",
-          padding: "28px 20px",
-          textAlign: "center",
-          background:
-            "linear-gradient(180deg, rgba(46,125,82,0.18) 0%, rgba(15,15,15,0) 100%)",
-        }}
-      >
-        <Link
-          href="/"
-          style={{
-            color: "#ffffff",
-            textDecoration: "none",
-            fontWeight: 900,
-            letterSpacing: "0.12em",
-            fontSize: "clamp(28px, 6vw, 52px)",
-          }}
-        >
-          EVGYAN<span style={{ color: "#facc15" }}>.COM</span>
+    <main className="bg-light text-dark">
+      {/* Hero */}
+      <section className="max-w-[1280px] mx-auto px-5 sm:px-10 pt-8">
+        <Link href={hero.url} className="group grid md:grid-cols-2 gap-6 md:gap-10 items-center">
+          <div className="aspect-[16/10] rounded-lg overflow-hidden bg-bgSoft">
+            <Image
+              src={hero.image.src}
+              placeholder="blur"
+              blurDataURL={hero.image.blurDataURL}
+              alt={hero.title}
+              width={hero.image.width}
+              height={hero.image.height}
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
+            />
+          </div>
+          <div>
+            <span className="inline-flex items-center gap-1.5 text-xs font-bold text-gray uppercase tracking-wide">
+              <span className="w-1.5 h-1.5 rounded-full bg-dark" />
+              {heroCategory.label}
+            </span>
+            <h1 className="mt-3 text-[28px] md:text-[34px] leading-[1.3] font-semibold text-dark">
+              {hero.title}
+            </h1>
+            <p className="mt-3 text-base leading-[1.625] text-gray">
+              {hero.description}
+            </p>
+            <div className="mt-4 text-sm text-gray font-medium">
+              {hero.author} &middot; {formatDate(hero.publishedAt)} &middot; {hero.readingTime.text}
+            </div>
+            <span className="inline-block mt-5 px-6 py-2.5 rounded bg-accent text-dark text-base font-semibold">
+              Read Full Story
+            </span>
+          </div>
         </Link>
-        <p
-          style={{
-            margin: "8px 0 0",
-            color: "rgba(255,255,255,0.55)",
-            fontSize: "clamp(12px, 2vw, 14px)",
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
-          }}
-        >
-          Honest EV News &amp; Sales Data
-        </p>
-      </header>
-
-      <section
-        style={{ maxWidth: "1100px", margin: "0 auto", padding: "40px 20px 60px" }}
-      >
-        <h2
-          style={{
-            fontSize: "clamp(20px, 3vw, 28px)",
-            fontWeight: 800,
-            margin: "0 0 24px",
-          }}
-        >
-          Latest Articles
-        </h2>
-
-        <div className="evg-grid">
-          {articles.map((blog) => (
-            <Link key={blog.slug} href={blog.url} className="evg-card">
-              <div className="evg-img">
-                <Image
-                  src={blog.image.src}
-                  placeholder="blur"
-                  blurDataURL={blog.image.blurDataURL}
-                  alt={blog.title}
-                  width={blog.image.width}
-                  height={blog.image.height}
-                  sizes="(max-width: 800px) 100vw, 540px"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
-              </div>
-              <div style={{ padding: "18px 20px 22px" }}>
-                <h3
-                  style={{
-                    fontSize: "clamp(18px, 2.4vw, 22px)",
-                    lineHeight: 1.35,
-                    fontWeight: 800,
-                    margin: "0 0 10px",
-                  }}
-                >
-                  {blog.title}
-                </h3>
-                <p
-                  style={{
-                    margin: "0 0 14px",
-                    color: "rgba(255,255,255,0.65)",
-                    fontSize: "15px",
-                    lineHeight: 1.6,
-                  }}
-                >
-                  {blog.description}
-                </p>
-                <p
-                  style={{
-                    margin: 0,
-                    color: "#facc15",
-                    fontSize: "13px",
-                    fontWeight: 600,
-                  }}
-                >
-                  {blog.author} &middot; {formatDate(blog.publishedAt)}
-                </p>
-              </div>
-            </Link>
-          ))}
-        </div>
       </section>
 
-      <footer
-        style={{
-          borderTop: "1px solid rgba(255,255,255,0.12)",
-          padding: "22px 20px",
-          textAlign: "center",
-          color: "rgba(255,255,255,0.45)",
-          fontSize: "13px",
-        }}
-      >
-        &copy; EVGyan.com
-      </footer>
+      {/* Feed + Trending */}
+      <section className="max-w-[1280px] mx-auto px-5 sm:px-10 mt-10 pb-16 grid lg:grid-cols-[1fr_320px] gap-8">
+        <div className="flex flex-col divide-y divide-borderSoft">
+          {feed.length === 0 && (
+            <p className="py-6 text-gray text-sm">More stories coming soon.</p>
+          )}
+          {feed.map((blog) => {
+            const category = getCategory(blog.tags);
+            return (
+              <Link
+                key={blog.slug}
+                href={blog.url}
+                className="group py-5 first:pt-0 flex gap-4 sm:gap-6"
+              >
+                <div className="w-[120px] sm:w-[180px] aspect-[4/3] rounded-md overflow-hidden bg-bgSoft shrink-0">
+                  <Image
+                    src={blog.image.src}
+                    placeholder="blur"
+                    blurDataURL={blog.image.blurDataURL}
+                    alt={blog.title}
+                    width={blog.image.width}
+                    height={blog.image.height}
+                    sizes="180px"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="min-w-0 flex flex-col">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-gray uppercase tracking-wide">
+                    <span className="w-1.5 h-1.5 rounded-full bg-gray" />
+                    {category.label}
+                  </span>
+                  <h2 className="mt-1.5 text-lg sm:text-xl font-semibold leading-snug text-dark group-hover:underline decoration-accent decoration-2 underline-offset-2">
+                    {blog.title}
+                  </h2>
+                  <p className="mt-1.5 hidden sm:block text-sm text-gray leading-relaxed line-clamp-2">
+                    {blog.description}
+                  </p>
+                  <span className="mt-auto pt-2 text-xs text-gray font-medium">
+                    {formatDate(blog.publishedAt)}
+                  </span>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
 
-      <style>{`
-        .evg-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-        .evg-card { display: block; background: #1a1a1a; border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; overflow: hidden; color: #fff; text-decoration: none; }
-        .evg-img { aspect-ratio: 16 / 9; overflow: hidden; background: #000; }
-        @media (max-width: 800px) { .evg-grid { grid-template-columns: 1fr; } }
-      `}</style>
+        <aside className="bg-bgSoft rounded-lg p-5 h-fit lg:sticky lg:top-[100px]">
+          <h3 className="text-sm font-bold uppercase tracking-wide text-dark border-b-2 border-accent pb-2 mb-3">
+            Trending
+          </h3>
+          <ol className="flex flex-col divide-y divide-borderSoft">
+            {trending.map((blog, i) => (
+              <li key={blog.slug} className="py-3 first:pt-0">
+                <Link href={blog.url} className="flex items-start gap-3 group">
+                  <span className="shrink-0 w-5 h-5 flex items-center justify-center rounded bg-dark text-light text-xs font-bold mt-0.5">
+                    {i + 1}
+                  </span>
+                  <span className="text-sm font-semibold leading-snug text-dark group-hover:underline decoration-accent decoration-2 underline-offset-2">
+                    {blog.title}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </aside>
+      </section>
     </main>
   );
 }

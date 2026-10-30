@@ -1,27 +1,27 @@
+import Link from "next/link";
+
 const categories = [
-  "two wheeler",
-  "four wheeler",
-  "commercial vehicle"
+  { label: "2-Wheeler EV", href: "/categories/two-wheeler" },
+  { label: "4-Wheeler EV", href: "/categories/four-wheeler" },
 ];
 
 const Skills = () => {
   return (
-    <section className="w-full flex flex-col p-5 xs:p-10 sm:p-12 md:p-16 lg:p-20 border-b-2 border-solid border-dark dark:border-light
-     text-dark dark:text-light">
-      <span className="font-semibold text-lg sm:text-3xl md:text-4xl text-accent dark:text-accentDark">
-        I'm Want to see more content on...
-      </span>
-      <ul className="flex flex-wrap mt-8 justify-center  xs:justify-start">
-        {categories.map((item, index) => {
-          return (
-            <li
-              key={index}
-              className="font-semibold inline-block capitalize text-base xs:text-lg sm:text-xl  md:text-2xl py-2 xs:py-3 sm:py-4 lg:py-5 px-4 xs:px-6 sm:px-8 lg:px-12 border-2 border-solid border-dark dark:border-light rounded mr-3 mb-3 xs:mr-4 xs:mb-4  md:mr-6 md:mb-6 hover:scale-105 transition-all ease duration-200 cursor-pointer dark:font-normal" 
+    <section className="max-w-[1280px] mx-auto px-5 sm:px-10 py-10 border-t border-borderSoft">
+      <h2 className="text-xl sm:text-2xl font-semibold text-dark">
+        Want to see more content on...
+      </h2>
+      <ul className="flex flex-wrap gap-3 mt-5">
+        {categories.map((item) => (
+          <li key={item.href}>
+            <Link
+              href={item.href}
+              className="inline-block font-semibold text-sm sm:text-base py-2.5 px-5 sm:px-6 rounded-full bg-bgSoft text-dark border border-borderSoft hover:bg-accent hover:border-accent transition-colors"
             >
-              {item}
-            </li>
-          );
-        })}
+              {item.label}
+            </Link>
+          </li>
+        ))}
       </ul>
     </section>
   );

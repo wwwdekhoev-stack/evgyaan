@@ -1,21 +1,26 @@
 import Link from "next/link";
 
+export const metadata = {
+  title: "Page Not Found",
+  description: "The page you're looking for doesn't exist.",
+};
+
 export default function NotFound() {
   return (
-    <main className="my-32 w-full dark:bg-dark flex justify-center font-mr">
-      <div className="relative flex flex-col items-center justify-center">
-        <h1 className={`inline-block text-dark dark:text-light
-      text-6xl font-bold w-full capitalize xl:text-8xl text-center`}>404</h1>
-        <h2 className={`inline-block text-dark dark:text-light
-      text-5xl font-bold w-full capitalize xl:text-6xl text-center mt-4 tracking-wide leading-snug`}>Page Not Found!</h2>
+    <main className="min-h-[60vh] w-full bg-light flex items-center justify-center px-5">
+      <div className="flex flex-col items-center text-center">
+        <span className="text-sm font-bold text-gray uppercase tracking-wide">404</span>
+        <h1 className="mt-2 text-3xl sm:text-4xl font-semibold text-dark">
+          Page Not Found
+        </h1>
+        <p className="mt-3 text-base text-gray max-w-sm">
+          The page you&rsquo;re looking for doesn&rsquo;t exist or may have moved.
+        </p>
         <Link
           href="/"
-          className="self-center mt-8 inline-block rounded-lg border-2 border-solid bg-dark px-4 py-2
-        font-semibold text-light hover:border-dark hover:bg-light hover:text-dark 
-        dark:bg-light dark:text-dark hover:dark:bg-dark hover:dark:text-light hover:dark:border-light
-        "
+          className="mt-6 inline-block rounded px-6 py-2.5 bg-accent text-dark font-semibold hover:brightness-95 transition"
         >
-          Go To Home
+          Go to Home
         </Link>
       </div>
     </main>
