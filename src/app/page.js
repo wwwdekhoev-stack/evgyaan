@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { blogs } from "@/.velite/generated";
-import { sortBlogs, getCategory, formatDateIST } from "@/src/utils";
+import { sortBlogs, getCategory, formatDateIST, getHomePage } from "@/src/utils";
+import ArticleRow from "@/src/components/Blog/ArticleRow";
+import Pagination from "@/src/components/Blog/Pagination";
 
 export const metadata = {
   title: { absolute: "EVGyan.com | EV Sales Data, News & Honest Analysis" },
@@ -15,8 +17,7 @@ function formatDate(value) {
 
 export default function Home() {
   const published = sortBlogs(blogs.filter((b) => b.isPublished));
-  const [hero, ...rest] = published;
-  const feed = rest;
+  const { hero, items: feed, totalPages } = getHomePage(published, 1);
   const trending = published.slice(0, 7);
 
   if (!hero) {
@@ -74,44 +75,10 @@ export default function Home() {
           {feed.length === 0 && (
             <p className="py-6 text-gray text-sm">More stories coming soon.</p>
           )}
-          {feed.map((blog) => {
-            const category = getCategory(blog.tags);
-            return (
-              <Link
-                key={blog.slug}
-                href={blog.url}
-                className="group py-5 first:pt-0 flex gap-4 sm:gap-6"
-              >
-                <div className="w-[120px] sm:w-[180px] aspect-[4/3] rounded-md overflow-hidden bg-bgSoft shrink-0">
-                  <Image
-                    src={blog.image.src}
-                    placeholder="blur"
-                    blurDataURL={blog.image.blurDataURL}
-                    alt={blog.title}
-                    width={blog.image.width}
-                    height={blog.image.height}
-                    sizes="180px"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <div className="min-w-0 flex flex-col">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-gray uppercase tracking-wide">
-                    <span className="w-1.5 h-1.5 rounded-full bg-gray" />
-                    {category.label}
-                  </span>
-                  <h2 className="mt-1.5 text-lg sm:text-xl font-semibold leading-snug text-dark group-hover:underline decoration-accent decoration-2 underline-offset-2">
-                    {blog.title}
-                  </h2>
-                  <p className="mt-1.5 hidden sm:block text-sm text-gray leading-relaxed line-clamp-2">
-                    {blog.description}
-                  </p>
-                  <span className="mt-auto pt-2 text-xs text-gray font-medium">
-                    {formatDate(blog.publishedAt)}
-                  </span>
-                </div>
-              </Link>
-            );
-          })}
+          {feed.map((blog) => (
+            <ArticleRow key={blog.slug} blog={blog} />
+          ))}
+          <Pagination basePath="" current={1} total={totalPages} />
         </div>
 
         <aside className="bg-bgSoft rounded-lg p-5 h-fit lg:sticky lg:top-[100px]">

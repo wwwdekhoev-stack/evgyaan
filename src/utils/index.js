@@ -12,6 +12,26 @@ export const formatDateIST = (
     timeZone: "Asia/Kolkata",
   });
 
+// ---- Pagination ----
+// How many article rows appear in each list page (homepage feed, category pages).
+// Homepage page 1 additionally shows the big hero story above these rows.
+export const PER_PAGE = 15;
+
+// Homepage: item 0 is the hero; the feed is everything after it, paged.
+export const getHomePage = (published, page) => {
+  const feedAll = published.slice(1);
+  const totalPages = Math.max(1, Math.ceil(feedAll.length / PER_PAGE));
+  const items = feedAll.slice((page - 1) * PER_PAGE, page * PER_PAGE);
+  return { hero: published[0], items, totalPages };
+};
+
+// Category (or any plain list): straight paging.
+export const getListPage = (posts, page) => {
+  const totalPages = Math.max(1, Math.ceil(posts.length / PER_PAGE));
+  const items = posts.slice((page - 1) * PER_PAGE, page * PER_PAGE);
+  return { items, totalPages };
+};
+
 export const cx = (...classNames) => classNames.filter(Boolean).join(" ");
 
 export const sortBlogs = (blogs) => {
