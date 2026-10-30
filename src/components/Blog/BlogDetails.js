@@ -1,22 +1,21 @@
 import { format, parseISO } from "date-fns";
-import Link from "next/link";
 import React from "react";
-import { slug } from "github-slugger";
 import ViewCounter from "./ViewCounter";
 
 const BlogDetails = ({ blog, slug: blogSlug }) => {
   return (
-    <div className="px-2  md:px-10 bg-accent text-dark py-2 flex items-center justify-around flex-wrap text-lg sm:text-xl font-medium mx-5  md:mx-10 rounded-lg">
-      <time className="m-3">
-        {format(parseISO(blog.publishedAt), "LLLL d, yyyy")}
-      </time>
-      <span className="m-3">
-        <ViewCounter slug={blogSlug} />
-      </span>
-      <div className="m-3">{blog.readingTime.text}</div>
-      <Link href={`/categories/${slug(blog.tags[0])}`} className="m-3">
-        #{blog.tags[0]}
-      </Link>
+    <div className="mt-4 flex items-center flex-wrap gap-x-3 gap-y-1 text-sm text-gray">
+      {blog.author && (
+        <>
+          <span className="font-semibold text-dark">{blog.author}</span>
+          <span className="text-borderSoft">•</span>
+        </>
+      )}
+      <time>{format(parseISO(blog.publishedAt), "LLLL d, yyyy")}</time>
+      <span className="text-borderSoft">•</span>
+      <span>{blog.readingTime.text}</span>
+      <span className="text-borderSoft">•</span>
+      <ViewCounter slug={blogSlug} />
     </div>
   );
 };
