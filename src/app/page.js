@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { blogs } from "@/.velite/generated";
-import { sortBlogs, getCategory } from "@/src/utils";
+import { sortBlogs, getCategory, formatDateIST } from "@/src/utils";
 
 export const metadata = {
   title: { absolute: "EVGyan.com | EV Sales Data, News & Honest Analysis" },
@@ -10,11 +10,7 @@ export const metadata = {
 };
 
 function formatDate(value) {
-  return new Date(value).toLocaleDateString("en-IN", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
+  return formatDateIST(value);
 }
 
 export default function Home() {

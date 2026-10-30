@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { blogs as allBlogs } from "@/.velite/generated";
-import { sortBlogs, getCategory } from "@/src/utils";
+import { sortBlogs, getCategory, formatDateIST } from "@/src/utils";
 
 const CATEGORY_META = {
   "two-wheeler": { label: "EV Scooters/Bikes" },
@@ -11,11 +11,7 @@ const CATEGORY_META = {
 };
 
 function formatDate(value) {
-  return new Date(value).toLocaleDateString("en-IN", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
+  return formatDateIST(value);
 }
 
 export async function generateStaticParams() {

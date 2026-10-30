@@ -1,5 +1,17 @@
 import { compareDesc, parseISO } from "date-fns";
 
+// All dates on the site are shown in Indian time (IST), regardless of the
+// server's timezone (Vercel builds/renders in UTC).
+export const formatDateIST = (
+  value,
+  options = { day: "numeric", month: "short", year: "numeric" },
+  locale = "en-IN"
+) =>
+  new Date(value).toLocaleDateString(locale, {
+    ...options,
+    timeZone: "Asia/Kolkata",
+  });
+
 export const cx = (...classNames) => classNames.filter(Boolean).join(" ");
 
 export const sortBlogs = (blogs) => {

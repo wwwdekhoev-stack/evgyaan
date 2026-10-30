@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { formatDateIST } from "@/src/utils";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -37,7 +37,7 @@ const BlogLayoutThree = ({ blog }) => {
         </Link>
 
         <span className="capitalize text-gray dark:text-light/50 font-semibold text-sm  sm:text-base">
-          {format(new Date(blog.publishedAt), "MMMM dd, yyyy")}
+          {formatDateIST(blog.publishedAt, { month: "long", day: "2-digit", year: "numeric" }, "en-US")}
         </span>
       </div>
     </div>

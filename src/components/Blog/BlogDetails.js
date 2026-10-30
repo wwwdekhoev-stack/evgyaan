@@ -1,4 +1,4 @@
-import { format, parseISO } from "date-fns";
+import { formatDateIST } from "@/src/utils";
 import React from "react";
 
 const BlogDetails = ({ blog }) => {
@@ -10,7 +10,7 @@ const BlogDetails = ({ blog }) => {
           <span className="text-borderSoft">•</span>
         </>
       )}
-      <time>{format(parseISO(blog.publishedAt), "LLLL d, yyyy")}</time>
+      <time>{formatDateIST(blog.publishedAt, { month: "long", day: "numeric", year: "numeric" }, "en-US")}</time>
       <span className="text-borderSoft">•</span>
       <span>{blog.readingTime.text}</span>
     </div>
