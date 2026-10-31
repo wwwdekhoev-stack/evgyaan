@@ -40,3 +40,7 @@ next-env.d.ts
 /public/sitemap.xml
 /public/sitemap-0.xml
 
+# Velite copies each article's hero.jpg from content/blogs/ here at build
+# time (npm run content / next build) — generated, never commit it.
+/public/blogs/
+
