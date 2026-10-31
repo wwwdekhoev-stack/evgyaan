@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import ArticleRow from "@/src/components/Blog/ArticleRow";
 import JsonLd from "@/src/components/Seo/JsonLd";
 import Breadcrumbs from "@/src/components/Blog/Breadcrumbs";
@@ -39,6 +40,7 @@ export default async function AuthorPage({ params }) {
     name: author.name,
     url: absoluteUrl(author.path),
     description: author.bio,
+    ...(author.image ? { image: absoluteUrl(author.image) } : {}),
     worksFor: publisherSchema(),
   };
 
@@ -47,9 +49,22 @@ export default async function AuthorPage({ params }) {
       <JsonLd data={personLd} />
       <section className="max-w-[1280px] mx-auto px-5 sm:px-10 pt-10">
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: author.name }]} />
-        <h1 className="mt-3 text-[28px] md:text-[34px] leading-[1.3] font-semibold text-dark">
-          {author.name}
-        </h1>
+        <div className="mt-3 flex items-center gap-4">
+          {author.image && (
+            <div className="w-16 h-16 rounded-full overflow-hidden bg-bgSoft shrink-0">
+              <Image
+                src={author.image}
+                alt={author.name}
+                width={128}
+                height={128}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
+          <h1 className="text-[28px] md:text-[34px] leading-[1.3] font-semibold text-dark">
+            {author.name}
+          </h1>
+        </div>
         <p className="mt-3 text-base text-gray max-w-2xl">{author.bio}</p>
         <p className="mt-2 text-sm text-gray">
           {posts.length} {posts.length === 1 ? "story" : "stories"} on EVGyan
