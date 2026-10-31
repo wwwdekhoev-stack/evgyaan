@@ -1,6 +1,7 @@
 export const metadata = {
-  title: 'EV Buying Consultation | EVGyan',
+  title: 'EV Buying Consultation',
   description: 'Confused about which EV to buy? Talk directly with Tarun or get free guidance. Choose the option that works best for you.',
+  alternates: { canonical: '/consultation' },
 };
 
 export default function ConsultationPage() {

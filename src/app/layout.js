@@ -23,7 +23,7 @@ const robotoDisplay = Roboto({
 export const metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
   title: {
-    template: `%s | ${siteMetadata.title}`,
+    template: `%s | ${siteMetadata.headerTitle}`,
     default: siteMetadata.title, // a default is required when creating a template
   },
   description: siteMetadata.description,
@@ -41,7 +41,7 @@ export const metadata = {
     title: siteMetadata.title,
     description: siteMetadata.description,
     url: siteMetadata.siteUrl,
-    siteName: siteMetadata.title,
+    siteName: siteMetadata.headerTitle,
     images: [siteMetadata.socialBanner],
     locale: "en_US",
     type: "website",
@@ -68,6 +68,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="EVGyan RSS feed"
+          href="/rss.xml"
+        />
+      </head>
       <body
         className={cx(
           robotoBody.variable,

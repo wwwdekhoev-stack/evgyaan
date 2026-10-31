@@ -5,6 +5,7 @@ import siteMetadata from "@/src/utils/siteMetaData";
 export const metadata = {
   title: "Contact Us",
   description: `Get in touch with the EVGyan team by email, WhatsApp, or on social media.`,
+  alternates: { canonical: "/contact" },
 };
 
 const CHANNELS = [

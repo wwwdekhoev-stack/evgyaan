@@ -6,6 +6,7 @@ import Link from "next/link";
 export const metadata = {
   title: "About Us",
   description: "Learn more about EVGyan — India's trusted source for honest EV news and sales data.",
+  alternates: { canonical: "/about" },
 };
 
 export default function About() {

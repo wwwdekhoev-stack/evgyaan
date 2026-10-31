@@ -5,8 +5,10 @@ const siteMetadata = {
     description: 'EVGyan brings you simple, honest EV news and monthly sales data for electric cars and electric two-wheelers in India.',
     language: 'en-us',
     theme: 'system', // system, dark or light
-    siteUrl: 'https://evgyan.com', // your website URL
-    siteLogo: '/logo.png',
+    // Canonical host. Vercel redirects evgyan.com -> www.evgyan.com, so every
+    // absolute URL (sitemap, robots, canonical, JSON-LD, RSS) must use www.
+    siteUrl: 'https://www.evgyan.com',
+    siteLogo: '/logo.png', // 512x512, used as the publisher logo in structured data
     socialBanner: '/social-banner.png', // add social banner in the public folder
     email: 'business@evgyan.com',
     github: 'https://github.com/evgyaan',

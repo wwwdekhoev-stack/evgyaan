@@ -6,6 +6,10 @@ import { sortBlogs, getCategory } from "@/src/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import JsonLd from "@/src/components/Seo/JsonLd";
+import Breadcrumbs from "@/src/components/Blog/Breadcrumbs";
+import { getAuthor } from "@/src/utils/authors";
+import { absoluteUrl, publisherSchema } from "@/src/utils/seo";
 
 export async function generateStaticParams() {
   return blogs.map((blog) => ({ slug: blog.slug }));
@@ -34,9 +38,13 @@ export async function generateMetadata({ params }) {
 
   const authors = blog?.author ? [blog.author] : siteMetadata.author;
 
+  const author = getAuthor(blog.author);
+
   return {
     title: blog.title,
     description: blog.description,
+    alternates: { canonical: blog.url },
+    authors: [{ name: author.name, url: absoluteUrl(author.path) }],
     openGraph: {
       title: blog.title,
       description: blog.description,
@@ -110,33 +118,58 @@ export default async function BlogPage({ params }) {
         : blog.image;
   }
 
-  const jsonLd = {
+  const articleUrl = absoluteUrl(blog.url);
+  const author = getAuthor(blog.author);
+
+  const articleLd = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
-    "headline": blog.title,
-    "description": blog.description,
-    "image": imageList,
-    "datePublished": new Date(blog.publishedAt).toISOString(),
-    "dateModified": new Date(blog.updatedAt || blog.publishedAt).toISOString(),
-    "author": [{
-        "@type": "Person",
-        "name": blog?.author ? [blog.author] : siteMetadata.author,
-        "url": siteMetadata.twitter,
-      }]
-  }
+    "@id": `${articleUrl}#article`,
+    mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
+    url: articleUrl,
+    headline: blog.title,
+    description: blog.description,
+    image: imageList,
+    datePublished: new Date(blog.publishedAt).toISOString(),
+    dateModified: new Date(blog.updatedAt || blog.publishedAt).toISOString(),
+    inLanguage: "en-IN",
+    articleSection: category.label,
+    author: {
+      "@type": author.type,
+      name: author.name,
+      url: absoluteUrl(author.path),
+    },
+    publisher: publisherSchema(),
+  };
+
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: category.label,
+        item: absoluteUrl(`/categories/${category.slug}`),
+      },
+      { "@type": "ListItem", position: 3, name: blog.title, item: articleUrl },
+    ],
+  };
 
   return (
     <>
-    <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+    <JsonLd data={articleLd} />
+    <JsonLd data={breadcrumbLd} />
        <article className="bg-light">
       <div className="max-w-[1280px] mx-auto px-5 sm:px-10 pt-8">
-        <span className="inline-flex items-center gap-1.5 text-xs font-bold text-gray uppercase tracking-wide">
-          <span className="w-1.5 h-1.5 rounded-full bg-dark" />
-          {category.label}
-        </span>
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: category.label, href: `/categories/${category.slug}` },
+            { label: blog.title },
+          ]}
+        />
         <h1 className="mt-3 font-semibold text-dark text-2xl sm:text-3xl md:text-[40px] leading-[1.25] max-w-4xl">
           {blog.title}
         </h1>
@@ -154,6 +187,7 @@ export default async function BlogPage({ params }) {
             height={blog.image.height}
             className="w-full h-full object-cover object-center"
             priority
+            fetchPriority="high"
             sizes="(max-width: 1280px) 100vw, 1280px"
           />
         </div>

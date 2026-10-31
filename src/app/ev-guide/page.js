@@ -1,8 +1,9 @@
 import FormEmbed from './FormEmbed';
 
 export const metadata = {
-  title: 'EV Decision Guide – EVGYAN',
+  title: 'EV Decision Guide',
   description: 'Get a clear answer before you spend money on an EV. Trusted by 400,000+ EV viewers on YouTube.',
+  alternates: { canonical: '/ev-guide' },
 };
 
 export default function EvGuidePage() {

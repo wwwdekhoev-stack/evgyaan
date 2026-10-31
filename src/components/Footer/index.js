@@ -68,6 +68,21 @@ const Footer = () => {
                   About us
                 </Link>
               </li>
+              <li>
+                <Link href="/editorial-policy" className="hover:text-accent transition-colors">
+                  Editorial policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacy-policy" className="hover:text-accent transition-colors">
+                  Privacy policy
+                </Link>
+              </li>
+              <li>
+                <a href="/rss.xml" className="hover:text-accent transition-colors">
+                  RSS feed
+                </a>
+              </li>
             </ul>
           </div>
 

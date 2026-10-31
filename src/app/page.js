@@ -4,11 +4,43 @@ import { blogs } from "@/.velite/generated";
 import { sortBlogs, getCategory, formatDateIST, getHomePage } from "@/src/utils";
 import ArticleRow from "@/src/components/Blog/ArticleRow";
 import Pagination from "@/src/components/Blog/Pagination";
+import JsonLd from "@/src/components/Seo/JsonLd";
+import siteMetadata from "@/src/utils/siteMetaData";
+import { absoluteUrl, publisherSchema } from "@/src/utils/seo";
 
 export const metadata = {
   title: { absolute: "EVGyan.com | EV Sales Data, News & Honest Analysis" },
   description:
     "EVGyan brings you simple, honest EV news and monthly sales data for electric cars and electric two-wheelers in India.",
+  alternates: { canonical: "/" },
+};
+
+// Organization + WebSite structured data (homepage only).
+const homeJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      ...publisherSchema(),
+      description: siteMetadata.description,
+      email: siteMetadata.email,
+      sameAs: [
+        siteMetadata.youtube,
+        siteMetadata.instagram,
+        siteMetadata.facebook,
+        siteMetadata.linkedin,
+        siteMetadata.twitter,
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteMetadata.siteUrl}/#website`,
+      url: absoluteUrl("/"),
+      name: siteMetadata.headerTitle,
+      description: siteMetadata.description,
+      inLanguage: "en-IN",
+      publisher: { "@id": `${siteMetadata.siteUrl}/#organization` },
+    },
+  ],
 };
 
 function formatDate(value) {
@@ -32,6 +64,7 @@ export default function Home() {
 
   return (
     <main className="bg-light text-dark">
+      <JsonLd data={homeJsonLd} />
       {/* Hero */}
       <section className="max-w-[1280px] mx-auto px-5 sm:px-10 pt-8">
         <Link href={hero.url} className="group grid md:grid-cols-2 gap-6 md:gap-10 items-center">
@@ -44,6 +77,7 @@ export default function Home() {
               width={hero.image.width}
               height={hero.image.height}
               priority
+              fetchPriority="high"
               sizes="(max-width: 768px) 100vw, 50vw"
               className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
             />

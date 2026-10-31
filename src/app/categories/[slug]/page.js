@@ -6,17 +6,20 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const meta = CATEGORY_META[params.slug];
+  const { slug } = await params;
+  const meta = CATEGORY_META[slug];
   if (!meta) return {};
   return {
     title: `${meta.label} News`,
     description: `All ${meta.label} news, reviews and sales data from EVGyan.`,
+    alternates: { canonical: `/categories/${slug}` },
   };
 }
 
-export default function CategoryPage({ params }) {
-  if (!CATEGORY_META[params.slug]) {
+export default async function CategoryPage({ params }) {
+  const { slug } = await params;
+  if (!CATEGORY_META[slug]) {
     notFound();
   }
-  return <CategoryListing slug={params.slug} page={1} />;
+  return <CategoryListing slug={slug} page={1} />;
 }
