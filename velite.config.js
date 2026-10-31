@@ -50,6 +50,7 @@ export default defineConfig({
   output: {
     data: '.velite/generated',
     assets: 'public/blogs',
+    base: '/blogs/',
     clean: true,
   },
   // Add MDX plugins
