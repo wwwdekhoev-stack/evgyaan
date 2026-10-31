@@ -20,11 +20,8 @@ const KNOWN_AUTHORS = {
   },
   "vishal-kumar": {
     type: "Person",
-    bio: "Vishal Kumar writes EV news and sales-data stories for EVGyan, covering electric cars and two-wheelers in India.",
-    // No real headshot on file for Vishal yet — left blank rather than
-    // faked. Add one here (and it'll show on his author page + schema)
-    // once you have it.
-    image: null,
+    bio: "Vishal Kumar writes EV news and sales-data stories for EVGyan, covering electric cars and two-wheelers in India. A certified car and bike enthusiast, he's usually got an opinion on torque figures ready before you've finished asking. Off the clock he's probably planning a ride or stuck three reviews deep on a bike he has no intention of buying.",
+    image: "/vishal.jpg",
   },
 };
 
