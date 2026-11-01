@@ -31,11 +31,14 @@ export const metadata = {
   // template avatar — bump it whenever the icon changes.
   icons: {
     icon: [
-      { url: "/favicon.ico?v=2", sizes: "any" },
-      { url: "/favicon-32x32.png?v=2", type: "image/png", sizes: "32x32" },
-      { url: "/favicon-16x16.png?v=2", type: "image/png", sizes: "16x16" },
+      { url: "/favicon.ico?v=3", sizes: "any" },
+      // Google Search shows favicons that are a multiple of 48px — keep these.
+      { url: "/favicon-96x96.png?v=3", type: "image/png", sizes: "96x96" },
+      { url: "/favicon-48x48.png?v=3", type: "image/png", sizes: "48x48" },
+      { url: "/favicon-32x32.png?v=3", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-16x16.png?v=3", type: "image/png", sizes: "16x16" },
     ],
-    shortcut: "/favicon.ico?v=2",
+    shortcut: "/favicon.ico?v=3",
   },
   openGraph: {
     title: siteMetadata.title,
