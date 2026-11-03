@@ -19,7 +19,24 @@ module.exports = {
     webpack: config => {
       config.plugins.push(new VeliteWebpackPlugin())
       return config
-    }
+    },
+    async redirects() {
+      return [
+        // Three-Wheeler was briefly a live, indexable category page before
+        // being folded into Commercial EVs - permanent redirect instead of
+        // a dead link for anyone (or Google) with the old URL.
+        {
+          source: '/categories/three-wheeler',
+          destination: '/categories/commercial-evs',
+          permanent: true,
+        },
+        {
+          source: '/categories/three-wheeler/page/:page',
+          destination: '/categories/commercial-evs',
+          permanent: true,
+        },
+      ]
+    },
   }
 
   class VeliteWebpackPlugin {

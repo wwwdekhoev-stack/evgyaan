@@ -86,16 +86,15 @@ export const getCategory = (tags = []) => {
     joined.includes("electric truck") ||
     joined.includes("ev commercial vehicle") ||
     joined.includes("lcv") ||
-    joined.includes("goods carrier")
-  ) {
-    return { label: "Commercial EVs", slug: "commercial-evs" };
-  }
-  if (
+    joined.includes("goods carrier") ||
+    // Three-wheelers (e-rickshaws, e-autos) used to be their own category;
+    // folded into Commercial EVs on Tarun's call - one category wasn't
+    // worth the extra nav item.
     joined.includes("three-wheeler") ||
     joined.includes("three wheeler") ||
     joined.includes("e-rickshaw")
   ) {
-    return { label: "Three-Wheeler", slug: "three-wheeler" };
+    return { label: "Commercial EVs", slug: "commercial-evs" };
   }
   if (joined.includes("two wheel") || joined.includes("two-wheel")) {
     return { label: "EV Scooters/Bikes", slug: "two-wheeler" };
