@@ -6,6 +6,16 @@ module.exports = {
     compiler: {
       removeConsole: process.env.NODE_ENV === 'production' ? true : false,
     },
+    images: {
+      // Hero/source images top out around 1600-1920px wide (see
+      // thumbnail-template-spec.md). Next's own defaults include 2048 and
+      // 3840, which are pointless above our real max source width and were
+      // forcing the optimizer onto an oversized breakpoint for a ~1200px
+      // slot on high-DPI screens. Capping deviceSizes here keeps every
+      // generated variant <= the real source size.
+      deviceSizes: [640, 750, 828, 1080, 1200, 1600, 1920],
+      imageSizes: [16, 32, 48, 64, 96, 128, 180, 256, 384],
+    },
     webpack: config => {
       config.plugins.push(new VeliteWebpackPlugin())
       return config

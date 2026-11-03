@@ -25,16 +25,17 @@ export async function generateMetadata({ params }) {
   const publishedAt = new Date(blog.publishedAt).toISOString();
   const modifiedAt = new Date(blog.updatedAt || blog.publishedAt).toISOString();
 
-  let imageList = [siteMetadata.socialBanner];
-  if (blog.image) {
-    imageList =
-      typeof blog.image.src === "string"
-        ? [siteMetadata.siteUrl + blog.image.src]
-        : blog.image;
+  // Carry real width/height through to og:image/twitter:image so social
+  // crawlers and Google Discover see the hero's actual (large) dimensions
+  // instead of guessing - a missing width/height is treated as "unknown
+  // size" by some crawlers and can disqualify a large-image card.
+  let ogImages = [{ url: siteMetadata.siteUrl + siteMetadata.socialBanner }];
+  if (blog.image && typeof blog.image.src === "string") {
+    const url = blog.image.src.includes("http")
+      ? blog.image.src
+      : siteMetadata.siteUrl + blog.image.src;
+    ogImages = [{ url, width: blog.image.width, height: blog.image.height }];
   }
-  const ogImages = imageList.map((img) => {
-    return { url: img.includes("http") ? img : siteMetadata.siteUrl + img };
-  });
 
   const authors = blog?.author ? [blog.author] : siteMetadata.author;
 
