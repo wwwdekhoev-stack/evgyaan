@@ -4,6 +4,7 @@ import { getAuthor } from "@/src/utils/authors";
 import { absoluteUrl, blogModifiedAt, getPublishedBlogs } from "@/src/utils/seo";
 import { CATEGORY_META, getCategoryPosts } from "@/src/components/Blog/CategoryListing";
 import { BRANDS, getBrandArticles } from "@/src/utils/brands";
+import { SEGMENTS } from "@/src/data/salesData";
 
 const latest = (posts) =>
   posts.length
@@ -49,6 +50,13 @@ export default function sitemap() {
     const posts = getBrandArticles(brand.slug, published);
     entries.push({ url: absoluteUrl(`/brands/${brand.slug}`), lastModified: latest(posts) });
   }
+
+  // Evergreen EV sales data hub + its segment pages + the by-state page
+  entries.push({ url: absoluteUrl("/ev-sales-data") });
+  for (const seg of SEGMENTS) {
+    entries.push({ url: absoluteUrl(`/ev-sales-data/${seg.slug}`) });
+  }
+  entries.push({ url: absoluteUrl("/ev-sales-data/by-state") });
 
   // Every published article
   for (const blog of published) {

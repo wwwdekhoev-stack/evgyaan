@@ -57,6 +57,11 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link href="/ev-sales-data" className="hover:text-accent transition-colors">
+                  India EV Sales Data
+                </Link>
+              </li>
+              <li>
                 <Link href="/consultation" className="hover:text-accent transition-colors">
                   Book a Consultation
                 </Link>

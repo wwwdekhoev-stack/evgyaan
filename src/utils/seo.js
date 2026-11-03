@@ -9,6 +9,8 @@ export const absoluteUrl = (path = "/") =>
 export const getPublishedBlogs = () =>
   sortBlogs(blogs.filter((b) => b.isPublished));
 
+export const getBlogBySlug = (slug) => blogs.find((b) => b.slug === slug) || null;
+
 export const blogModifiedAt = (blog) => blog.updatedAt || blog.publishedAt;
 
 // Publisher block reused by NewsArticle + Organization schema.

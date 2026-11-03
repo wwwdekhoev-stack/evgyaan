@@ -34,6 +34,9 @@ export const getListPage = (posts, page) => {
 
 export const cx = (...classNames) => classNames.filter(Boolean).join(" ");
 
+// Indian digit grouping (2,23,886) rather than the western 223,886.
+export const formatIN = (n) => (typeof n === "number" ? n.toLocaleString("en-IN") : n);
+
 export const sortBlogs = (blogs) => {
   return blogs
     .slice()

@@ -2,6 +2,7 @@
 import React from 'react'
 import MDXContent from './MdxContent'
 import RelatedTool from './RelatedTool'
+import SegmentLink from './SegmentLink'
 
 const mdxComponents = {
   // Add any custom components here
@@ -34,6 +35,8 @@ const RenderMdx = ({blog}) => {
         {/* At most one related-tool nudge per article, inline with the
             reading content (not a page banner) - see RelatedTool.js. */}
         <RelatedTool tags={blog.tags} />
+        {/* Only renders on a registered monthly data-report article. */}
+        <SegmentLink slug={blog.slug} />
     </div>
   )
 }
