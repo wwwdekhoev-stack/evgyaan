@@ -49,7 +49,7 @@ export async function generateMetadata({ params }) {
       title: blog.title,
       description: blog.description,
       url: siteMetadata.siteUrl + blog.url,
-      siteName: siteMetadata.title,
+      siteName: siteMetadata.headerTitle,
       locale: "en_US",
       type: "article",
       publishedTime: publishedAt,
@@ -182,7 +182,7 @@ export default async function BlogPage({ params }) {
             src={blog.image.src}
             placeholder="blur"
             blurDataURL={blog.image.blurDataURL}
-            alt={blog.title}
+            alt={blog.imageAlt}
             width={blog.image.width}
             height={blog.image.height}
             className="w-full h-full object-cover object-center"
@@ -220,7 +220,10 @@ export default async function BlogPage({ params }) {
                   {trending.map((t, i) => (
                     <li key={t.slug} className="py-3 first:pt-0">
                       <Link href={t.url} className="flex items-start gap-3 group">
-                        <span className="shrink-0 w-5 h-5 flex items-center justify-center rounded bg-dark text-light text-xs font-bold mt-0.5">
+                        <span
+                          aria-hidden="true"
+                          className="shrink-0 w-5 h-5 flex items-center justify-center rounded bg-dark text-light text-xs font-bold mt-0.5"
+                        >
                           {i + 1}
                         </span>
                         <span className="text-sm font-semibold leading-snug text-dark group-hover:underline decoration-accent decoration-2 underline-offset-2">

@@ -73,7 +73,7 @@ export default function Home() {
               src={hero.image.src}
               placeholder="blur"
               blurDataURL={hero.image.blurDataURL}
-              alt={hero.title}
+              alt={hero.imageAlt}
               width={hero.image.width}
               height={hero.image.height}
               priority
@@ -123,7 +123,10 @@ export default function Home() {
             {trending.map((blog, i) => (
               <li key={blog.slug} className="py-3 first:pt-0">
                 <Link href={blog.url} className="flex items-start gap-3 group">
-                  <span className="shrink-0 w-5 h-5 flex items-center justify-center rounded bg-dark text-light text-xs font-bold mt-0.5">
+                  <span
+                    aria-hidden="true"
+                    className="shrink-0 w-5 h-5 flex items-center justify-center rounded bg-dark text-light text-xs font-bold mt-0.5"
+                  >
                     {i + 1}
                   </span>
                   <span className="text-sm font-semibold leading-snug text-dark group-hover:underline decoration-accent decoration-2 underline-offset-2">

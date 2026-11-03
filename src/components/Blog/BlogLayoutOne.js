@@ -16,7 +16,7 @@ const BlogLayoutOne = ({ blog }) => {
         src={blog.image.src}
         placeholder="blur"
         blurDataURL={blog.image.blurDataURL}
-        alt={blog.title}
+        alt={blog.imageAlt}
         width={blog.image.width}
         height={blog.image.height}
         className="w-full h-full object-center object-cover rounded-xl group-hover:scale-105 transition-all ease duration-300"

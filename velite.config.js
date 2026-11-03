@@ -16,8 +16,12 @@ const blog = s
     title: s.string(),
     publishedAt: s.isodate(),
     updatedAt: s.isodate(),
-    description: s.string(), 
+    description: s.string(),
     image: s.image(),
+    // Descriptive alt text for the hero image, written by the publisher.
+    // Optional in the schema so existing articles never break; the publishing
+    // flow should treat it as required for new articles going forward.
+    imageAlt: s.string().optional(),
     isPublished: s.boolean().default(true),
     author: s.string(),
     tags: s.array(s.string()),
@@ -31,6 +35,8 @@ const blog = s
       url: `/blogs/${data.slug}`,
       readingTime: readingTime(data.body),
     //   toc: headings,
+      // Falls back to the headline when no one has written real alt text yet.
+      imageAlt: data.imageAlt || data.title,
       image: {
         ...data.image,
         src: data.image.src.replace("/static", "/blogs"),

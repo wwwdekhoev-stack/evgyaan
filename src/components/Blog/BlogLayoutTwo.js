@@ -14,7 +14,7 @@ const BlogLayoutTwo = ({ blog }) => {
           src={blog.image.src}
           placeholder="blur"
           blurDataURL={blog.image.blurDataURL}
-          alt={blog.title}
+          alt={blog.imageAlt}
           width={blog.image.width}
           height={blog.image.height}
           className="aspect-square w-full h-full object-cover object-center group-hover:scale-105 transition-all ease duration-300"

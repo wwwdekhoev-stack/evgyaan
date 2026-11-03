@@ -12,7 +12,7 @@ const ArticleRow = ({ blog, showCategory = true }) => {
           src={blog.image.src}
           placeholder="blur"
           blurDataURL={blog.image.blurDataURL}
-          alt={blog.title}
+          alt={blog.imageAlt}
           width={blog.image.width}
           height={blog.image.height}
           sizes="180px"

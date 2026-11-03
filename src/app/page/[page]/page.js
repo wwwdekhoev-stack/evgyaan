@@ -3,6 +3,8 @@ import { blogs } from "@/.velite/generated";
 import { sortBlogs, getHomePage } from "@/src/utils";
 import ArticleRow from "@/src/components/Blog/ArticleRow";
 import Pagination from "@/src/components/Blog/Pagination";
+import siteMetadata from "@/src/utils/siteMetaData";
+import { absoluteUrl } from "@/src/utils/seo";
 
 function published() {
   return sortBlogs(blogs.filter((b) => b.isPublished));
@@ -18,10 +20,28 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const { page } = await params;
+  const title = `Latest EV News – Page ${page}`;
+  const description = `Older EV news, sales data and analysis from EVGyan (page ${page}).`;
+  const url = absoluteUrl(`/page/${page}`);
   return {
-    title: `Latest EV News – Page ${page}`,
-    description: `Older EV news, sales data and analysis from EVGyan (page ${page}).`,
+    title,
+    description,
     alternates: { canonical: `/page/${page}` },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: siteMetadata.headerTitle,
+      locale: "en_US",
+      type: "website",
+      images: [siteMetadata.socialBanner],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [siteMetadata.socialBanner],
+    },
   };
 }
 

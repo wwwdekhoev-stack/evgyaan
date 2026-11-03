@@ -1,6 +1,8 @@
 import { notFound, redirect } from "next/navigation";
 import { getListPage } from "@/src/utils";
 import { CATEGORY_META, CategoryListing, getCategoryPosts } from "@/src/components/Blog/CategoryListing";
+import siteMetadata from "@/src/utils/siteMetaData";
+import { absoluteUrl } from "@/src/utils/seo";
 
 // Pre-build page 2..N for every category. New pages appear on the next deploy
 // (every publish triggers one), and any missing page is rendered on demand.
@@ -17,10 +19,28 @@ export async function generateMetadata({ params }) {
   const { slug, page } = await params;
   const meta = CATEGORY_META[slug];
   if (!meta) return {};
+  const title = `${meta.label} News – Page ${page}`;
+  const description = `Older ${meta.label} news, reviews and sales data from EVGyan (page ${page}).`;
+  const url = absoluteUrl(`/categories/${slug}/page/${page}`);
   return {
-    title: `${meta.label} News – Page ${page}`,
-    description: `Older ${meta.label} news, reviews and sales data from EVGyan (page ${page}).`,
+    title,
+    description,
     alternates: { canonical: `/categories/${slug}/page/${page}` },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: siteMetadata.headerTitle,
+      locale: "en_US",
+      type: "website",
+      images: [siteMetadata.socialBanner],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [siteMetadata.socialBanner],
+    },
   };
 }
 
