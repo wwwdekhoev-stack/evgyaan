@@ -1,103 +1,139 @@
-'use client';
+import EVBuyingGuideForm from './EVBuyingGuideForm';
+import JsonLd from '@/src/components/Seo/JsonLd';
+import siteMetadata from '@/src/utils/siteMetaData';
+import { absoluteUrl, publisherSchema } from '@/src/utils/seo';
 
-import { useState } from 'react';
-import Image from 'next/image';
+export const metadata = {
+  title: 'Free EV Buying Decision Guide',
+  description:
+    "Should you buy an electric car or scooter right now, or wait? A free, honest EV buying decision guide covering real range, running costs, charging access and resale — from EVGyan.",
+  alternates: { canonical: '/ev-buying-guide' },
+  openGraph: {
+    title: 'Free EV Buying Decision Guide | EVGyan',
+    description:
+      'Real range vs claimed range, running costs, charging access and resale — a clear, honest answer on whether an EV makes sense for you right now.',
+    url: absoluteUrl('/ev-buying-guide'),
+    siteName: siteMetadata.headerTitle,
+    locale: 'en_US',
+    type: 'website',
+    images: [siteMetadata.socialBanner],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Free EV Buying Decision Guide | EVGyan',
+    description:
+      'Real range vs claimed range, running costs, charging access and resale — a clear, honest EV buying decision guide.',
+    images: [siteMetadata.socialBanner],
+  },
+};
 
-function BoltIcon({ size = 22 }) {
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': `${absoluteUrl('/ev-buying-guide')}#article`,
+  mainEntityOfPage: { '@type': 'WebPage', '@id': absoluteUrl('/ev-buying-guide') },
+  headline: 'EV Buying Decision Guide: Should You Buy an Electric Vehicle Now?',
+  description:
+    'A practical, India-focused guide to deciding whether an electric car or scooter is right for you right now — covering real-world range, running costs, home charging access, battery warranty and resale.',
+  inLanguage: 'en-IN',
+  author: { '@type': 'Organization', name: 'EVGyan', url: siteMetadata.siteUrl },
+  publisher: publisherSchema(),
+  image: absoluteUrl(siteMetadata.socialBanner),
+};
+
+export default function EVBuyingDecisionGuidePage() {
   return (
-    <svg width={size} height={Math.round(size * 1.3)} viewBox="0 0 20 26" fill="none" aria-hidden="true">
-      <path d="M12 1L1 15H8.5L6.5 25L19 11H11.5L12 1Z" fill="#16a34a" />
-    </svg>
-  );
-}
-
-function CheckIcon() {
-  return (
-    <span className="flex-shrink-0 w-5 h-5 rounded-full bg-[#16a34a] flex items-center justify-center mt-[2px]">
-      <svg width="10" height="8" viewBox="0 0 10 8" fill="none" aria-hidden="true">
-        <path d="M1 4L3.5 6.5L9 1" stroke="#fff" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    </span>
-  );
-}
-
-export default function EVBuyingDecisionGuide() {
-  const [email, setEmail] = useState('');
-  const [status, setStatus] = useState('idle');
-  const [errMsg, setErrMsg] = useState('');
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    if (!email) return;
-    setStatus('loading');
-    setErrMsg('');
-    try {
-      const res = await fetch('/api/ev-guide-subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      });
-      if (res.ok) {
-        setStatus('success');
-      } else {
-        const data = await res.json().catch(() => ({}));
-        setStatus('error');
-        setErrMsg(data.message || 'Something went wrong. Please try again.');
-      }
-    } catch {
-      setStatus('error');
-      setErrMsg('Network error. Please try again.');
-    }
-  }
-
-  return (
-    <main className="min-h-screen bg-white flex flex-col items-center px-5 py-12 font-in antialiased">
-      <div className="w-full max-w-[520px]">
-        <div className="flex items-center gap-3 mb-11">
-          <Image src="/logo.png" alt="EVGyan Logo" width={36} height={36} className="object-contain" priority />
-          <span className="text-[19px] font-bold text-[#111] tracking-tight font-in">EVGyan</span>
-        </div>
-        <div className="inline-flex items-center gap-1.5 bg-[#f0fdf4] border border-[#bbf7d0] text-[#166534] text-[11px] font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-6">
-          <BoltIcon size={9} />
-          Free EV Buying Decision Guide
-        </div>
-        <h1 className="text-[28px] xs:text-[32px] font-extrabold leading-[1.15] tracking-tight text-[#111] mb-8 font-in">
-          DON&apos;T BUY AN EV<br />BEFORE READING THIS
-        </h1>
-        <ul className="flex flex-col gap-4 mb-9">
-          {['Real Range vs Claimed Range', 'Clear answer: should you buy EV or not — based on your situation'].map((point, i) => (
-            <li key={i} className="flex items-start gap-3">
-              <CheckIcon />
-              <span className="text-[15px] font-medium text-[#222] leading-snug font-in">{point}</span>
-            </li>
-          ))}
-        </ul>
-        <div className="bg-[#f8faf9] border border-[#e4ede4] rounded-xl p-6 xs:p-7 mb-4">
-          {status === 'success' ? (
-            <div className="text-center py-5">
-              <p className="text-[#16a34a] font-semibold text-[16px] mb-1 font-in">Guide is on its way — check your inbox!</p>
-              <p className="text-[#777] text-[13px] font-in">Didn&apos;t get it? Check your spam folder.</p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} noValidate>
-              <label className="block text-[13px] font-semibold text-[#444] mb-3 font-in">Enter your email to get the guide</label>
-              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" required className="w-full border border-[#d1d5db] rounded-lg px-3.5 py-3 text-[15px] text-[#111] bg-white outline-none focus:border-[#16a34a] focus:ring-0 transition-colors mb-3 placeholder:text-[#bbb] font-in" />
-              {errMsg && <p className="text-red-500 text-[13px] mb-3 font-in">{errMsg}</p>}
-              <button type="submit" disabled={status === 'loading'} className="w-full bg-[#16a34a] hover:bg-[#15803d] text-white font-semibold text-[15px] py-3.5 px-5 rounded-lg transition-colors disabled:opacity-70 cursor-pointer font-in">
-                {status === 'loading' ? 'Sending...' : 'Send Me the Free EV Buying Decision Guide'}
-              </button>
-            </form>
-          )}
-          <p className="text-[11.5px] text-[#aaa] text-center mt-3 font-in">No spam. Unsubscribe anytime.</p>
-        </div>
-        <div className="flex items-center justify-center gap-2 bg-[#f0fdf4] border border-[#bbf7d0] rounded-lg px-5 py-3.5">
-          <BoltIcon size={13} />
-          <span className="text-[13px] font-medium text-[#166534] font-in">Trusted by 400K+ EV viewers on YouTube</span>
-        </div>
-        <footer className="mt-10 text-center text-[12px] text-[#bbb] font-in">
-          <p>2026 EVGyan</p>
-        </footer>
+    <main className="min-h-screen bg-white font-in antialiased">
+      <JsonLd data={articleLd} />
+      <div className="px-5 py-12">
+        <EVBuyingGuideForm />
       </div>
+
+      <article className="max-w-[640px] mx-auto px-5 pb-16 text-[#222]">
+        <h2 className="text-xl font-bold text-[#111] mb-3">
+          How to actually decide if an EV is right for you
+        </h2>
+        <p className="text-[15px] leading-relaxed mb-5">
+          Every EV ad promises a range number and a low running cost. Neither
+          tells you whether an electric scooter or car fits <em>your</em> life.
+          This page covers the five things that actually decide that answer —
+          the same five we walk through for free in the guide above.
+        </p>
+
+        <h3 className="text-[17px] font-bold text-[#111] mt-7 mb-2">
+          1. Real range vs claimed range
+        </h3>
+        <p className="text-[15px] leading-relaxed mb-5">
+          The range on the spec sheet is measured in lab conditions (IDC or
+          similar test cycles) at a steady, gentle speed with no AC, no
+          pillion, and a flat road. In everyday Indian traffic — stop-start
+          city riding, full AC in summer, two-up on a scooter, or highway
+          speeds above 80 km/h in a car — real-world range typically comes in
+          20–35% lower than the claimed figure. Before you buy, work out your
+          actual daily distance (commute + errands, round trip) and check
+          whether the EV's <em>real</em> range comfortably covers it with
+          margin for a bad day, not just on paper.
+        </p>
+
+        <h3 className="text-[17px] font-bold text-[#111] mt-7 mb-2">
+          2. Charging access — not just charging speed
+        </h3>
+        <p className="text-[15px] leading-relaxed mb-5">
+          Fast-charging numbers get the attention, but the real question is
+          simpler: where will you charge most nights? A home or society
+          socket you can plug into overnight makes almost any EV workable,
+          because you're never relying on a public charger being free, fast,
+          or even working. If you don't have that, map the public chargers
+          genuinely close to your home and workplace before you buy — not the
+          ones that show up on an app but are usually occupied, offline, or
+          behind a locked gate.
+        </p>
+
+        <h3 className="text-[17px] font-bold text-[#111] mt-7 mb-2">
+          3. Running costs vs total cost of ownership
+        </h3>
+        <p className="text-[15px] leading-relaxed mb-5">
+          Per-km running cost on electricity is genuinely low — often a
+          fraction of petrol. But total cost of ownership also includes the
+          higher upfront price (even after subsidy), insurance, and the
+          battery's expected life. Add these up over 3–5 years against the
+          petrol equivalent you're comparing it to, rather than judging the
+          decision on the running-cost number alone.
+        </p>
+
+        <h3 className="text-[17px] font-bold text-[#111] mt-7 mb-2">
+          4. Battery warranty and resale
+        </h3>
+        <p className="text-[15px] leading-relaxed mb-5">
+          The battery is the single most expensive part to replace, so its
+          warranty (years and km, and whether it's prorated) matters more
+          than almost any other spec. Resale values for EVs in India are
+          still settling as the used market is young — go in expecting
+          resale to be a bigger unknown than it is for a comparable petrol
+          vehicle today, and weigh that against how long you actually plan to
+          keep it.
+        </p>
+
+        <h3 className="text-[17px] font-bold text-[#111] mt-7 mb-2">
+          5. Scooter vs car: different decisions
+        </h3>
+        <p className="text-[15px] leading-relaxed mb-5">
+          An electric scooter is usually the easier "yes" — lower cost, home
+          charging on a normal socket overnight, and a shorter typical daily
+          distance that fits most real-world ranges comfortably. An electric
+          car is a bigger commitment: it only makes full sense if you have
+          reliable home/society charging or a short, predictable commute,
+          since public charging is still thinner on highways and in many
+          cities than petrol/CNG stations.
+        </p>
+
+        <p className="text-[15px] leading-relaxed mt-7">
+          None of this means "buy now" or "wait" universally — it genuinely
+          depends on your distance, your charging access, and your budget.
+          That's exactly what the free guide above walks through for your own
+          situation, in plain language, with no brand bias.
+        </p>
+      </article>
     </main>
   );
 }

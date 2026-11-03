@@ -23,6 +23,13 @@ export default function sitemap() {
     entries.push({ url: absoluteUrl(`/page/${p}`), lastModified: latest(published) });
   }
 
+  // /blogs archive index + its paginated pages (/blogs/page/2 ...)
+  entries.push({ url: absoluteUrl("/blogs"), lastModified: latest(published) });
+  const { totalPages: archivePages } = getListPage(published, 1);
+  for (let p = 2; p <= archivePages; p++) {
+    entries.push({ url: absoluteUrl(`/blogs/page/${p}`), lastModified: latest(published) });
+  }
+
   // Categories + their paginated pages
   for (const slug of Object.keys(CATEGORY_META)) {
     const posts = getCategoryPosts(slug);

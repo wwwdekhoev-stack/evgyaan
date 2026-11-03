@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <footer className="mt-16 bg-dark text-light">
       <div className="max-w-[1280px] mx-auto px-5 sm:px-10 pt-14 pb-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.8fr_1fr_1fr_1.5fr] gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr_1.3fr] gap-8">
           <div>
             <Link href="/" className="font-bold text-xl">
               EV<span className="text-accent">Gyan</span>
@@ -43,6 +43,34 @@ const Footer = () => {
               <li>
                 <Link href="/categories/battery-charging" className="hover:text-accent transition-colors">
                   EV Battery & Charging
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-sm font-bold text-light/50 uppercase tracking-wide mb-3">
+              Tools &amp; Guides
+            </h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/ev-buying-guide" className="hover:text-accent transition-colors">
+                  EV Buying Guide
+                </Link>
+              </li>
+              <li>
+                <Link href="/ev-roi-calculator" className="hover:text-accent transition-colors">
+                  EV Charger ROI Calculator
+                </Link>
+              </li>
+              <li>
+                <Link href="/consultation" className="hover:text-accent transition-colors">
+                  Book a Consultation
+                </Link>
+              </li>
+              <li>
+                <Link href="/blogs" className="hover:text-accent transition-colors">
+                  All Articles
                 </Link>
               </li>
             </ul>
