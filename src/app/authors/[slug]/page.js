@@ -41,6 +41,7 @@ export default async function AuthorPage({ params }) {
     url: absoluteUrl(author.path),
     description: author.bio,
     ...(author.image ? { image: absoluteUrl(author.image) } : {}),
+    ...(author.socials.length > 0 ? { sameAs: author.socials.map((s) => s.href) } : {}),
     worksFor: publisherSchema(),
   };
 
@@ -66,9 +67,27 @@ export default async function AuthorPage({ params }) {
           </h1>
         </div>
         <p className="mt-3 text-base text-gray max-w-2xl">{author.bio}</p>
+        {author.credential && (
+          <p className="mt-2 text-sm font-medium text-dark max-w-2xl">{author.credential}</p>
+        )}
         <p className="mt-2 text-sm text-gray">
           {posts.length} {posts.length === 1 ? "story" : "stories"} on EVGyan
         </p>
+        {author.socials.length > 0 && (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {author.socials.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-3 py-1.5 rounded-full border border-borderSoft text-xs font-medium text-dark hover:border-dark transition-colors"
+              >
+                {s.label}
+              </a>
+            ))}
+          </div>
+        )}
       </section>
 
       <section className="max-w-[1280px] mx-auto px-5 sm:px-10 mt-8 pb-16">

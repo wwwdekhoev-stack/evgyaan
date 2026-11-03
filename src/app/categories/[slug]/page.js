@@ -12,7 +12,9 @@ export async function generateMetadata({ params }) {
   const meta = CATEGORY_META[slug];
   if (!meta) return {};
   const title = `${meta.label} News`;
-  const description = `All ${meta.label} news, reviews and sales data from EVGyan.`;
+  const description = meta.intro
+    ? meta.intro.split(". ").slice(0, 2).join(". ") + "."
+    : `All ${meta.label} news, reviews and sales data from EVGyan.`;
   const url = absoluteUrl(`/categories/${slug}`);
   return {
     title,

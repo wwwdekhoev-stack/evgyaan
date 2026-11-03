@@ -27,6 +27,20 @@ export const publisherSchema = () => ({
   },
 });
 
+// Brand suffix the root layout's `title.template` appends to every plain
+// string title ("%s | EVGyan"). Google truncates <title> around 60-65
+// chars, so once that suffix would push a page over 60, we skip the
+// template entirely (an { absolute } title) rather than let it get cut off
+// mid-word. This only affects the <title> tag - the on-page H1, Open Graph
+// title and JSON-LD headline are untouched.
+const BRAND_SUFFIX = " | EVGyan";
+const TITLE_BUDGET = 60;
+
+export function metaTitle(text = "") {
+  if (text.length + BRAND_SUFFIX.length <= TITLE_BUDGET) return text;
+  return { absolute: text };
+}
+
 // Escapes text for use inside XML (sitemaps, RSS).
 export const xmlEscape = (value = "") =>
   String(value)

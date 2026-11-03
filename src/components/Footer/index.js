@@ -2,6 +2,7 @@ import Link from "next/link";
 import { YoutubeIcon, InstagramIcon, FacebookIcon, LinkedinIcon, XIcon } from "../Icons";
 import siteMetadata from "@/src/utils/siteMetaData";
 import { CATEGORY_META } from "@/src/components/Blog/CategoryListing";
+import { getAllAuthors } from "@/src/utils/authors";
 
 const CHANNELS = [
   { label: "YouTube", href: siteMetadata.youtube, Icon: YoutubeIcon },
@@ -94,6 +95,13 @@ const Footer = () => {
                   About us
                 </Link>
               </li>
+              {getAllAuthors().map((author) => (
+                <li key={author.slug}>
+                  <Link href={author.path} className="hover:text-accent transition-colors">
+                    {author.name}
+                  </Link>
+                </li>
+              ))}
               <li>
                 <Link href="/editorial-policy" className="hover:text-accent transition-colors">
                   Editorial policy

@@ -10,7 +10,7 @@ import { notFound } from "next/navigation";
 import JsonLd from "@/src/components/Seo/JsonLd";
 import Breadcrumbs from "@/src/components/Blog/Breadcrumbs";
 import { getAuthor } from "@/src/utils/authors";
-import { absoluteUrl, publisherSchema } from "@/src/utils/seo";
+import { absoluteUrl, publisherSchema, metaTitle } from "@/src/utils/seo";
 
 export async function generateStaticParams() {
   return blogs.map((blog) => ({ slug: blog.slug }));
@@ -43,7 +43,7 @@ export async function generateMetadata({ params }) {
   const author = getAuthor(blog.author);
 
   return {
-    title: blog.title,
+    title: metaTitle(blog.seoTitle),
     description: blog.description,
     alternates: { canonical: blog.url },
     authors: [{ name: author.name, url: absoluteUrl(author.path) }],
@@ -136,11 +136,22 @@ export default async function BlogPage({ params }) {
     dateModified: new Date(blog.updatedAt || blog.publishedAt).toISOString(),
     inLanguage: "en-IN",
     articleSection: category.label,
-    author: {
-      "@type": author.type,
-      name: author.name,
-      url: absoluteUrl(author.path),
-    },
+    // Phase 7.2: most authors just get {type, name, url} from their visible
+    // author-page identity. A couple (currently evgyan-desk) carry a
+    // schemaAuthor override - a real named Person for structured data,
+    // kept separate from the on-page byline. See utils/authors.js.
+    author: author.schemaAuthor
+      ? {
+          "@type": author.schemaAuthor.type,
+          name: author.schemaAuthor.name,
+          ...(author.schemaAuthor.jobTitle && { jobTitle: author.schemaAuthor.jobTitle }),
+          ...(author.schemaAuthor.sameAs && { sameAs: author.schemaAuthor.sameAs }),
+        }
+      : {
+          "@type": author.type,
+          name: author.name,
+          url: absoluteUrl(author.path),
+        },
     publisher: publisherSchema(),
   };
 

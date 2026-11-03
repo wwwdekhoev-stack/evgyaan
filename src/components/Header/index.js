@@ -80,17 +80,20 @@ const Header = () => {
       {searchOpen && (
         <div className="border-t border-light/10 bg-dark">
           <div className="max-w-[1280px] mx-auto px-5 sm:px-10 py-3">
-            <div className="flex items-center gap-3">
+            {/* GET form to /search - Enter (or no-JS) submits a real search;
+                the dropdown below is just a fast path for direct article hits. */}
+            <form action="/search" method="GET" className="flex items-center gap-3">
               <SearchIcon className="w-4 h-4 text-light/60 shrink-0" />
               <input
                 autoFocus
                 type="text"
+                name="q"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search EVGyan…"
                 className="w-full bg-transparent text-light placeholder:text-light/50 border-0 focus:ring-0 text-base py-1"
               />
-            </div>
+            </form>
             {results.length > 0 && (
               <ul className="mt-2 border-t border-light/10 pt-2 pb-1">
                 {results.map((b) => (

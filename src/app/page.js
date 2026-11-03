@@ -39,6 +39,14 @@ const homeJsonLd = {
       description: siteMetadata.description,
       inLanguage: "en-IN",
       publisher: { "@id": `${siteMetadata.siteUrl}/#organization` },
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `${siteMetadata.siteUrl}/search?q={search_term_string}`,
+        },
+        "query-input": "required name=search_term_string",
+      },
     },
   ],
 };
