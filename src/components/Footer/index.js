@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { YoutubeIcon, InstagramIcon, FacebookIcon, LinkedinIcon, XIcon } from "../Icons";
 import siteMetadata from "@/src/utils/siteMetaData";
+import { CATEGORY_META } from "@/src/components/Blog/CategoryListing";
 
 const CHANNELS = [
   { label: "YouTube", href: siteMetadata.youtube, Icon: YoutubeIcon },
@@ -30,21 +31,13 @@ const Footer = () => {
               Categories
             </h3>
             <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/categories/two-wheeler" className="hover:text-accent transition-colors">
-                  EV Scooters/Bikes
-                </Link>
-              </li>
-              <li>
-                <Link href="/categories/four-wheeler" className="hover:text-accent transition-colors">
-                  EV Cars/4W
-                </Link>
-              </li>
-              <li>
-                <Link href="/categories/battery-charging" className="hover:text-accent transition-colors">
-                  EV Battery & Charging
-                </Link>
-              </li>
+              {Object.entries(CATEGORY_META).map(([slug, meta]) => (
+                <li key={slug}>
+                  <Link href={`/categories/${slug}`} className="hover:text-accent transition-colors">
+                    {meta.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

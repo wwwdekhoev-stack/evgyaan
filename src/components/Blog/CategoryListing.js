@@ -8,6 +8,9 @@ export const CATEGORY_META = {
   "two-wheeler": { label: "EV Scooters/Bikes" },
   "four-wheeler": { label: "EV Cars/4W" },
   "battery-charging": { label: "EV Battery & Charging" },
+  "three-wheeler": { label: "Three-Wheeler" },
+  "commercial-evs": { label: "Commercial EVs" },
+  "policy-industry": { label: "Policy & Industry" },
 };
 
 export function getCategoryPosts(slug) {
