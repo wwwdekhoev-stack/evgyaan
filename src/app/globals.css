@@ -71,3 +71,15 @@ code {
   }
 
 
+
+/* Used by the header's category nav, which now lists every category
+   (Phase 4 added three more) - scrolls horizontally instead of wrapping
+   or overflowing on narrower desktop/tablet widths, with the scrollbar
+   itself hidden since the row is still fully usable by swipe/drag. */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

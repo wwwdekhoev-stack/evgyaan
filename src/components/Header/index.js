@@ -6,12 +6,16 @@ import { SearchIcon, CloseIcon } from "../Icons";
 import { useMemo, useState } from "react";
 import { cx } from "@/src/utils";
 import { blogs } from "@/.velite/generated";
+import { CATEGORY_META } from "@/src/components/Blog/CategoryListing";
 
-const NAV_LINKS = [
-  { label: "EV Scooters/Bikes", href: "/categories/two-wheeler" },
-  { label: "EV Cars/4W", href: "/categories/four-wheeler" },
-  { label: "EV Battery & Charging", href: "/categories/battery-charging" },
-];
+// Every category shows up here automatically - this used to be a hardcoded
+// 3-item list that silently fell out of sync once Phase 4 added
+// Three-Wheeler, Commercial EVs and Policy & Industry (they were only
+// reachable from the footer, not the main nav anyone actually looks at).
+const NAV_LINKS = Object.entries(CATEGORY_META).map(([slug, meta]) => ({
+  label: meta.label,
+  href: `/categories/${slug}`,
+}));
 
 const Header = () => {
   const pathname = usePathname();
@@ -32,7 +36,7 @@ const Header = () => {
       <div className="max-w-[1280px] mx-auto px-5 sm:px-10 h-[64px] md:h-[84px] flex items-center justify-between gap-6">
         <Logo />
 
-        <nav className="hidden md:flex items-center gap-8 flex-1 justify-center">
+        <nav className="hidden md:flex items-center gap-5 lg:gap-7 flex-1 justify-center overflow-x-auto no-scrollbar">
           {NAV_LINKS.map((link) => {
             const active = pathname?.startsWith(link.href);
             return (
@@ -40,7 +44,7 @@ const Header = () => {
                 key={link.href}
                 href={link.href}
                 className={cx(
-                  "text-base font-bold text-light/90 hover:text-light transition-colors pb-1 border-b-2",
+                  "shrink-0 whitespace-nowrap text-sm lg:text-base font-bold text-light/90 hover:text-light transition-colors pb-1 border-b-2",
                   active ? "border-accent text-light" : "border-transparent"
                 )}
               >
