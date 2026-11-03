@@ -3,6 +3,7 @@ import { getCategory, getHomePage, getListPage } from "@/src/utils";
 import { getAuthor } from "@/src/utils/authors";
 import { absoluteUrl, blogModifiedAt, getPublishedBlogs } from "@/src/utils/seo";
 import { CATEGORY_META, getCategoryPosts } from "@/src/components/Blog/CategoryListing";
+import { BRANDS, getBrandArticles } from "@/src/utils/brands";
 
 const latest = (posts) =>
   posts.length
@@ -41,6 +42,12 @@ export default function sitemap() {
         lastModified: latest(posts),
       });
     }
+  }
+
+  // Brand hub pages
+  for (const brand of BRANDS) {
+    const posts = getBrandArticles(brand.slug, published);
+    entries.push({ url: absoluteUrl(`/brands/${brand.slug}`), lastModified: latest(posts) });
   }
 
   // Every published article

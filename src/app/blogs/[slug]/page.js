@@ -1,4 +1,5 @@
 import BlogDetails from "@/src/components/Blog/BlogDetails";
+import BrandTags from "@/src/components/Blog/BrandTags";
 import RenderMdx from "@/src/components/Blog/RenderMdx";
 import siteMetadata from "@/src/utils/siteMetaData";
 import { blogs } from '@/.velite/generated'
@@ -175,6 +176,7 @@ export default async function BlogPage({ params }) {
           {blog.title}
         </h1>
         <BlogDetails blog={blog} slug={slug} />
+        <BrandTags blog={blog} />
       </div>
 
       <div className="max-w-[1280px] mx-auto px-5 sm:px-10 mt-6">
