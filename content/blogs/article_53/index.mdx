@@ -1,0 +1,49 @@
+---
+title: "Tata iRA.ev App: 4 High-Severity Flaws, Already Patched"
+seoTitle: "Tata iRA App Security: 4 High-Severity Flaws Patched"
+description: "CERT-In flagged 4 high-severity flaws in Tata iRA app security. Tata says iRA 2.0 and iRA.ev were patched in August and September — check your app version."
+image: hero.jpg
+imageAlt: "A white Tata Punch.ev on a dark grey studio floor below the headline Tata iRA app, 4 flaws already patched"
+publishedAt: 2026-11-05T18:26:27+05:30
+updatedAt: 2026-11-05T18:26:27+05:30
+author: "EVGyan Desk"
+isPublished: true
+tags:
+- tata motors
+- tata ev
+- connected car
+- ev app
+- cert-in
+slug: tata-ira-app-security-cert-in
+---
+
+<p className="text-xs text-gray-500 italic -mt-2">Representative image (AI-generated)</p>
+
+CERT-In has flagged four high-severity security flaws in Tata Motors' connected-car apps — and the fix for both apps went out months before the advisory did.
+
+The government's cyber security agency published its vulnerability note on 4 November. It covers iRA 2.0, the app for Tata's petrol and diesel cars, and iRA.ev, the one Nexon EV, Punch EV, Curvv EV, Harrier EV and Tiago EV owners use. The builds at risk are iRA 2.0 version 26.7.3 and earlier, and iRA.ev version 26.7.2 and earlier.
+
+## What CERT-In found
+
+All four problems sit in how the apps handled identity:
+
+- Service logins, API keys and authorisation tokens sitting hardcoded inside the installable app itself, which anyone could download and pick apart
+- Weak checking of which web pages the app's built-in browser window was allowed to open, which could leak a live login token
+- Login tokens written into development and debugging logs
+- Certificate pinning set up incorrectly, leaving traffic between app and server open to interception
+
+Stacked together, CERT-In's view is that an attacker could read and alter data while wearing an owner's identity. That matters more here than it would for an ordinary shopping app, because these two aren't dashboards. They send remote commands to the car, and carry vehicle status, health monitoring and trip history. On the EV side, that is also where you check the charge level and start or stop a charging session from your phone.
+
+## The patch landed first
+
+Tata Motors' passenger vehicle arm says its own assessment found no evidence that customer credentials, personal information or vehicle data were accessed or compromised. The fixes went out as mandatory updates, and they are not recent. EV owners were moved to iRA.ev 26.9.1 back in September 2026; petrol and diesel owners got iRA 2.0 26.8.2 a month earlier, in August. Both landed two to three months ahead of the advisory becoming public.
+
+The company says the rollout is finished for all active users, that the update prompts itself when you open the app, and that it completes over the air in a couple of minutes. Owners who still haven't updated are being contacted directly.
+
+## What this means for you
+
+Open the app and look at the version number. iRA.ev on 26.9.1 or higher, or iRA 2.0 on 26.8.2 or higher, means you are already on the patched build and there is nothing left to do. Anything lower, update before you use a remote command again.
+
+Scale is what makes this worth a headline at all. Tata is India's biggest EV seller — [14,551 registrations in October](https://evgyan.com/blogs/electric-car-registrations-october-2026) in a 36,708-unit electric car market — and connected features are part of how the [range is sold](https://evgyan.com/blogs/tata-ev-supply-catching-up-demand-2026). An app advisory here touches more electric cars than it would at any other brand. A flaw found, reported, patched and then disclosed is that process working, not failing. The bit still in your hands is the version number on your own phone.
+
+**Sources:** [CERT-In advisory coverage, Business Standard](https://www.business-standard.com/companies/news/tata-motors-ira-apps-vulnerable-to-data-theft-user-impersonation-cert-in-126110500606_1.html) (primary, affected and fixed versions, flaw detail), [Business Today](https://www.businesstoday.in/auto/story/tata-motors-says-customer-data-is-safe-after-cert-in-flags-security-flaws-in-connected-car-apps-565980-2026-11-05) (Tata Motors statement, advisory date), [Upstox](https://upstox.com/news/business-news/latest-updates/own-a-tata-car-cert-in-warns-hackers-could-access-vehicle-data-connected-services/article-203015/) (corroboration on versions and impact)
