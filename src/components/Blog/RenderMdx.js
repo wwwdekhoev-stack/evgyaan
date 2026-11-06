@@ -3,9 +3,11 @@ import React from 'react'
 import MDXContent from './MdxContent'
 import RelatedTool from './RelatedTool'
 import SegmentLink from './SegmentLink'
+import YouTubeEmbed from './YouTubeEmbed'
 
 const mdxComponents = {
-  // Add any custom components here
+  // Available to every article's MDX.
+  YouTubeEmbed,
 }
 
 const RenderMdx = ({blog}) => {
