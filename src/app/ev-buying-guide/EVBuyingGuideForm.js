@@ -32,6 +32,15 @@ export default function EVBuyingGuideForm() {
   async function handleSubmit(e) {
     e.preventDefault();
     if (!email) return;
+
+    // Honeypot - see the hidden `company` input below and the matching
+    // check in /api/ev-guide-subscribe. Show success so bots don't learn
+    // they were filtered.
+    if (e.target.company?.value) {
+      setStatus('success');
+      return;
+    }
+
     setStatus('loading');
     setErrMsg('');
     try {
@@ -83,7 +92,9 @@ export default function EVBuyingGuideForm() {
         ) : (
           <form onSubmit={handleSubmit} noValidate>
             <label className="block text-[13px] font-semibold text-[#444] mb-3 font-in">Enter your email to get the guide</label>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" required className="w-full border border-[#d1d5db] rounded-lg px-3.5 py-3 text-[15px] text-[#111] bg-white outline-none focus:border-[#16a34a] focus:ring-0 transition-colors mb-3 placeholder:text-[#bbb] font-in" />
+            <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" required className="w-full border border-[#d1d5db] rounded-lg px-3.5 py-3 text-[15px] text-[#111] bg-white outline-none focus:border-[#16a34a] focus:ring-0 transition-colors mb-3 placeholder:text-[#bbb] font-in" />
+            {/* Honeypot - hidden from people, visible to bots. */}
+            <input type="text" name="company" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
             {errMsg && <p className="text-red-500 text-[13px] mb-3 font-in">{errMsg}</p>}
             <button type="submit" disabled={status === 'loading'} className="w-full bg-[#16a34a] hover:bg-[#15803d] text-white font-semibold text-[15px] py-3.5 px-5 rounded-lg transition-colors disabled:opacity-70 cursor-pointer font-in">
               {status === 'loading' ? 'Sending...' : 'Send Me the Free EV Buying Decision Guide'}

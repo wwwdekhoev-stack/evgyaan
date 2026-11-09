@@ -58,7 +58,9 @@ function formatDate(value) {
 export default function Home() {
   const published = sortBlogs(blogs.filter((b) => b.isPublished));
   const { hero, items: feed, totalPages } = getHomePage(published, 1);
-  const trending = published.slice(0, 7);
+  // "Latest", not "Trending" - this is a recency sort and there is no
+  // view data behind it.
+  const latest = published.slice(0, 7);
 
   if (!hero) {
     return (
@@ -111,7 +113,7 @@ export default function Home() {
         </Link>
       </section>
 
-      {/* Feed + Trending */}
+      {/* Feed + Latest */}
       <section className="max-w-[1280px] mx-auto px-5 sm:px-10 mt-10 pb-16 grid lg:grid-cols-[1fr_320px] gap-8">
         <div className="flex flex-col divide-y divide-borderSoft">
           {feed.length === 0 && (
@@ -125,10 +127,10 @@ export default function Home() {
 
         <aside className="bg-bgSoft rounded-lg p-5 h-fit lg:sticky lg:top-[100px]">
           <h3 className="text-sm font-bold uppercase tracking-wide text-dark border-b-2 border-accent pb-2 mb-3">
-            Trending
+            Latest
           </h3>
           <ol className="flex flex-col divide-y divide-borderSoft">
-            {trending.map((blog, i) => (
+            {latest.map((blog, i) => (
               <li key={blog.slug} className="py-3 first:pt-0">
                 <Link href={blog.url} className="flex items-start gap-3 group">
                   <span

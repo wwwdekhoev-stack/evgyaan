@@ -1,6 +1,10 @@
 import BlogDetails from "@/src/components/Blog/BlogDetails";
 import BrandTags from "@/src/components/Blog/BrandTags";
 import RenderMdx from "@/src/components/Blog/RenderMdx";
+import ShareButtons from "@/src/components/Blog/ShareButtons";
+import AuthorBio from "@/src/components/Blog/AuthorBio";
+import ArticleNewsletter from "@/src/components/Blog/ArticleNewsletter";
+import RelatedArticles from "@/src/components/Blog/RelatedArticles";
 import siteMetadata from "@/src/utils/siteMetaData";
 import { blogs } from '@/.velite/generated'
 import { sortBlogs, getCategory } from "@/src/utils";
@@ -109,7 +113,10 @@ export default async function BlogPage({ params }) {
     notFound()
   }
 
-  const trending = sortBlogs(blogs.filter((b) => b.isPublished && b.slug !== blog.slug)).slice(0, 7);
+  // Labelled "Latest", not "Trending" - it is a recency sort and there is
+  // no view data behind it. Genuinely related reading is the "Read next"
+  // block under the article (RelatedArticles).
+  const latest = sortBlogs(blogs.filter((b) => b.isPublished && b.slug !== blog.slug)).slice(0, 7);
   const category = getCategory(blog.tags);
 
   let imageList = [siteMetadata.socialBanner];
@@ -208,7 +215,13 @@ export default async function BlogPage({ params }) {
       </div>
 
       <div className="max-w-[1280px] mx-auto px-5 sm:px-10 grid grid-cols-12 gap-y-8 lg:gap-10 mt-10 pb-16">
-        <RenderMdx blog={blog} />
+        <div className="col-span-12 lg:col-span-8">
+          <RenderMdx blog={blog} />
+          <ShareButtons url={articleUrl} title={blog.title} />
+          <AuthorBio author={author} />
+          <ArticleNewsletter />
+          <RelatedArticles current={blog} />
+        </div>
 
         <div className="col-span-12 lg:col-span-4 order-2">
           <div className="lg:sticky lg:top-[100px] flex flex-col gap-6">
@@ -225,13 +238,13 @@ export default async function BlogPage({ params }) {
               </div>
             )}
 
-            {trending.length > 0 && (
+            {latest.length > 0 && (
               <div className="bg-bgSoft rounded-lg p-5">
                 <h3 className="text-sm font-bold uppercase tracking-wide text-dark border-b-2 border-accent pb-2 mb-3">
-                  Trending
+                  Latest
                 </h3>
                 <ol className="flex flex-col divide-y divide-borderSoft">
-                  {trending.map((t, i) => (
+                  {latest.map((t, i) => (
                     <li key={t.slug} className="py-3 first:pt-0">
                       <Link href={t.url} className="flex items-start gap-3 group">
                         <span

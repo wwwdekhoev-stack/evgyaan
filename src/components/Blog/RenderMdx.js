@@ -12,7 +12,11 @@ const mdxComponents = {
 
 const RenderMdx = ({blog}) => {
   return (
-    <div className='col-span-12  lg:col-span-8 font-in prose sm:prose-base md:prose-lg max-w-max
+    // The grid column now lives in blogs/[slug]/page.js so the share bar,
+    // author bio, newsletter and related articles can sit in the same
+    // column *outside* `prose` - prose would otherwise restyle their
+    // headings and links.
+    <div className='font-in prose sm:prose-base md:prose-lg max-w-max
     prose-blockquote:bg-accent/20
     prose-blockquote:p-2
     prose-blockquote:px-6
