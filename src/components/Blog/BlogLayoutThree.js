@@ -37,7 +37,7 @@ const BlogLayoutThree = ({ blog }) => {
         </Link>
 
         <span className="capitalize text-gray dark:text-light/50 font-semibold text-sm  sm:text-base">
-          {formatDateIST(blog.publishedAt, { month: "long", day: "2-digit", year: "numeric" }, "en-US")}
+          {formatDateIST(blog.publishedAt, { month: "long", day: "2-digit", year: "numeric" })}
         </span>
       </div>
     </div>

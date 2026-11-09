@@ -18,7 +18,9 @@ const BlogDetails = ({ blog }) => {
           <span className="text-borderSoft">•</span>
         </>
       )}
-      <time>{formatDateIST(blog.publishedAt, { month: "long", day: "numeric", year: "numeric" }, "en-US")}</time>
+      <time dateTime={new Date(blog.publishedAt).toISOString()}>
+        {formatDateIST(blog.publishedAt, { month: "long", day: "numeric", year: "numeric" })}
+      </time>
       <span className="text-borderSoft">•</span>
       <span>{blog.readingTime.text}</span>
     </div>

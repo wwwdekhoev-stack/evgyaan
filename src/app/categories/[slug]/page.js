@@ -25,7 +25,7 @@ export async function generateMetadata({ params }) {
       description,
       url,
       siteName: siteMetadata.headerTitle,
-      locale: "en_US",
+      locale: "en_IN",
       type: "website",
       images: [siteMetadata.socialBanner],
     },

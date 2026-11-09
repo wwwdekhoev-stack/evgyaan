@@ -14,7 +14,7 @@ export const metadata = {
       'Free Bolt.Earth EV charger ROI calculator — payback period, monthly profit and investment needed, in under a minute.',
     url: absoluteUrl('/ev-roi-calculator'),
     siteName: siteMetadata.headerTitle,
-    locale: 'en_US',
+    locale: 'en_IN',
     type: 'website',
     images: [siteMetadata.socialBanner],
   },

@@ -14,7 +14,7 @@ export const metadata = {
       'Real range vs claimed range, running costs, charging access and resale — a clear, honest answer on whether an EV makes sense for you right now.',
     url: absoluteUrl('/ev-buying-guide'),
     siteName: siteMetadata.headerTitle,
-    locale: 'en_US',
+    locale: 'en_IN',
     type: 'website',
     images: [siteMetadata.socialBanner],
   },

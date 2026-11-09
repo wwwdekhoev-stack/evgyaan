@@ -17,8 +17,12 @@ module.exports = {
         bgSoft: "#F3F4F6",
         borderSoft: "#E1E3E6",
       },
+      // Both names resolve to the same Roboto now. They used to be two
+      // separate next/font calls that downloaded weights 400 and 500
+      // twice; `font-mr` and `font-in` are kept as aliases so no component
+      // markup had to change.
       fontFamily:{
-        mr: ["var(--font-mr)"],
+        mr: ["var(--font-in)"],
         in: ["var(--font-in)"]
       },
       animation:{

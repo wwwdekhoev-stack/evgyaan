@@ -6,18 +6,16 @@ import Footer from "../components/Footer";
 import siteMetadata from "../utils/siteMetaData";
 import Script from "next/script";
 
-const robotoBody = Roboto({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  display: "swap",
-  variable: "--font-in",
-});
-
-const robotoDisplay = Roboto({
+// One Roboto call covering every weight the site uses, bound to both CSS
+// variables. This used to be two separate Roboto() calls - one for 400/500
+// and one for 400/500/600/700 - which downloaded weights 400 and 500 twice
+// as two independent font families, competing for connections during the
+// LCP window.
+const roboto = Roboto({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
-  variable: "--font-mr",
+  variable: "--font-in",
 });
 
 export const metadata = {
@@ -46,7 +44,7 @@ export const metadata = {
     url: siteMetadata.siteUrl,
     siteName: siteMetadata.headerTitle,
     images: [siteMetadata.socialBanner],
-    locale: "en_US",
+    locale: "en_IN",
     type: "website",
   },
   robots: {
@@ -69,7 +67,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    // en-IN, not en: this is an Indian publication writing about Indian
+    // registrations in rupees. The JSON-LD already said inLanguage
+    // "en-IN" and the RSS feed already said en-IN, so the document
+    // language was the one place still contradicting them.
+    <html lang="en-IN">
       <head>
         <link
           rel="alternate"
@@ -79,11 +81,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body
-        className={cx(
-          robotoBody.variable,
-          robotoDisplay.variable,
-          "font-mr bg-light dark:bg-light"
-        )}
+        className={cx(roboto.variable, "font-mr bg-light dark:bg-light")}
       >
         {/*
           EVGyan has no dark-mode toggle — it is a light-theme site only.

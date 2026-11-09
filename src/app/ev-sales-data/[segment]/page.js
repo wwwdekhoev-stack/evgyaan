@@ -25,7 +25,7 @@ export function generateMetadata({ params }) {
       description,
       url: absoluteUrl(`/ev-sales-data/${seg.slug}`),
       siteName: siteMetadata.headerTitle,
-      locale: "en_US",
+      locale: "en_IN",
       type: "website",
       images: [siteMetadata.socialBanner],
     },

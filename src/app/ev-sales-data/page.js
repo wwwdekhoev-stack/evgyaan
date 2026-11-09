@@ -17,7 +17,7 @@ export const metadata = {
       "The latest India EV sales numbers by segment, plus the month-over-month trend - updated every month from Vahan data.",
     url: absoluteUrl("/ev-sales-data"),
     siteName: siteMetadata.headerTitle,
-    locale: "en_US",
+    locale: "en_IN",
     type: "website",
     images: [siteMetadata.socialBanner],
   },

@@ -15,7 +15,7 @@ export const metadata = {
     description: "Which Indian state leads EV registrations each month, by segment.",
     url: absoluteUrl("/ev-sales-data/by-state"),
     siteName: siteMetadata.headerTitle,
-    locale: "en_US",
+    locale: "en_IN",
     type: "website",
     images: [siteMetadata.socialBanner],
   },

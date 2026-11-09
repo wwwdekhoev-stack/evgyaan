@@ -13,7 +13,7 @@ export const metadata = {
       "Every EV news story, sales-data report and analysis piece published on EVGyan, newest first.",
     url: absoluteUrl("/blogs"),
     siteName: siteMetadata.headerTitle,
-    locale: "en_US",
+    locale: "en_IN",
     type: "website",
     images: [siteMetadata.socialBanner],
   },

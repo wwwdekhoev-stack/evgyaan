@@ -32,7 +32,7 @@ export default function SuccessPage() {
 
   const handleWhatsApp = () => {
     setWaSent(true);
-    window.open(`https://wa.me/918700696438?text=${waText}`, '_blank');
+    window.open(`https://wa.me/918178043697?text=${waText}`, '_blank');
   };
 
   return (

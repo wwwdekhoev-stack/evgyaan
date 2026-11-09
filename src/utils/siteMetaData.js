@@ -3,7 +3,7 @@ const siteMetadata = {
     author: 'EVGyan',
     headerTitle: 'EVGyan',
     description: 'EVGyan brings you simple, honest EV news and monthly sales data for electric cars and electric two-wheelers in India.',
-    language: 'en-us',
+    language: 'en-IN',
     theme: 'system', // system, dark or light
     // Canonical host. Vercel redirects evgyan.com -> www.evgyan.com, so every
     // absolute URL (sitemap, robots, canonical, JSON-LD, RSS) must use www.
@@ -18,7 +18,7 @@ const siteMetadata = {
     linkedin: 'https://www.linkedin.com/in/tarunpal01/',
     dribbble: 'https://www.dribbble.com',
     instagram: 'https://www.instagram.com/evgyan2.0',
-    locale: 'en-US',
+    locale: 'en_IN',
     subscriberCount: '400K+',
   }
   
