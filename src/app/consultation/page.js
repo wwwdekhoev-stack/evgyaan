@@ -79,21 +79,14 @@ export default function ConsultationPage() {
           </a>
         </div>
 
-        {/* REFUND POLICY */}
-        <div
-          className="rounded-xl p-4 text-center"
-          style={{ backgroundColor: '#F9FAFB', border: '1.5px solid #e5e7eb' }}
-        >
-          <p className="text-sm font-semibold text-gray-700">🔒 Refund Policy</p>
-          <p className="text-xs text-gray-500 mt-1">
-            100% refund if you are not satisfied — bina kisi sawaal ke.
-          </p>
-        </div>
-
-        {/* BOTTOM NOTE */}
-        <p className="text-center text-xs text-gray-400 mt-1">
-          Only 4 consultation slots available daily.
-        </p>
+        {/* The refund-policy box and the "only 4 slots available daily"
+            scarcity note that used to sit here were removed deliberately:
+            both options on this page are free, so there was nothing to
+            refund and no slots to book. Keeping them promised terms that
+            don't exist (there is no published refund policy) and showed
+            false scarcity - the opposite of this site's whole positioning.
+            If a paid consultation is reinstated, bring them back together
+            with a real /refund-policy and /terms-and-conditions page. */}
 
       </div>
     </main>

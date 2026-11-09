@@ -3,9 +3,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 import { SearchIcon, CloseIcon } from "../Icons";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { cx } from "@/src/utils";
-import { blogs } from "@/.velite/generated";
 import { CATEGORY_META } from "@/src/components/Blog/CategoryListing";
 
 // Every category shows up here automatically - this used to be a hardcoded
@@ -21,15 +20,6 @@ const Header = () => {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [query, setQuery] = useState("");
-
-  const results = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return [];
-    return blogs
-      .filter((b) => b.isPublished && b.title.toLowerCase().includes(q))
-      .slice(0, 6);
-  }, [query]);
 
   return (
     <header className="w-full bg-dark sticky top-0 z-40">
@@ -84,43 +74,22 @@ const Header = () => {
       {searchOpen && (
         <div className="border-t border-light/10 bg-dark">
           <div className="max-w-[1280px] mx-auto px-5 sm:px-10 py-3">
-            {/* GET form to /search - Enter (or no-JS) submits a real search;
-                the dropdown below is just a fast path for direct article hits. */}
+            {/* GET form to /search. This deliberately has NO live dropdown:
+                an inline preview meant importing the whole Velite dataset into
+                this client component, which shipped every article's compiled
+                body to every visitor on every page (~474KB raw / 132KB gzip,
+                growing with each new article). /search itself matches titles,
+                descriptions AND tags, so it was also the weaker search. */}
             <form action="/search" method="GET" className="flex items-center gap-3">
               <SearchIcon className="w-4 h-4 text-light/60 shrink-0" />
               <input
                 autoFocus
                 type="text"
                 name="q"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search EVGyan…"
                 className="w-full bg-transparent text-light placeholder:text-light/50 border-0 focus:ring-0 text-base py-1"
               />
             </form>
-            {results.length > 0 && (
-              <ul className="mt-2 border-t border-light/10 pt-2 pb-1">
-                {results.map((b) => (
-                  <li key={b.slug}>
-                    <Link
-                      href={b.url}
-                      onClick={() => {
-                        setSearchOpen(false);
-                        setQuery("");
-                      }}
-                      className="block py-2 text-light/90 hover:text-accent text-sm"
-                    >
-                      {b.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
-            {query.trim() && results.length === 0 && (
-              <p className="mt-2 pt-2 border-t border-light/10 text-light/50 text-sm">
-                No articles found for &ldquo;{query}&rdquo;
-              </p>
-            )}
           </div>
         </div>
       )}

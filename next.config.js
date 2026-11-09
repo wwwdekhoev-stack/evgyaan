@@ -4,7 +4,16 @@ module.exports = {
       ignoreDuringBuilds: true,
     },
     compiler: {
-      removeConsole: process.env.NODE_ENV === 'production' ? true : false,
+      // Strip console.log/debug/info from the production bundle, but KEEP
+      // console.error and console.warn. The old `removeConsole: true` also
+      // stripped them from server code, so the API route's three
+      // console.error calls (missing key / MailerLite failure / unexpected
+      // throw) never reached Vercel logs - subscriber signups could fail
+      // silently with no signal at all.
+      removeConsole:
+        process.env.NODE_ENV === 'production'
+          ? { exclude: ['error', 'warn'] }
+          : false,
     },
     images: {
       // Hero/source images top out around 1600-1920px wide (see
