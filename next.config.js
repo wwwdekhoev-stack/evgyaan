@@ -74,6 +74,22 @@ module.exports = {
             { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
           ],
         },
+        {
+          // Only www.evgyan.com is the real site. Every other host this
+          // app answers on - the project's own evgyaan-pi.vercel.app,
+          // every preview deployment, any alias added later - is a
+          // byte-for-byte copy of it, crawlable, and competing with the
+          // canonical host for the same pages. `missing` inverts the
+          // match, so this header is sent on every host EXCEPT the
+          // canonical one.
+          //
+          // (This does not cover evgyaan.vercel.app, the 2025 build on a
+          // separate Vercel account - that one has to be taken down
+          // there, see the 60-day plan R-1.)
+          source: '/:path*',
+          missing: [{ type: 'host', value: 'www.evgyan.com' }],
+          headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
+        },
       ]
     },
     async redirects() {
@@ -100,6 +116,60 @@ module.exports = {
         {
           source: '/categories/three-wheeler/page/:page',
           destination: '/categories/commercial-evs',
+          permanent: true,
+        },
+
+        // --- Legacy /blogs/article_N URLs -------------------------------
+        //
+        // The first seven articles went live before slugs were a thing, so
+        // their URL was literally the folder name. Five were later deleted
+        // and two were re-slugged, which left seven dead URLs - article_4
+        // is still sitting in a third-party index and returning a 404.
+        // Each one goes to the closest live page rather than the homepage,
+        // so whatever link equity exists lands somewhere relevant.
+        //
+        // article_1 and article_4 were vs-comparisons. When the
+        // /compare/[a]-vs-[b] pages exist, repoint these two at them.
+        {
+          // "Ola Roadster X (2.5kWh) vs Revolt RV1 2.2kWh" - deleted
+          source: '/blogs/article_1',
+          destination: '/categories/two-wheeler',
+          permanent: true,
+        },
+        {
+          // "MG Comet EV Price Hiked in 2025" - deleted
+          source: '/blogs/article_2',
+          destination: '/brands/mg',
+          permanent: true,
+        },
+        {
+          // "Cheapest TVS EV Is Coming!" - deleted
+          source: '/blogs/article_3',
+          destination: '/brands/tvs',
+          permanent: true,
+        },
+        {
+          // "Windsor EV Pro vs Mahindra BE.6e" - deleted
+          source: '/blogs/article_4',
+          destination: '/categories/four-wheeler',
+          permanent: true,
+        },
+        {
+          // "Tata Safari EV" - superseded by the current launch story
+          source: '/blogs/article_5',
+          destination: '/blogs/tata-safari-ev-launch-january-2027',
+          permanent: true,
+        },
+        {
+          // Re-slugged, article still live
+          source: '/blogs/article_6',
+          destination: '/blogs/electric-two-wheeler-sales-september-2026',
+          permanent: true,
+        },
+        {
+          // Re-slugged, article still live
+          source: '/blogs/article_7',
+          destination: '/blogs/electric-car-sales-september-2026',
           permanent: true,
         },
       ]
