@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import siteMetadata from "@/src/utils/siteMetaData";
+import { trackOutbound, EVENTS } from "@/src/utils/analytics";
 
 const FORMATS = [
   "YouTube integration",
@@ -57,6 +58,16 @@ export default function AdvertiseEnquiry() {
       "Brief:",
       form.message,
     ].join("\n");
+    // Fire before navigating away. Budget and format are the two fields
+    // that say whether an enquiry is real, so they go on the event - no
+    // name, company or email, which have no business in analytics.
+    trackOutbound(EVENTS.LEAD_SUBMIT, {
+      form: "advertise",
+      ad_format: form.format,
+      budget_band: form.budget,
+      timeline: form.timeline,
+    });
+
     window.location.href = `mailto:${siteMetadata.email}?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}`;

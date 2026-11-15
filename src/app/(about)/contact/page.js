@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { YoutubeIcon, InstagramIcon, FacebookIcon, LinkedinIcon, XIcon } from "@/src/components/Icons";
 import siteMetadata from "@/src/utils/siteMetaData";
+import WhatsAppLink from "@/src/components/WhatsAppLink";
 
 export const metadata = {
   title: "Contact Us",
@@ -41,16 +42,15 @@ export default function Contact() {
           <div className="mt-1 text-sm text-gray break-all">{siteMetadata.email}</div>
         </a>
 
-        <a
+        <WhatsAppLink
           href="https://wa.me/918178043697"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-bgSoft rounded-lg p-6 hover:bg-accent/20 transition-colors"
+          source="contact"
+          className="block bg-bgSoft rounded-lg p-6 hover:bg-accent/20 transition-colors"
         >
           <div className="text-2xl">💬</div>
           <div className="mt-3 font-semibold text-dark">WhatsApp</div>
           <div className="mt-1 text-sm text-gray">Chat with the EVGyan team</div>
-        </a>
+        </WhatsAppLink>
       </div>
 
       <div className="mt-10">

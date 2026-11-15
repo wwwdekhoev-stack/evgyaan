@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { track, EVENTS } from '@/src/utils/analytics';
 import Image from 'next/image';
 
 function BoltIcon({ size = 22 }) {
@@ -51,6 +52,7 @@ export default function EVBuyingGuideForm() {
       });
       if (res.ok) {
         setStatus('success');
+        track(EVENTS.GUIDE_DOWNLOAD, { source: 'ev-buying-guide' });
       } else {
         const data = await res.json().catch(() => ({}));
         setStatus('error');

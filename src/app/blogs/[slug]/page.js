@@ -5,6 +5,7 @@ import ShareButtons from "@/src/components/Blog/ShareButtons";
 import AuthorBio from "@/src/components/Blog/AuthorBio";
 import ArticleNewsletter from "@/src/components/Blog/ArticleNewsletter";
 import RelatedArticles from "@/src/components/Blog/RelatedArticles";
+import PreferredSource from "@/src/components/PreferredSource";
 import siteMetadata from "@/src/utils/siteMetaData";
 import { blogs } from '@/.velite/generated'
 import { sortBlogs, getCategory } from "@/src/utils";
@@ -219,6 +220,10 @@ export default async function BlogPage({ params }) {
           <RenderMdx blog={blog} />
           <ShareButtons url={articleUrl} title={blog.title} />
           <AuthorBio author={author} />
+          {/* Asked for right after the reader has finished a story and
+              seen who wrote it - the one moment they have evidence that
+              more of this is worth seeing. */}
+          <PreferredSource placement="article" />
           <ArticleNewsletter />
           <RelatedArticles current={blog} />
         </div>

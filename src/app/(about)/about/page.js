@@ -1,6 +1,7 @@
 import AboutCoverSection from "@/src/components/About/AboutCoverSection";
 import Skills from "@/src/components/About/Skills";
 import Link from "next/link";
+import PreferredSource from "@/src/components/PreferredSource";
 
 
 export const metadata = {
@@ -15,7 +16,10 @@ export default function About() {
       <AboutCoverSection />
       <Skills />
       <div className="max-w-[1280px] mx-auto px-5 sm:px-10 pb-16">
-        <p className="text-base text-gray">
+        <div className="max-w-2xl">
+          <PreferredSource placement="about" />
+        </div>
+        <p className="mt-8 text-base text-gray">
           Have something to ask the EVGyan team? Reach out{" "}
           <Link href="/contact" className="text-dark font-semibold underline decoration-accent decoration-2 underline-offset-2">
             here

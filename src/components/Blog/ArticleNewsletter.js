@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { track, EVENTS } from "@/src/utils/analytics";
 
 // Inline email capture at the end of every article.
 //
@@ -40,6 +41,7 @@ const ArticleNewsletter = () => {
       });
       if (res.ok) {
         setStatus("success");
+        track(EVENTS.NEWSLETTER_SIGNUP, { source: "article" });
       } else {
         const data = await res.json().catch(() => ({}));
         setStatus("error");

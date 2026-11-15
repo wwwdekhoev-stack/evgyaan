@@ -1,3 +1,5 @@
+import WhatsAppLink from '@/src/components/WhatsAppLink';
+
 export const metadata = {
   title: 'EV Buying Consultation',
   description: 'Confused about which EV to buy? Talk directly with Tarun or get free guidance. Choose the option that works best for you.',
@@ -43,15 +45,13 @@ export default function ConsultationPage() {
             Basic EV guidance from EVGyan team on WhatsApp.
           </p>
 
-          <a
+          <WhatsAppLink
             href="https://wa.me/918178043697"
-            target="_blank"
-            rel="noopener noreferrer"
+            source="consultation"
             className="block w-full text-center font-bold py-3 rounded-xl text-base border-2 text-gray-900 transition-colors hover:bg-gray-50"
-            style={{ borderColor: '#e5e7eb' }}
           >
             💬 Chat On WhatsApp
-          </a>
+          </WhatsAppLink>
         </div>
 
         {/* CARD 3 — Free Guide */}

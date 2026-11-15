@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from "react";
+import { track, EVENTS } from "@/src/utils/analytics";
 
 /**
  * Click-to-play YouTube card for use inside article MDX.
@@ -40,7 +41,10 @@ const YouTubeEmbed = ({
         ) : (
           <button
             type="button"
-            onClick={() => setPlaying(true)}
+            onClick={() => {
+              track(EVENTS.YOUTUBE_CLICK, { video_id: id, video_title: title });
+              setPlaying(true);
+            }}
             aria-label={`Play video: ${title}`}
             className="group absolute inset-0 h-full w-full cursor-pointer border-0 p-0"
           >

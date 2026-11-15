@@ -2,11 +2,15 @@
 
 import { useState } from "react";
 import { XIcon } from "../Icons";
+import { track, trackOutbound, EVENTS } from "@/src/utils/analytics";
 
 // WhatsApp is the share channel that matters most for an Indian audience,
 // so it leads. No third-party share SDK here on purpose - these are plain
-// links plus one clipboard call, so nothing extra loads and nothing tracks
-// the reader.
+// links plus one clipboard call, so nothing extra loads on the page.
+//
+// Each share does send one GA4 event, to the analytics that already runs
+// site-wide. It records which channel and which article, nothing about who
+// clicked.
 
 function WhatsAppIcon({ className }) {
   return (
@@ -37,6 +41,7 @@ const ShareButtons = ({ url, title }) => {
   const shareText = `${title} — ${url}`;
 
   async function copyLink() {
+    track(EVENTS.SHARE_CLICK, { method: "copy_link", item_id: url });
     try {
       await navigator.clipboard.writeText(url);
       setCopied(true);
@@ -58,6 +63,9 @@ const ShareButtons = ({ url, title }) => {
         target="_blank"
         rel="noopener noreferrer"
         className={btn}
+        onClick={() =>
+          trackOutbound(EVENTS.SHARE_CLICK, { method: "whatsapp", item_id: url })
+        }
       >
         <WhatsAppIcon className="w-4 h-4" />
         WhatsApp
@@ -68,6 +76,9 @@ const ShareButtons = ({ url, title }) => {
         target="_blank"
         rel="noopener noreferrer"
         className={btn}
+        onClick={() =>
+          trackOutbound(EVENTS.SHARE_CLICK, { method: "x", item_id: url })
+        }
       >
         <XIcon className="w-3.5 h-3.5" />
         Post

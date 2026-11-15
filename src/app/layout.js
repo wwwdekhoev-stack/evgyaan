@@ -99,6 +99,18 @@ export default function RootLayout({ children }) {
           {`document.documentElement.classList.remove('dark')`}
         </Script>
 
+        {/*
+          Google's Preferred Sources library. Loaded once here, site-wide,
+          rather than per page - that is what Search Central asks for. It
+          renders the "Add to Preferred Sources" button wherever a
+          `google-add-preferred-source-btn` element appears; see
+          components/PreferredSource.js.
+        */}
+        <Script
+          src="https://news.google.com/swg/js/v1/publisher.js"
+          strategy="afterInteractive"
+        />
+
         {/* Google Analytics (GA4) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-3VRLREJJJQ"

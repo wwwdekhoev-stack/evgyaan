@@ -1,12 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import { track, EVENTS } from '@/src/utils/analytics';
 
-function track(eventName, params = {}) {
-  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-    window.gtag('event', eventName, params);
-  }
-}
+// Analytics now comes from the shared helper in utils/analytics.js. The
+// local version here required window.gtag to already be a function, which
+// it is not on a first paint - so an event fired from a cold load was
+// dropped. The helper queues onto dataLayer instead.
 
 function inr(n) {
   if (n === null || n === undefined || Number.isNaN(n)) return '—';
@@ -95,11 +95,17 @@ export default function Calculator() {
       scenarios,
     });
 
-    track('calculate_roi_click', {
+    // calculate_roi_click is the original event name and stays so the
+    // existing GA4 history is continuous. calculator_complete is the key
+    // event the 60-day plan is judged on - someone who reached a result
+    // is a person deciding whether to install a charger.
+    const calcParams = {
       num_chargers: numChargers,
       meter_type: inputs.meterType,
       land_type: inputs.landType,
-    });
+    };
+    track('calculate_roi_click', calcParams);
+    track(EVENTS.CALCULATOR_COMPLETE, { ...calcParams, calculator: 'ev-roi' });
 
     setTimeout(() => {
       document.getElementById('evg-results')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
