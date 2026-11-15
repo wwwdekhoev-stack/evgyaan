@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/check-dates.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "content": "velite --clean"
+    "content": "velite --clean",
+    "check:dates": "node scripts/check-dates.mjs"
   },
   "dependencies": {
     "@lottiefiles/dotlottie-react": "^0.12.0",
