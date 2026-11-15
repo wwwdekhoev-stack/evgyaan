@@ -4,10 +4,52 @@ import MDXContent from './MdxContent'
 import RelatedTool from './RelatedTool'
 import SegmentLink from './SegmentLink'
 import YouTubeEmbed from './YouTubeEmbed'
+import Image from 'next/image'
+import MdxTable from './MdxTable'
+
+// Every `![alt](./photo.jpg)` in an article renders through this.
+//
+// Before, in-body photos were bare <img> tags pointing at the original
+// JPEG: no width/height (layout shift), no lazy loading, no AVIF/WebP, and
+// React preloaded each one in <head>, so they competed with the hero image
+// for bandwidth. One article preloaded 1.4 MB this way and measured a
+// 7.8 s mobile LCP.
+//
+// Now: the size comes from the build (see remarkImageSize in
+// velite.config.js) and the image goes through next/image - resized to the
+// reader's screen, served as AVIF/WebP, lazy-loaded, with space reserved so
+// the text does not jump. The article column is at most ~800px wide on
+// desktop and full width on phones, which is what `sizes` says.
+//
+// If the build could not read a size (remote image, missing file), it falls
+// back to a plain lazy <img>, which still avoids the preload.
+const MdxImage = ({ src, alt = '', title, width, height }) => {
+  const w = Number(width)
+  const h = Number(height)
+  if (typeof src === 'string' && src.startsWith('/') && w > 0 && h > 0) {
+    return (
+      <Image
+        src={src}
+        alt={alt}
+        title={title}
+        width={w}
+        height={h}
+        loading="lazy"
+        sizes="(max-width: 1024px) 100vw, 800px"
+      />
+    )
+  }
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src={src} alt={alt} title={title} loading="lazy" decoding="async" />
+}
 
 const mdxComponents = {
   // Available to every article's MDX.
   YouTubeEmbed,
+  img: MdxImage,
+  // Markdown tables get a horizontal scroll container so six numeric
+  // columns survive a 390px phone - see MdxTable.js.
+  table: MdxTable,
 }
 
 const RenderMdx = ({blog}) => {
