@@ -121,19 +121,10 @@ export default function SuccessPage() {
           </p>
         )}
 
-        {/* Tarun's number visible */}
-        <div
-          className="rounded-xl p-3 text-center"
-          style={{ backgroundColor: '#F9FAFB', border: '1.5px solid #e5e7eb' }}
-        >
-          <p className="text-xs text-gray-500">Tarun ka WhatsApp number</p>
-          <a
-            href="tel:+918700696438"
-            className="text-base font-bold text-gray-900 hover:underline"
-          >
-            +91 87006 96438
-          </a>
-        </div>
+        {/* A personal mobile number used to be printed here in full, on a
+            page Google could index. The WhatsApp button above already
+            opens the right chat with the booking details pre-filled, so
+            the number itself does not need to be on the page. */}
       </div>
 
     </main>

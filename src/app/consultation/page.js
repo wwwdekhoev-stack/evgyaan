@@ -36,7 +36,6 @@ export default function ConsultationPage() {
           className="rounded-2xl p-5 bg-white"
           style={{ border: '1.5px solid #e5e7eb', boxShadow: '0 2px 10px rgba(0,0,0,0.06)' }}
         >
-          <div className="text-yellow-400 text-sm mb-1">⭐⭐⭐⭐½</div>
           <h2 className="text-lg font-bold text-gray-900 mb-2">
             Free WhatsApp Chat
           </h2>
@@ -60,7 +59,6 @@ export default function ConsultationPage() {
           className="rounded-2xl p-5 bg-white"
           style={{ border: '1.5px solid #e5e7eb', boxShadow: '0 2px 10px rgba(0,0,0,0.06)' }}
         >
-          <div className="text-yellow-400 text-sm mb-1">⭐⭐⭐⭐</div>
           <h2 className="text-lg font-bold text-gray-900 mb-2">
             Free EV Buying Guide
           </h2>
