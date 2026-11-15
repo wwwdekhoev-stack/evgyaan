@@ -91,6 +91,11 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link href="/advertise" className="hover:text-accent transition-colors">
+                  Advertise with us
+                </Link>
+              </li>
+              <li>
                 <Link href="/about" className="hover:text-accent transition-colors">
                   About us
                 </Link>

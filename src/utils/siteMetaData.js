@@ -11,6 +11,16 @@ const siteMetadata = {
     siteLogo: '/logo.png', // 512x512, used as the publisher logo in structured data
     socialBanner: '/social-banner.png', // add social banner in the public folder
     email: 'business@evgyan.com',
+    // The registered proprietorship behind the masthead. News surfaces and
+    // sponsors both check that a site names a legal entity; About and
+    // Contact print it, and it goes into the publisher structured data.
+    legalName: 'M/s E.V. Gyan',
+    founder: 'Tarun Pal',
+    // Where a reader sends a correction. This is deliberately the same
+    // inbox as business@ until Tarun confirms a dedicated corrections
+    // address actually exists - a published address that bounces is worse
+    // than no address at all.
+    correctionsEmail: 'business@evgyan.com',
     github: 'https://github.com/evgyaan',
     twitter: 'https://x.com/ev_gyan',
     facebook: 'https://www.facebook.com/profile.php?id=61557585840907',

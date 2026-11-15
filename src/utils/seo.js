@@ -14,10 +14,22 @@ export const getBlogBySlug = (slug) => blogs.find((b) => b.slug === slug) || nul
 export const blogModifiedAt = (blog) => blog.updatedAt || blog.publishedAt;
 
 // Publisher block reused by NewsArticle + Organization schema.
+//
+// Typed NewsMediaOrganization rather than a bare Organization: this site
+// publishes news, and news surfaces (and sponsors doing diligence) look for
+// the publisher to say who stands behind it, who founded it, where the
+// editorial standards are written down, and how to reach a human. A bare
+// Organization node answers none of that.
+//
+// Still missing and only Tarun can supply them: the registered postal
+// address (`address`) and the founding date (`foundingDate`). Both are
+// deliberately absent rather than guessed - a wrong legal detail in
+// structured data is worse than a missing one.
 export const publisherSchema = () => ({
-  "@type": "Organization",
+  "@type": "NewsMediaOrganization",
   "@id": `${siteMetadata.siteUrl}/#organization`,
   name: siteMetadata.headerTitle,
+  legalName: siteMetadata.legalName,
   url: siteMetadata.siteUrl,
   logo: {
     "@type": "ImageObject",
@@ -25,6 +37,38 @@ export const publisherSchema = () => ({
     width: 512,
     height: 512,
   },
+  founder: {
+    "@type": "Person",
+    name: siteMetadata.founder,
+    url: absoluteUrl("/authors/tarun-pal"),
+  },
+  // Where the standards this masthead claims are actually written down.
+  publishingPrinciples: absoluteUrl("/editorial-policy"),
+  // Same page carries the corrections policy.
+  correctionsPolicy: absoluteUrl("/editorial-policy"),
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      contactType: "editorial",
+      email: siteMetadata.correctionsEmail,
+      url: absoluteUrl("/contact"),
+      availableLanguage: ["en", "hi"],
+    },
+    {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      email: siteMetadata.email,
+      url: absoluteUrl("/advertise"),
+      availableLanguage: ["en", "hi"],
+    },
+  ],
+  sameAs: [
+    siteMetadata.youtube,
+    siteMetadata.instagram,
+    siteMetadata.twitter,
+    siteMetadata.facebook,
+    siteMetadata.linkedin,
+  ].filter(Boolean),
 });
 
 // Brand suffix the root layout's `title.template` appends to every plain

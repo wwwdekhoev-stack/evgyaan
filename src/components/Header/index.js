@@ -11,10 +11,18 @@ import { CATEGORY_META } from "@/src/components/Blog/CategoryListing";
 // 3-item list that silently fell out of sync once Phase 4 added
 // Three-Wheeler, Commercial EVs and Policy & Industry (they were only
 // reachable from the footer, not the main nav anyone actually looks at).
-const NAV_LINKS = Object.entries(CATEGORY_META).map(([slug, meta]) => ({
-  label: meta.label,
-  href: `/categories/${slug}`,
-}));
+const NAV_LINKS = [
+  ...Object.entries(CATEGORY_META).map(([slug, meta]) => ({
+    label: meta.label,
+    href: `/categories/${slug}`,
+  })),
+  // The two page types competitors cannot copy in a week - the monthly
+  // registration data and the calculators - were reachable only from the
+  // footer. They are the reason someone bookmarks this site rather than
+  // reading one article and leaving, so they belong in the nav.
+  { label: "Sales Data", href: "/ev-sales-data" },
+  { label: "Tools", href: "/tools" },
+];
 
 const Header = () => {
   const pathname = usePathname();

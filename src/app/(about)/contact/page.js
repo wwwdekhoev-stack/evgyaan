@@ -73,6 +73,45 @@ export default function Contact() {
         </div>
       </div>
 
+      {/* Who you are actually writing to. A news site that names no legal
+          entity, no editor and no corrections route is one a sponsor's
+          diligence and Google's news surfaces both mark down. The postal
+          address still has to be added here - see the 60-day plan. */}
+      <div className="mt-12 border-t border-borderSoft pt-6 max-w-2xl">
+        <h3 className="text-sm font-bold uppercase tracking-wide text-dark">
+          Publisher
+        </h3>
+        <dl className="mt-3 space-y-2 text-sm text-gray">
+          <div className="flex flex-wrap gap-x-2">
+            <dt className="font-semibold text-dark">Published by</dt>
+            <dd>{siteMetadata.legalName}, a sole proprietorship</dd>
+          </div>
+          <div className="flex flex-wrap gap-x-2">
+            <dt className="font-semibold text-dark">Founder and editor</dt>
+            <dd>{siteMetadata.founder}</dd>
+          </div>
+          <div className="flex flex-wrap gap-x-2">
+            <dt className="font-semibold text-dark">Corrections</dt>
+            <dd>
+              <a
+                href={`mailto:${siteMetadata.correctionsEmail}?subject=Correction`}
+                className="text-dark underline decoration-accent decoration-2 underline-offset-2 break-all"
+              >
+                {siteMetadata.correctionsEmail}
+              </a>
+              {" "}&mdash; we correct errors of fact and say what changed, see our{" "}
+              <Link
+                href="/editorial-policy"
+                className="text-dark underline decoration-accent decoration-2 underline-offset-2"
+              >
+                editorial policy
+              </Link>
+              .
+            </dd>
+          </div>
+        </dl>
+      </div>
+
       <p className="mt-10 text-sm text-gray">
         Prefer to browse first?{" "}
         <Link href="/about" className="text-dark font-semibold underline decoration-accent decoration-2 underline-offset-2">

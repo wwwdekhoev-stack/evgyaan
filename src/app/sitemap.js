@@ -85,6 +85,8 @@ export default function sitemap() {
     "/privacy-policy",
     "/ev-buying-guide",
     "/ev-roi-calculator",
+    "/tools",
+    "/advertise",
     "/consultation",
   ]) {
     entries.push({ url: absoluteUrl(path) });
