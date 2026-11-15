@@ -2,6 +2,13 @@
 
 import { useEffect, useState } from 'react';
 
+// One source of truth for the booking number. It was printed as
+// +91 87006 96438 here while the WhatsApp button opened 8178043697 -
+// two numbers on one page, only one of them real. Both references now
+// read from these.
+const WHATSAPP_NUMBER = '918178043697';
+const WHATSAPP_DISPLAY = '+91 81780 43697';
+
 export default function SuccessPage() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -32,7 +39,7 @@ export default function SuccessPage() {
 
   const handleWhatsApp = () => {
     setWaSent(true);
-    window.open(`https://wa.me/918178043697?text=${waText}`, '_blank');
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${waText}`, '_blank');
   };
 
   return (
@@ -121,10 +128,32 @@ export default function SuccessPage() {
           </p>
         )}
 
-        {/* A personal mobile number used to be printed here in full, on a
-            page Google could index. The WhatsApp button above already
-            opens the right chat with the booking details pre-filled, so
-            the number itself does not need to be on the page. */}
+        {/* The number printed here used to be +91 87006 96438, which was
+            not the number the WhatsApp button opens. Tarun confirmed
+            8178043697 is the right one, so both now come from the same
+            constant and cannot drift apart again.
+
+            It is printed in full only because this page is noindex - a
+            personal mobile does not belong on a page Google can reach.
+            It stays because the button alone leaves someone on a desktop
+            without WhatsApp, or whose popup was blocked, with no way to
+            reach anyone after they have already paid. */}
+        <div
+          className="mt-4 rounded-xl p-3 text-center"
+          style={{ backgroundColor: '#F9FAFB', border: '1.5px solid #e5e7eb' }}
+        >
+          <p className="text-xs text-gray-500">
+            Button nahi chala? Seedha message karo
+          </p>
+          <a
+            href={`https://wa.me/${WHATSAPP_NUMBER}?text=${waText}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-base font-bold text-gray-900 hover:underline"
+          >
+            {WHATSAPP_DISPLAY}
+          </a>
+        </div>
       </div>
 
     </main>
