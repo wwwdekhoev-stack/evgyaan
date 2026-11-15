@@ -12,6 +12,46 @@ export const formatDateIST = (
     timeZone: "Asia/Kolkata",
   });
 
+// The dateline under a headline: "14 November 2026, 11:30 PM IST".
+//
+// News surfaces (and readers deciding whether a story is still current)
+// expect a visible time, not just a day. Articles carry a real IST minute
+// in frontmatter, so showing it costs nothing and is the cheapest proof
+// that the timestamp in the structured data is honest.
+export const formatDateTimeIST = (value, locale = "en-IN") => {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+
+  const day = date.toLocaleDateString(locale, {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "Asia/Kolkata",
+  });
+
+  const time = date
+    .toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+      timeZone: "Asia/Kolkata",
+    })
+    .replace(/\u202f/g, " ");
+
+  return `${day}, ${time} IST`;
+};
+
+// True when an article has genuinely been revised, not merely re-saved.
+// A one-minute difference is noise from the publishing pipeline; anything
+// past that is a real update worth showing the reader.
+export const hasRealUpdate = (publishedAt, updatedAt) => {
+  if (!publishedAt || !updatedAt) return false;
+  const p = new Date(publishedAt).getTime();
+  const u = new Date(updatedAt).getTime();
+  if (Number.isNaN(p) || Number.isNaN(u)) return false;
+  return u - p > 60 * 1000;
+};
+
 // ---- Pagination ----
 // How many article rows appear in each list page (homepage feed, category pages).
 // Homepage page 1 additionally shows the big hero story above these rows.
