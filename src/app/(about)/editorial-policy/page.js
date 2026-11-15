@@ -57,6 +57,14 @@ export default function EditorialPolicy() {
             labelled (for example, &ldquo;Representative image
             (AI-generated)&rdquo;).
           </li>
+          <li>
+            We do not generate the likeness of a real person. No ministers,
+            executives or any other identifiable individual is ever depicted
+            in an image we create. For news about a specific vehicle we use
+            the manufacturer&rsquo;s own press photography; generated
+            illustration is reserved for data and concept stories, always
+            labelled as above.
+          </li>
         </ul>
 
         <h2>Independence</h2>
