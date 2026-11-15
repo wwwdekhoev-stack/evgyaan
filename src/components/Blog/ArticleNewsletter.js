@@ -14,7 +14,12 @@ import { track, EVENTS } from "@/src/utils/analytics";
 // generic "subscribe": it's the thing EVGyan publishes that nobody else
 // does, it arrives on a predictable schedule, and it's a real reason to
 // hand over an address.
-const ArticleNewsletter = () => {
+// `source` names the placement. It reaches GA4 and the subscribe API, so
+// the data hub, the homepage and article signups can be told apart - and
+// it makes the input id unique, which matters the moment two of these
+// render on one page.
+const ArticleNewsletter = ({ source = "article" }) => {
+  const inputId = `newsletter-email-${source}`;
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("idle");
   const [errMsg, setErrMsg] = useState("");
@@ -37,11 +42,11 @@ const ArticleNewsletter = () => {
       const res = await fetch("/api/ev-guide-subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: "article" }),
+        body: JSON.stringify({ email, source }),
       });
       if (res.ok) {
         setStatus("success");
-        track(EVENTS.NEWSLETTER_SIGNUP, { source: "article" });
+        track(EVENTS.NEWSLETTER_SIGNUP, { source });
       } else {
         const data = await res.json().catch(() => ({}));
         setStatus("error");
@@ -69,11 +74,11 @@ const ArticleNewsletter = () => {
             by model — and send you what actually changed. No brand pressure, no hype.
           </p>
           <form onSubmit={handleSubmit} noValidate className="mt-4 flex flex-col sm:flex-row gap-3">
-            <label htmlFor="article-newsletter-email" className="sr-only">
+            <label htmlFor={inputId} className="sr-only">
               Email address
             </label>
             <input
-              id="article-newsletter-email"
+              id={inputId}
               type="email"
               name="email"
               value={email}

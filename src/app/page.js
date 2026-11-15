@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ArticleNewsletter from "@/src/components/Blog/ArticleNewsletter";
 import Link from "next/link";
 import { blogs } from "@/.velite/generated";
 import { sortBlogs, getCategory, formatDateIST, getHomePage } from "@/src/utils";
@@ -146,6 +147,11 @@ export default function Home() {
               </li>
             ))}
           </ol>
+
+          {/* Sidebar rather than a banner: the homepage is a feed, and a
+              reader who has scrolled this far is browsing, not bouncing.
+              Email capture existed only inside articles until now. */}
+          <ArticleNewsletter source="homepage" />
         </aside>
       </section>
     </main>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import JsonLd from "@/src/components/Seo/JsonLd";
 import MoMBars from "@/src/components/SalesData/MoMBars";
+import ArticleNewsletter from "@/src/components/Blog/ArticleNewsletter";
 import siteMetadata from "@/src/utils/siteMetaData";
 import { absoluteUrl, getBlogBySlug, publisherSchema } from "@/src/utils/seo";
 import { formatIN } from "@/src/utils";
@@ -180,6 +181,17 @@ export default function EvSalesDataHub() {
               </li>
             ))}
         </ul>
+      </section>
+
+      {/* The people reading this page are the ones who want next month's
+          numbers - dealers, suppliers, charging companies, analysts. Until
+          now the only way to capture them was a form buried inside an
+          article. This list is the precondition for selling the data pack
+          and for newsletter value in a sponsor deck. */}
+      <section className="max-w-[1280px] mx-auto px-5 sm:px-10 pb-16">
+        <div className="max-w-2xl">
+          <ArticleNewsletter source="sales-data-hub" />
+        </div>
       </section>
     </main>
   );
