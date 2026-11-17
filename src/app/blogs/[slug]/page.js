@@ -6,6 +6,7 @@ import AuthorBio from "@/src/components/Blog/AuthorBio";
 import ArticleNewsletter from "@/src/components/Blog/ArticleNewsletter";
 import RelatedArticles from "@/src/components/Blog/RelatedArticles";
 import PreferredSource from "@/src/components/PreferredSource";
+import ArticleSources from "@/src/components/Blog/ArticleSources";
 import siteMetadata from "@/src/utils/siteMetaData";
 import { blogs } from '@/.velite/generated'
 import { sortBlogs, getCategory } from "@/src/utils";
@@ -218,6 +219,9 @@ export default async function BlogPage({ params }) {
       <div className="max-w-[1280px] mx-auto px-5 sm:px-10 grid grid-cols-12 gap-y-8 lg:gap-10 mt-10 pb-16">
         <div className="col-span-12 lg:col-span-8">
           <RenderMdx blog={blog} />
+          {/* Directly under the story, before the share row - it is part
+              of the article, not an afterthought. */}
+          <ArticleSources sources={blog.sources} />
           <ShareButtons url={articleUrl} title={blog.title} />
           <AuthorBio author={author} />
           {/* Asked for right after the reader has finished a story and

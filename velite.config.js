@@ -91,6 +91,26 @@ const blog = s
     isPublished: s.boolean().default(true),
     author: s.string(),
     tags: s.array(s.string()),
+    // Where the story came from. Optional so nothing already published
+    // breaks, but the publishing pipeline should fill it on every news
+    // article: a reader who cannot see what a claim rests on has no way
+    // to check it, and "a report said" with no outlet named is the single
+    // most common credibility problem on a news site.
+    //
+    // Each entry is `name` plus `url`. A bare string is accepted too and
+    // treated as a name-only source, for the cases where the original is
+    // offline or behind a wall.
+    sources: s
+      .array(
+        s.union([
+          s.string(),
+          s.object({
+            name: s.string(),
+            url: s.string().url().optional(),
+          }),
+        ])
+      )
+      .optional(),
     body: s.mdx(),
     toc: s.toc(),
     slug: s.string(),

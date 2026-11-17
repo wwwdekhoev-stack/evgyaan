@@ -58,6 +58,17 @@ export default function EditorialPolicy() {
             (AI-generated)&rdquo;).
           </li>
           <li>
+            Every news story lists the sources it rests on, at the end of the
+            article. Where a single outlet broke something, we say so by name
+            in the story itself.
+          </li>
+          <li>
+            Stories written from a company announcement or a wire report carry
+            the EVGyan Desk byline. A named writer appears where the piece
+            carries that person&rsquo;s own judgement &mdash; analysis, a
+            verdict, a ride or drive, or a data story they built themselves.
+          </li>
+          <li>
             We do not generate the likeness of a real person. No ministers,
             executives or any other identifiable individual is ever depicted
             in an image we create. For news about a specific vehicle we use
