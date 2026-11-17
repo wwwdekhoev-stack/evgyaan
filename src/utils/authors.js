@@ -1,3 +1,4 @@
+import { withYouTubeUtm } from "@/src/utils/youtube";
 import siteMetadata from "@/src/utils/siteMetaData";
 import { getPublishedBlogs } from "@/src/utils/seo";
 
@@ -22,7 +23,9 @@ const KNOWN_AUTHORS = {
     // These are EVGyan's own channels (the desk IS the channel), not a
     // stand-in for any one person's accounts — fine to show here.
     socials: [
-      { label: "YouTube", href: siteMetadata.youtube },
+      // Visible link only - schemaAuthor.sameAs below stays the clean
+      // canonical URL, because that is what sameAs means.
+      { label: "YouTube", href: withYouTubeUtm(siteMetadata.youtube, "author-page") },
       { label: "Instagram", href: siteMetadata.instagram },
       { label: "LinkedIn", href: siteMetadata.linkedin },
       { label: "X / Twitter", href: siteMetadata.twitter },

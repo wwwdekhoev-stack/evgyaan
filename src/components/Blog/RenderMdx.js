@@ -6,6 +6,7 @@ import SegmentLink from './SegmentLink'
 import YouTubeEmbed from './YouTubeEmbed'
 import Image from 'next/image'
 import MdxTable from './MdxTable'
+import MdxLink from './MdxLink'
 
 // Every `![alt](./photo.jpg)` in an article renders through this.
 //
@@ -50,6 +51,9 @@ const mdxComponents = {
   // Markdown tables get a horizontal scroll container so six numeric
   // columns survive a 390px phone - see MdxTable.js.
   table: MdxTable,
+  // Internal links go through next/link; outbound ones open in a new tab,
+  // and links to the channel carry UTMs - see MdxLink.js.
+  a: MdxLink,
 }
 
 const RenderMdx = ({blog}) => {

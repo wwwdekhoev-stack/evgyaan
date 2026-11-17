@@ -2,6 +2,7 @@ import Link from "next/link";
 import { YoutubeIcon, InstagramIcon, FacebookIcon, LinkedinIcon, XIcon } from "@/src/components/Icons";
 import siteMetadata from "@/src/utils/siteMetaData";
 import WhatsAppLink from "@/src/components/WhatsAppLink";
+import { withYouTubeUtm } from "@/src/utils/youtube";
 
 export const metadata = {
   title: "Contact Us",
@@ -10,7 +11,7 @@ export const metadata = {
 };
 
 const CHANNELS = [
-  { label: "YouTube", href: siteMetadata.youtube, Icon: YoutubeIcon },
+  { label: "YouTube", href: withYouTubeUtm(siteMetadata.youtube, "contact"), Icon: YoutubeIcon },
   { label: "Instagram", href: siteMetadata.instagram, Icon: InstagramIcon },
   { label: "Facebook", href: siteMetadata.facebook, Icon: FacebookIcon },
   { label: "LinkedIn", href: siteMetadata.linkedin, Icon: LinkedinIcon },
