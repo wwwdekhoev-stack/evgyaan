@@ -172,6 +172,94 @@ module.exports = {
           destination: '/blogs/electric-car-sales-september-2026',
           permanent: true,
         },
+
+        // --- Retired global news, 18 Nov 2026 --------------------------
+        //
+        // Sixteen stories with no India angle, retired once they had aged
+        // out. They are 301s rather than 404s so whatever links and index
+        // entries they earned pass to the section they belonged to instead
+        // of dying. The articles themselves are in git history if any of
+        // them is ever wanted back.
+        {
+          source: '/blogs/xpeng-middle-east-li-auto-i6-byd-qin-plus',
+          destination: '/categories/four-wheeler',
+          permanent: true,
+        },
+        {
+          source: '/blogs/vw-xpeng-europe-platform-mona-l05-global',
+          destination: '/categories/four-wheeler',
+          permanent: true,
+        },
+        {
+          source: '/blogs/best-selling-evs-in-the-world-september-2026',
+          destination: '/categories/four-wheeler',
+          permanent: true,
+        },
+        {
+          source: '/blogs/toyota-waymo-robotaxi-bz4x',
+          destination: '/categories/four-wheeler',
+          permanent: true,
+        },
+        {
+          source: '/blogs/ford-universal-ev-platform-byd-efficiency',
+          destination: '/categories/four-wheeler',
+          permanent: true,
+        },
+        {
+          source: '/blogs/tesla-model-y-range-increase-same-price',
+          destination: '/categories/four-wheeler',
+          permanent: true,
+        },
+        {
+          source: '/blogs/byd-ti7-land-rover-defender-copy-claim',
+          destination: '/categories/four-wheeler',
+          permanent: true,
+        },
+        {
+          source: '/blogs/audi-a4-e-tron-delay-ssp-platform',
+          destination: '/categories/four-wheeler',
+          permanent: true,
+        },
+        {
+          source: '/blogs/tesla-cybertruck-production-ends-cybercab',
+          destination: '/categories/four-wheeler',
+          permanent: true,
+        },
+        {
+          source: '/blogs/yangwang-altior-byd-luxury-sedan',
+          destination: '/categories/four-wheeler',
+          permanent: true,
+        },
+        {
+          source: '/blogs/yangwang-u9-xtreme-top-speed-record',
+          destination: '/categories/four-wheeler',
+          permanent: true,
+        },
+        {
+          source: '/blogs/tesla-cybercab-price-mkbhd-bet',
+          destination: '/categories/four-wheeler',
+          permanent: true,
+        },
+        {
+          source: '/blogs/china-electric-truck-sales-half-heavy-trucks',
+          destination: '/categories/commercial-evs',
+          permanent: true,
+        },
+        {
+          source: '/blogs/ford-mustang-mach-e-battery-health',
+          destination: '/categories/battery-charging',
+          permanent: true,
+        },
+        {
+          source: '/blogs/catl-lithium-air-battery-range-claim',
+          destination: '/categories/battery-charging',
+          permanent: true,
+        },
+        {
+          source: '/blogs/comac-ce-25a-electric-plane-first-flight',
+          destination: '/categories/policy-industry',
+          permanent: true,
+        },
       ]
     },
   }
