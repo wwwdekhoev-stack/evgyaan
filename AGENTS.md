@@ -24,7 +24,7 @@ image: hero.jpg
 imageAlt: "..."            # describe what is in the picture, never the headline
 publishedAt: 2026-11-17T16:55:00+05:30
 updatedAt: 2026-11-17T16:55:00+05:30
-author: "EVGyan Desk"
+author: "Vishal Kumar"
 isPublished: true
 tags: [...]
 slug: the-slug
@@ -51,11 +51,16 @@ editorial notes, and anything that is a syndication of a source already in the
 list. They render as a Sources block at the end of the article.
 
 ### Bylines
-`"EVGyan Desk"` for wire and press-release-derived news — most of the site.
-A named person (`"Vishal Kumar"`, `"Tarun Pal"`) only where that person did
-work that carries their judgement: analysis, a verdict, a ride or drive, or a
-data story they built. The byline is a claim about who stands behind the
-piece, so do not attach a name to something that person did not write.
+`"Vishal Kumar"` on every article. This is Tarun's decision of 22 Nov 2026,
+and it is what `/editorial-policy` tells readers: every article carries the
+byline of a named member of the team.
+
+The `"EVGyan Desk"` byline is retired. The 58 articles that carried it were
+moved to Vishal Kumar the same day, and `/authors/evgyan-desk` redirects to
+his author page. Do not publish under it again. If the article arrives from
+Notion with Author set to "EVGyan Desk", publish it as `"Vishal Kumar"`.
+
+Another name (`"Tarun Pal"`) only when Tarun asks for it on a specific piece.
 
 Author profiles live in `src/utils/authors.js`.
 

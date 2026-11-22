@@ -13,6 +13,11 @@ export const slugifyAuthor = (name = "") =>
     .replace(/^-+|-+$/g, "");
 
 const KNOWN_AUTHORS = {
+  // RETIRED 22 Nov 2026. No article carries the "EVGyan Desk" byline any
+  // more - all of them moved to Vishal Kumar - and /authors/evgyan-desk
+  // redirects to his page (next.config.js). The entry is left in place so
+  // nothing breaks if an old byline ever turns up; do not use it for new
+  // articles.
   "evgyan-desk": {
     type: "Organization",
     bio: "The EVGyan Desk is the editorial team behind EVGyan.com. It covers EV news, monthly sales data and policy changes for electric cars and two-wheelers in India.",

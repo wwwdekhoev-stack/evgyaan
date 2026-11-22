@@ -119,6 +119,16 @@ module.exports = {
           permanent: true,
         },
 
+        // The "EVGyan Desk" byline was retired on 22 Nov 2026: every
+        // story that carried it now carries Vishal Kumar's, so the Desk's
+        // author page has no stories left and would otherwise be a 404.
+        // It goes to the page where those stories are now listed.
+        {
+          source: '/authors/evgyan-desk',
+          destination: '/authors/vishal-kumar',
+          permanent: true,
+        },
+
         // --- Legacy /blogs/article_N URLs -------------------------------
         //
         // The first seven articles went live before slugs were a thing, so

@@ -63,10 +63,8 @@ export default function EditorialPolicy() {
             in the story itself.
           </li>
           <li>
-            Stories written from a company announcement or a wire report carry
-            the EVGyan Desk byline. A named writer appears where the piece
-            carries that person&rsquo;s own judgement &mdash; analysis, a
-            verdict, a ride or drive, or a data story they built themselves.
+            Every article carries the byline of a named member of the EVGyan
+            team.
           </li>
           <li>
             We do not generate the likeness of a real person. No ministers,
