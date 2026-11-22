@@ -32,16 +32,21 @@ export async function generateMetadata({ params }) {
   const publishedAt = new Date(blog.publishedAt).toISOString();
   const modifiedAt = new Date(blog.updatedAt || blog.publishedAt).toISOString();
 
-  // Carry real width/height through to og:image/twitter:image so social
-  // crawlers and Google Discover see the hero's actual (large) dimensions
-  // instead of guessing - a missing width/height is treated as "unknown
-  // size" by some crawlers and can disqualify a large-image card.
+  // og:image / twitter:image is the 16:9 WebP built for Google Discover
+  // (see buildShareImage in velite.config.js), not the raw hero file.
+  // Real width/height/type go out with it: a missing size is treated as
+  // "unknown size" by some crawlers and can disqualify a large-image card.
   let ogImages = [{ url: siteMetadata.siteUrl + siteMetadata.socialBanner }];
-  if (blog.image && typeof blog.image.src === "string") {
-    const url = blog.image.src.includes("http")
-      ? blog.image.src
-      : siteMetadata.siteUrl + blog.image.src;
-    ogImages = [{ url, width: blog.image.width, height: blog.image.height }];
+  if (blog.shareImage?.src) {
+    ogImages = [
+      {
+        url: absoluteUrl(blog.shareImage.src),
+        width: blog.shareImage.width,
+        height: blog.shareImage.height,
+        ...(blog.shareImage.type && { type: blog.shareImage.type }),
+        alt: blog.imageAlt,
+      },
+    ];
   }
 
   const authors = blog?.author ? [blog.author] : siteMetadata.author;
@@ -121,13 +126,18 @@ export default async function BlogPage({ params }) {
   const latest = sortBlogs(blogs.filter((b) => b.isPublished && b.slug !== blog.slug)).slice(0, 7);
   const category = getCategory(blog.tags);
 
-  let imageList = [siteMetadata.socialBanner];
-  if (blog.image) {
-    imageList =
-      typeof blog.image.src === "string"
-        ? [siteMetadata.siteUrl + blog.image.src]
-        : blog.image;
-  }
+  // Same file as og:image, as an ImageObject so Google is told its size
+  // outright instead of having to fetch the image to find out.
+  const imageList = blog.shareImage?.src
+    ? [
+        {
+          "@type": "ImageObject",
+          url: absoluteUrl(blog.shareImage.src),
+          width: blog.shareImage.width,
+          height: blog.shareImage.height,
+        },
+      ]
+    : [absoluteUrl(siteMetadata.socialBanner)];
 
   const articleUrl = absoluteUrl(blog.url);
   const author = getAuthor(blog.author);
@@ -153,6 +163,7 @@ export default async function BlogPage({ params }) {
       ? {
           "@type": author.schemaAuthor.type,
           name: author.schemaAuthor.name,
+          ...(author.schemaAuthor.url && { url: absoluteUrl(author.schemaAuthor.url) }),
           ...(author.schemaAuthor.jobTitle && { jobTitle: author.schemaAuthor.jobTitle }),
           ...(author.schemaAuthor.sameAs && { sameAs: author.schemaAuthor.sameAs }),
         }

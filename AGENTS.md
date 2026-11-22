@@ -66,6 +66,18 @@ In-body images are measured at build time (see `rehypeImageDimensions` in
 `velite.config.js`) and rendered through `next/image`, so they need no manual
 width or height.
 
+### Hero size (Google Discover)
+
+A hero must be **16:9 and at least 1200px wide** - 1600x900 or 1920x1080 is
+what the site uses. Discover shows the large card for nothing smaller, and
+Google asks publishers to avoid heroes that are mostly text.
+
+Keep writing `hero.jpg`. The build makes the WebP that og:image, the
+NewsArticle schema and RSS point at (`buildShareImage` in
+`velite.config.js`), so never export or commit a WebP by hand. A hero that is
+not 16:9 is not cropped: the build prints a `[hero]` warning, and the fix is
+a new image, not a code change.
+
 **Never generate the likeness of a real person** — no ministers, executives or
 any other identifiable individual. Manufacturer press photography for product
 news; generated illustration only for data and concept stories, and always

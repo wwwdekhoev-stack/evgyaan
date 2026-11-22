@@ -1,6 +1,6 @@
 import { blogs } from "@/.velite/generated";
 import { getCategory, getHomePage, getListPage } from "@/src/utils";
-import { getAuthor } from "@/src/utils/authors";
+import { getAuthor, PROFILE_SLUGS } from "@/src/utils/authors";
 import { absoluteUrl, blogModifiedAt, getPublishedBlogs } from "@/src/utils/seo";
 import { CATEGORY_META, getCategoryPosts } from "@/src/components/Blog/CategoryListing";
 import { BRANDS, getBrandArticles } from "@/src/utils/brands";
@@ -75,6 +75,10 @@ export default function sitemap() {
   }
   for (const [slug, posts] of authors) {
     entries.push({ url: absoluteUrl(`/authors/${slug}`), lastModified: latest(posts) });
+  }
+  // Profiles with a page but no byline yet (the founder).
+  for (const slug of PROFILE_SLUGS) {
+    if (!authors.has(slug)) entries.push({ url: absoluteUrl(`/authors/${slug}`) });
   }
 
   // Static pages

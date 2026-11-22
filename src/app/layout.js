@@ -50,6 +50,13 @@ export const metadata = {
   robots: {
     index: true,
     follow: true,
+    // Also on the generic `robots` tag, not only `googlebot` below. Google
+    // was already covered; this says the same thing to every other crawler
+    // that honours the directive, and keeps the two tags from disagreeing.
+    // `max-image-preview:large` is what lets Discover use the large card.
+    "max-video-preview": -1,
+    "max-image-preview": "large",
+    "max-snippet": -1,
     googleBot: {
       index: true,
       follow: true,

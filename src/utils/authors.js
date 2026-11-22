@@ -37,15 +37,34 @@ const KNOWN_AUTHORS = {
     // schema all stay "EVGyan Desk" exactly as published. This object is
     // read only when building the per-article NewsArticle JSON-LD (see
     // blogs/[slug]/page.js) and never touches anything rendered on screen.
-    // No `url` on purpose: pointing a Person node at a page titled
-    // "EVGyan Desk" would be its own mismatch, and `sameAs` is the signal
-    // that actually matters for E-E-A-T.
+    // `url` points at Tarun's own profile page (the "tarun-pal" entry
+    // below). It was left off until that page existed, because the only
+    // page there was to point at was titled "EVGyan Desk".
     schemaAuthor: {
       type: "Person",
       name: "Tarun Pal",
+      url: "/authors/tarun-pal",
       jobTitle: "Founder, EVGyan",
       sameAs: [siteMetadata.youtube, siteMetadata.linkedin, siteMetadata.twitter],
     },
+  },
+  // The founder. `name` is set here (the other two entries take theirs from
+  // an article byline) because this page has to exist whether or not a
+  // story is bylined to him: the publisher schema on every page names
+  // /authors/tarun-pal as the founder's URL, and until this entry existed
+  // that URL was a 404.
+  "tarun-pal": {
+    type: "Person",
+    name: "Tarun Pal",
+    jobTitle: "Founder, EVGyan",
+    bio: `Tarun Pal is the founder of EVGyan. He started it as a YouTube channel to explain India's electric vehicle market in plain language, and it has since grown to ${siteMetadata.subscriberCount} subscribers. He reviews electric scooters, motorcycles and cars, and tracks India's monthly EV registration numbers.`,
+    image: "/tarun.jpg",
+    socials: [
+      { label: "YouTube", href: withYouTubeUtm(siteMetadata.youtube, "author-page") },
+      { label: "Instagram", href: siteMetadata.instagram },
+      { label: "LinkedIn", href: siteMetadata.linkedin },
+      { label: "X / Twitter", href: siteMetadata.twitter },
+    ],
   },
   "vishal-kumar": {
     type: "Person",
@@ -67,6 +86,7 @@ export function getAuthor(name) {
       known.bio ||
       `${display} writes for EVGyan, covering EV news and sales data in India.`,
     image: known.image || null,
+    jobTitle: known.jobTitle || null,
     // Present only for authors with a Phase-7.2-style schema override
     // (currently just evgyan-desk); everyone else uses type/name/path above
     // as before - see blogs/[slug]/page.js for how this is consumed.
@@ -74,6 +94,18 @@ export function getAuthor(name) {
     credential: known.credential || null,
     socials: known.socials?.filter((s) => s.href) || [],
   };
+}
+
+// Profiles that get a page with or without a bylined story - today just the
+// founder. Looked up by slug, since there may be no article to read the
+// name from.
+export const PROFILE_SLUGS = Object.keys(KNOWN_AUTHORS).filter(
+  (slug) => KNOWN_AUTHORS[slug].name
+);
+
+export function getAuthorBySlug(slug) {
+  const name = KNOWN_AUTHORS[slug]?.name;
+  return name ? getAuthor(name) : null;
 }
 
 // Every distinct byline currently in use, for the footer's author list
