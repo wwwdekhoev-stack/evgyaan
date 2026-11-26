@@ -28,9 +28,6 @@ author: "Vishal Kumar"
 isPublished: true
 tags: [...]
 slug: the-slug
-sources:                   # see below
-  - name: "Autocar India"
-    url: "https://..."
 ```
 
 ### Dates
@@ -41,14 +38,10 @@ rounded up to a neat minute, never staggered placeholder times across a batch.
 future-dated or malformed date, locally and on Vercel.
 
 ### Sources
-Every news article should carry `sources`. Three to five external ones, named
-by masthead rather than by domain ("Autocar India", not "autocarindia.com"),
-most important first. A company's own page is a source — name it as such,
-e.g. `"Ultraviolette (official)"`.
-
-Leave out internal `/blogs/...` links (they belong in the body as real links),
-editorial notes, and anything that is a syndication of a source already in the
-list. They render as a Sources block at the end of the article.
+Do not add a `sources:` field. Tarun's decision of 26 Nov 2026: articles carry
+no Sources block, and every existing one was removed that day. (The
+`ArticleSources` component still renders the field if present, so leaving it
+out is all it takes.)
 
 ### Bylines
 `"Vishal Kumar"` on every article. This is Tarun's decision of 22 Nov 2026,

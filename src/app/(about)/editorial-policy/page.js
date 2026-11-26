@@ -58,9 +58,8 @@ export default function EditorialPolicy() {
             (AI-generated)&rdquo;).
           </li>
           <li>
-            Every news story lists the sources it rests on, at the end of the
-            article. Where a single outlet broke something, we say so by name
-            in the story itself.
+            Where a single outlet broke something, we say so by name in the
+            story itself.
           </li>
           <li>
             Every article carries the byline of a named member of the EVGyan
