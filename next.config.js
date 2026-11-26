@@ -16,6 +16,14 @@ module.exports = {
           : false,
     },
     images: {
+      // 26 Nov 2026: Vercel's Image Optimization quota on this plan ran
+      // out, and every uncached variant started answering 402 Payment
+      // Required, so new heroes and body images rendered blank. Serve the
+      // source files as they are instead. Heroes are already 1600px JPEGs,
+      // so the cost is modest. Remove this line to go back to the
+      // optimizer (e.g. after a plan upgrade); the settings below then
+      // apply again.
+      unoptimized: true,
       // AVIF first, WebP as the fallback. Next only ships WebP by default;
       // AVIF is typically 25-35% smaller at the same quality and is the
       // LCP element on every article, so this is the cheapest real win
